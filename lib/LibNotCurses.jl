@@ -1,8 +1,5 @@
 module LibNotcurses
 
-#using Notcurses_jll
-#export Notcurses_jll
-
 using CEnum
 
 const uintmax_t = Culong
@@ -2417,289 +2414,11 @@ function notcurses_debug(nc, debugfp)
     @ccall libnotcurses.notcurses_debug(nc::Ptr{notcurses}, debugfp::Ptr{Libc.FILE})::Cvoid
 end
 
-function ncdirect_init(termtype, fp, flags)
-    @ccall libnotcurses.ncdirect_init(termtype::Ptr{Cchar}, fp::Ptr{Libc.FILE}, flags::UInt64)::Ptr{ncdirect}
-end
-
-function ncdirect_core_init(termtype, fp, flags)
-    @ccall libnotcurses.ncdirect_core_init(termtype::Ptr{Cchar}, fp::Ptr{Libc.FILE}, flags::UInt64)::Ptr{ncdirect}
-end
-
-function ncdirect_readline(nc, prompt)
-    @ccall libnotcurses.ncdirect_readline(nc::Ptr{ncdirect}, prompt::Ptr{Cchar})::Ptr{Cchar}
-end
-
-function ncdirect_set_fg_rgb(nc, rgb)
-    @ccall libnotcurses.ncdirect_set_fg_rgb(nc::Ptr{ncdirect}, rgb::Cuint)::Cint
-end
-
-function ncdirect_set_bg_rgb(nc, rgb)
-    @ccall libnotcurses.ncdirect_set_bg_rgb(nc::Ptr{ncdirect}, rgb::Cuint)::Cint
-end
-
-function ncdirect_set_fg_palindex(nc, pidx)
-    @ccall libnotcurses.ncdirect_set_fg_palindex(nc::Ptr{ncdirect}, pidx::Cint)::Cint
-end
-
-function ncdirect_set_bg_palindex(nc, pidx)
-    @ccall libnotcurses.ncdirect_set_bg_palindex(nc::Ptr{ncdirect}, pidx::Cint)::Cint
-end
-
-function ncdirect_palette_size(nc)
-    @ccall libnotcurses.ncdirect_palette_size(nc::Ptr{ncdirect})::Cuint
-end
-
-function ncdirect_putstr(nc, channels, utf8)
-    @ccall libnotcurses.ncdirect_putstr(nc::Ptr{ncdirect}, channels::UInt64, utf8::Ptr{Cchar})::Cint
-end
-
-function ncdirect_putegc(nc, channels, utf8, sbytes)
-    @ccall libnotcurses.ncdirect_putegc(nc::Ptr{ncdirect}, channels::UInt64, utf8::Ptr{Cchar}, sbytes::Ptr{Cint})::Cint
-end
-
-function ncdirect_flush(nc)
-    @ccall libnotcurses.ncdirect_flush(nc::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_set_bg_rgb8(nc, r, g, b)
-    @ccall libnotcurses.ncdirect_set_bg_rgb8(nc::Ptr{ncdirect}, r::Cuint, g::Cuint, b::Cuint)::Cint
-end
-
-function ncdirect_set_fg_rgb8(nc, r, g, b)
-    @ccall libnotcurses.ncdirect_set_fg_rgb8(nc::Ptr{ncdirect}, r::Cuint, g::Cuint, b::Cuint)::Cint
-end
-
-function ncdirect_set_fg_default(nc)
-    @ccall libnotcurses.ncdirect_set_fg_default(nc::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_set_bg_default(nc)
-    @ccall libnotcurses.ncdirect_set_bg_default(nc::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_dim_x(nc)
-    @ccall libnotcurses.ncdirect_dim_x(nc::Ptr{ncdirect})::Cuint
-end
-
-function ncdirect_dim_y(nc)
-    @ccall libnotcurses.ncdirect_dim_y(nc::Ptr{ncdirect})::Cuint
-end
-
-function ncdirect_supported_styles(nc)
-    @ccall libnotcurses.ncdirect_supported_styles(nc::Ptr{ncdirect})::UInt16
-end
-
-function ncdirect_set_styles(n, stylebits)
-    @ccall libnotcurses.ncdirect_set_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
-end
-
-function ncdirect_on_styles(n, stylebits)
-    @ccall libnotcurses.ncdirect_on_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
-end
-
-function ncdirect_off_styles(n, stylebits)
-    @ccall libnotcurses.ncdirect_off_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
-end
-
-function ncdirect_styles(n)
-    @ccall libnotcurses.ncdirect_styles(n::Ptr{ncdirect})::UInt16
-end
-
-function ncdirect_cursor_move_yx(n, y, x)
-    @ccall libnotcurses.ncdirect_cursor_move_yx(n::Ptr{ncdirect}, y::Cint, x::Cint)::Cint
-end
-
-function ncdirect_cursor_enable(nc)
-    @ccall libnotcurses.ncdirect_cursor_enable(nc::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_cursor_disable(nc)
-    @ccall libnotcurses.ncdirect_cursor_disable(nc::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_cursor_up(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_up(nc::Ptr{ncdirect}, num::Cint)::Cint
-end
-
-function ncdirect_cursor_left(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_left(nc::Ptr{ncdirect}, num::Cint)::Cint
-end
-
-function ncdirect_cursor_right(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_right(nc::Ptr{ncdirect}, num::Cint)::Cint
-end
-
-function ncdirect_cursor_down(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_down(nc::Ptr{ncdirect}, num::Cint)::Cint
-end
-
-function ncdirect_cursor_yx(n, y, x)
-    @ccall libnotcurses.ncdirect_cursor_yx(n::Ptr{ncdirect}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cint
-end
-
-function ncdirect_cursor_push(n)
-    @ccall libnotcurses.ncdirect_cursor_push(n::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_cursor_pop(n)
-    @ccall libnotcurses.ncdirect_cursor_pop(n::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_clear(nc)
-    @ccall libnotcurses.ncdirect_clear(nc::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_capabilities(n)
-    @ccall libnotcurses.ncdirect_capabilities(n::Ptr{ncdirect})::Ptr{nccapabilities}
-end
-
-function ncdirect_hline_interp(n, egc, len, h1, h2)
-    @ccall libnotcurses.ncdirect_hline_interp(n::Ptr{ncdirect}, egc::Ptr{Cchar}, len::Cuint, h1::UInt64, h2::UInt64)::Cint
-end
-
-function ncdirect_vline_interp(n, egc, len, h1, h2)
-    @ccall libnotcurses.ncdirect_vline_interp(n::Ptr{ncdirect}, egc::Ptr{Cchar}, len::Cuint, h1::UInt64, h2::UInt64)::Cint
-end
-
-function ncdirect_box(n, ul, ur, ll, lr, wchars, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, wchars::Ptr{Cwchar_t}, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
-end
-
-function ncdirect_light_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_light_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
-end
-
-function ncdirect_heavy_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_heavy_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
-end
-
-function ncdirect_ascii_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_ascii_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
-end
-
-function ncdirect_rounded_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_rounded_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
-end
-
-function ncdirect_double_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_double_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
-end
-
-function ncdirect_get(n, absdl, ni)
-    @ccall libnotcurses.ncdirect_get(n::Ptr{ncdirect}, absdl::Ptr{Cvoid}, ni::Ptr{ncinput})::UInt32
-end
-
-function ncdirect_inputready_fd(n)
-    @ccall libnotcurses.ncdirect_inputready_fd(n::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_get_nblock(n, ni)
-    @ccall libnotcurses.ncdirect_get_nblock(n::Ptr{ncdirect}, ni::Ptr{ncinput})::UInt32
-end
-
-function ncdirect_get_blocking(n, ni)
-    @ccall libnotcurses.ncdirect_get_blocking(n::Ptr{ncdirect}, ni::Ptr{ncinput})::UInt32
-end
-
-function ncdirect_stop(nc)
-    @ccall libnotcurses.ncdirect_stop(nc::Ptr{ncdirect})::Cint
-end
-
-const ncdirectv = ncplane
-
-const ncdirectf = ncvisual
-
-function ncdirect_render_image(n, filename, align, blitter, scale)
-    @ccall libnotcurses.ncdirect_render_image(n::Ptr{ncdirect}, filename::Ptr{Cchar}, align::ncalign_e, blitter::ncblitter_e, scale::ncscale_e)::Cint
-end
-
-function ncdirect_render_frame(n, filename, blitter, scale, maxy, maxx)
-    @ccall libnotcurses.ncdirect_render_frame(n::Ptr{ncdirect}, filename::Ptr{Cchar}, blitter::ncblitter_e, scale::ncscale_e, maxy::Cint, maxx::Cint)::Ptr{ncdirectv}
-end
-
-function ncdirect_raster_frame(n, ncdv, align)
-    @ccall libnotcurses.ncdirect_raster_frame(n::Ptr{ncdirect}, ncdv::Ptr{ncdirectv}, align::ncalign_e)::Cint
-end
-
-function ncdirectf_from_file(n, filename)
-    @ccall libnotcurses.ncdirectf_from_file(n::Ptr{ncdirect}, filename::Ptr{Cchar})::Ptr{ncdirectf}
-end
-
-function ncdirectf_free(frame)
-    @ccall libnotcurses.ncdirectf_free(frame::Ptr{ncdirectf})::Cvoid
-end
-
-function ncdirectf_render(n, frame, vopts)
-    @ccall libnotcurses.ncdirectf_render(n::Ptr{ncdirect}, frame::Ptr{ncdirectf}, vopts::Ptr{ncvisual_options})::Ptr{ncdirectv}
-end
-
-function ncdirectf_geom(n, frame, vopts, geom)
-    @ccall libnotcurses.ncdirectf_geom(n::Ptr{ncdirect}, frame::Ptr{ncdirectf}, vopts::Ptr{ncvisual_options}, geom::Ptr{ncvgeom})::Cint
-end
-
-function ncdirect_stream(n, filename, streamer, vopts, curry)
-    @ccall libnotcurses.ncdirect_stream(n::Ptr{ncdirect}, filename::Ptr{Cchar}, streamer::ncstreamcb, vopts::Ptr{ncvisual_options}, curry::Ptr{Cvoid})::Cint
-end
-
-function ncdirect_detected_terminal(n)
-    @ccall libnotcurses.ncdirect_detected_terminal(n::Ptr{ncdirect})::Ptr{Cchar}
-end
-
-function ncdirect_cantruecolor(n)
-    @ccall libnotcurses.ncdirect_cantruecolor(n::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canchangecolor(n)
-    @ccall libnotcurses.ncdirect_canchangecolor(n::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canfade(n)
-    @ccall libnotcurses.ncdirect_canfade(n::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canopen_images(n)
-    @ccall libnotcurses.ncdirect_canopen_images(n::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canopen_videos(n)
-    @ccall libnotcurses.ncdirect_canopen_videos(n::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canutf8(n)
-    @ccall libnotcurses.ncdirect_canutf8(n::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_check_pixel_support(n)
-    @ccall libnotcurses.ncdirect_check_pixel_support(n::Ptr{ncdirect})::Cint
-end
-
-function ncdirect_canhalfblock(nc)
-    @ccall libnotcurses.ncdirect_canhalfblock(nc::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canquadrant(nc)
-    @ccall libnotcurses.ncdirect_canquadrant(nc::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_cansextant(nc)
-    @ccall libnotcurses.ncdirect_cansextant(nc::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canbraille(nc)
-    @ccall libnotcurses.ncdirect_canbraille(nc::Ptr{ncdirect})::Bool
-end
-
-function ncdirect_canget_cursor(nc)
-    @ccall libnotcurses.ncdirect_canget_cursor(nc::Ptr{ncdirect})::Bool
-end
+htole(x) = __bswap_32(htonl(x))
 
 const PRETERUNICODEBASE = 1115000
 
 preterunicode(w) = w + PRETERUNICODEBASE
-
-macro L_str(ex)
-    esc(ex)
-end
 
 const NCKEY_INVALID = preterunicode(0)
 
@@ -2987,112 +2706,6 @@ const NCKEY_ESC = 0x1b
 
 const NCKEY_SPACE = 0x20
 
-const NCBOXLIGHTW = L"┌┐└┘─│"
-
-const NCBOXHEAVYW = L"┏┓┗┛━┃"
-
-const NCBOXROUNDW = L"╭╮╰╯─│"
-
-const NCBOXDOUBLEW = L"╔╗╚╝═║"
-
-const NCBOXASCIIW = L"/\\\\/-|"
-
-const NCBOXOUTERW = L"🭽🭾🭼🭿▁🭵🭶🭰"
-
-const NCWHITESQUARESW = L"◲◱◳◰"
-
-const NCWHITECIRCLESW = L"◶◵◷◴"
-
-const NCCIRCULARARCSW = L"◜◝◟◞"
-
-const NCWHITETRIANGLESW = L"◿◺◹◸"
-
-const NCBLACKTRIANGLESW = L"◢◣◥◤"
-
-const NCSHADETRIANGLESW = L"🮞🮟🮝🮜"
-
-const NCBLACKARROWHEADSW = L"⮝⮟⮜⮞"
-
-const NCLIGHTARROWHEADSW = L"⮙⮛⮘⮚"
-
-const NCARROWDOUBLEW = L"⮅⮇⮄⮆"
-
-const NCARROWDASHEDW = L"⭫⭭⭪⭬"
-
-const NCARROWCIRCLEDW = L"⮉⮋⮈⮊"
-
-const NCARROWANTICLOCKW = L"⮏⮍⮎⮌"
-
-const NCBOXDRAWW = L"╵╷╴╶"
-
-const NCBOXDRAWHEAVYW = L"╹╻╸╺"
-
-const NCARROWW = L"⭡⭣⭠⭢⭧⭩⭦⭨"
-
-const NCDIAGONALSW = L"🮣🮠🮡🮢🮤🮥🮦🮧"
-
-const NCDIGITSSUPERW = L"⁰¹²³⁴⁵⁶⁷⁸⁹"
-
-const NCDIGITSSUBW = L"₀₁₂₃₄₅₆₇₈₉"
-
-const NCASTERISKS5 = L"🞯🞰🞱🞲🞳🞴"
-
-const NCASTERISKS6 = L"🞵🞶🞷🞸🞹🞺"
-
-const NCASTERISKS8 = L"🞻🞼✳🞽🞾🞿"
-
-const NCANGLESBR = L"🭁🭂🭃🭄🭅🭆🭇🭈🭉🭊🭋"
-
-const NCANGLESTR = L"🭒🭓🭔🭕🭖🭧🭢🭣🭤🭥🭦"
-
-const NCANGLESBL = L"🭌🭍🭎🭏🭐🭑🬼🬽🬾🬿🭀"
-
-const NCANGLESTL = L"🭝🭞🭟🭠🭡🭜🭗🭘🭙🭚🭛"
-
-const NCEIGHTHSB = L" ▁▂▃▄▅▆▇█"
-
-const NCEIGHTHST = L" ▔🮂🮃▀🮄🮅🮆█"
-
-const NCEIGHTHSL = L"▏▎▍▌▋▊▉█"
-
-const NCEIGHTHSR = L"▕🮇🮈▐🮉🮊🮋█"
-
-const NCHALFBLOCKS = L" ▀▄█"
-
-const NCQUADBLOCKS = L" ▘▝▀▖▌▞▛▗▚▐▜▄▙▟█"
-
-const NCSEXBLOCKS = L" 🬀🬁🬂🬃🬄🬅🬆🬇🬈🬊🬋🬌🬍🬎🬏🬐🬑🬒🬓▌🬔🬕🬖🬗🬘🬙🬚🬛🬜🬝🬞🬟🬠🬡🬢🬣🬤🬥🬦🬧▐🬨🬩🬪🬫🬬🬭🬮🬯🬰🬱🬲🬳🬴🬵🬶🬷🬸🬹🬺🬻█"
-
-const NCBRAILLEEGCS = (((((((((((((((L"\u2800\u2801\u2808\u2809\u2802\u2803\u280a\u280b\u2810\u2811\u2818\u2819\u2812\u2813\u281a\u281b")("⠄⠅⠌⠍⠆⠇⠎⠏⠔⠕⠜⠝⠖⠗⠞⠟"))("⠠⠡⠨⠩⠢⠣⠪⠫⠰⠱⠸⠹⠲⠳⠺⠻"))("⠤⠥⠬⠭⠦⠧⠮⠯⠴⠵⠼⠽⠶⠷⠾⠿"))("⡀⡁⡈⡉⡂⡃⡊⡋⡐⡑⡘⡙⡒⡓⡚⡛"))("⡄⡅⡌⡍⡆⡇⡎⡏⡔⡕⡜⡝⡖⡗⡞⡟"))("⡠⡡⡨⡩⡢⡣⡪⡫⡰⡱⡸⡹⡲⡳⡺⡻"))("⡤⡥⡬⡭⡦⡧⡮⡯⡴⡵⡼⡽⡶⡷⡾⡿"))("⢀⢁⢈⢉⢂⢃⢊⢋⢐⢑⢘⢙⢒⢓⢚⢛"))("⢄⢅⢌⢍⢆⢇⢎⢏⢔⢕⢜⢝⢖⢗⢞⢟"))("⢠⢡⢨⢩⢢⢣⢪⢫⢰⢱⢸⢹⢲⢳⢺⢻"))("⢤⢥⢬⢭⢦⢧⢮⢯⢴⢵⢼⢽⢶⢷⢾⢿"))("⣀⣁⣈⣉⣂⣃⣊⣋⣐⣑⣘⣙⣒⣓⣚⣛"))("⣄⣅⣌⣍⣆⣇⣎⣏⣔⣕⣜⣝⣖⣗⣞⣟"))("⣠⣡⣨⣩⣢⣣⣪⣫⣰⣱⣸⣹⣲⣳⣺⣻"))("⣤⣥⣬⣭⣦⣧⣮⣯⣴⣵⣼⣽⣶⣷⣾⣿")
-
-const NCSEGDIGITS = (L"\U0001FBF0\U0001FBF1\U0001FBF2\U0001FBF3\U0001FBF4")("🯵🯶🯷🯸🯹")
-
-const NCSUITSBLACK = L"\u2660\u2663\u2665\u2666"
-
-const NCSUITSWHITE = L"\u2661\u2662\u2664\u2667"
-
-const NCCHESSBLACK = L"\u265f\u265c\u265e\u265d\u265b\u265a"
-
-const NCCHESSWHITE = L"\u265f\u265c\u265e\u265d\u265b\u265a"
-
-const NCDICE = L"\u2680\u2681\u2682\u2683\u2684\u2685"
-
-const NCMUSICSYM = L"\u2669\u266A\u266B\u266C\u266D\u266E\u266F"
-
-const NCBOXLIGHT = "┌┐└┘─│"
-
-const NCBOXHEAVY = "┏┓┗┛━┃"
-
-const NCBOXROUND = "╭╮╰╯─│"
-
-const NCBOXDOUBLE = "╔╗╚╝═║"
-
-const NCBOXASCII = "/\\\\/-|"
-
-const NCBOXOUTER = "🭽🭾🭼🭿▁🭵🭶🭰"
-
-const RESTRICT = restrict
-
 # Skipping MacroDefinition: API __attribute__ ( ( visibility ( "default" ) ) )
 
 # Skipping MacroDefinition: ALLOC __attribute__ ( ( malloc ) ) __attribute__ ( ( warn_unused_result ) )
@@ -3121,7 +2734,15 @@ const NC_BG_PALETTE = Culonglong(0x0000000008000000)
 
 const NC_BG_ALPHA_MASK = Culonglong(0x30000000)
 
+NCCHANNEL_INITIALIZER(r, g, b) = uint32_t(r) << Cuint(16) + uint32_t(g) << Cuint(8) + b + NC_BGDEFAULT_MASK
+
+NCCHANNELS_INITIALIZER(fr, fg, fb, br, bg, bb) = NCCHANNEL_INITIALIZER(fr, fg, fb) << Culonglong(32) + NCCHANNEL_INITIALIZER(br, bg, bb)
+
 const WCHAR_MAX_UTF8BYTES = 4
+
+# Skipping MacroDefinition: NCCELL_INITIALIZER ( c , s , chan ) { . gcluster = ( htole ( c ) ) , . gcluster_backstop = 0 , . width = ( uint8_t ) ( ( wcwidth ( c ) < 0 || ! c ) ? 1 : wcwidth ( c ) ) , . stylemask = ( s ) , . channels = ( chan ) , }
+
+# Skipping MacroDefinition: NCCELL_CHAR_INITIALIZER ( c ) { . gcluster = ( htole ( c ) ) , . gcluster_backstop = 0 , . width = ( uint8_t ) ( ( wcwidth ( c ) < 0 || ! c ) ? 1 : wcwidth ( c ) ) , . stylemask = 0 , . channels = 0 , }
 
 # Skipping MacroDefinition: NCCELL_TRIVIAL_INITIALIZER { . gcluster = 0 , . gcluster_backstop = 0 , . width = 1 , . stylemask = 0 , . channels = 0 , }
 
@@ -3229,6 +2850,14 @@ const NCIPREFIXSTRLEN = NCIPREFIXCOLUMNS + 1
 
 const NCBPREFIXSTRLEN = NCBPREFIXCOLUMNS + 1
 
+NCMETRICFWIDTH(x, cols) = Cint((strlen(x) - ncstrwidth(x, NULL, NULL)) + cols)
+
+NCPREFIXFMT(x) = (NCMETRICFWIDTH(x, NCPREFIXCOLUMNS), x)
+
+NCIPREFIXFMT(x) = (NCMETRIXFWIDTH(x, NCIPREFIXCOLUMNS), x)
+
+NCBPREFIXFMT(x) = (NCMETRICFWIDTH(x, NCBPREFIXCOLUMNS), x)
+
 const NCMENU_OPTION_BOTTOM = Culonglong(0x0001)
 
 const NCMENU_OPTION_HIDING = Culonglong(0x0002)
@@ -3256,18 +2885,6 @@ const NCREADER_OPTION_VERSCROLL = Culonglong(0x0002)
 const NCREADER_OPTION_NOCMDKEYS = Culonglong(0x0004)
 
 const NCREADER_OPTION_CURSOR = Culonglong(0x0008)
-
-const NCDIRECT_OPTION_INHIBIT_SETLOCALE = Culonglong(0x0001)
-
-const NCDIRECT_OPTION_INHIBIT_CBREAK = Culonglong(0x0002)
-
-const NCDIRECT_OPTION_DRAIN_INPUT = Culonglong(0x0004)
-
-const NCDIRECT_OPTION_NO_QUIT_SIGHANDLERS = Culonglong(0x0008)
-
-const NCDIRECT_OPTION_VERBOSE = Culonglong(0x0010)
-
-const NCDIRECT_OPTION_VERY_VERBOSE = Culonglong(0x0020)
 
 # exports
 const PREFIXES = ["nc"]

@@ -14,7 +14,6 @@
 #include <stdbool.h>
 #include "ncport.h"
 #include "nckeys.h"
-#include "ncseqs.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -2,8 +2,18 @@
 library_name = "libnotcurses"
 output_file_path = "../lib/LibNotCurses.jl"
 module_name = "LibNotcurses"
-jll_pkg_name = "Notcurses_jll"
 export_symbol_prefixes = ["nc"]
+
+output_ignorelist = [
+    "RESTRICT"
+]
 
 [codegen]
 use_ccall_macro = true
+
+[codegen.macro]
+# it‘s highly recommended to set this entry to "basic".
+# if you'd like to skip all of the macros, please set this entry to "disable".
+# if you'd like to translate function-like macros to Julia, please set this entry to "aggressive".
+macro_mode = "aggressive"
+
