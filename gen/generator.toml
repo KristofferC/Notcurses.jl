@@ -1,9 +1,9 @@
 [general]
 library_name = "libnotcurses"
-output_file_path = "../lib/LibNotCurses.jl"
+output_file_path = "../lib/LibNotcurses.jl"
 module_name = "LibNotcurses"
 export_symbol_prefixes = ["nc"]
-
+prologue_file_path = "./prologue.jl"
 output_ignorelist = [
     "RESTRICT"
 ]
