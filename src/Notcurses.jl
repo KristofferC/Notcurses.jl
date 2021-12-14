@@ -1,5 +1,6 @@
 module Notcurses
 
-# Write your package code here.
+preterunicode(w) = (w) + PRETERUNICODEBASE
+include("../lib/LibNotCurses.jl")
 
 end

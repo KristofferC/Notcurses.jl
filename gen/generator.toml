@@ -1,0 +1,9 @@
+[general]
+library_name = "libnotcurses"
+output_file_path = "../lib/LibNotCurses.jl"
+module_name = "LibNotcurses"
+jll_pkg_name = "Notcurses_jll"
+export_symbol_prefixes = ["nc"]
+
+[codegen]
+use_ccall_macro = true
