@@ -1,5 +1,9 @@
 module Notcurses
 
+export NcDirect
+
+export cursor_enable, cursor_disable, set_fg
+
 using Libdl
 
 include("../lib/LibNotcurses.jl")
@@ -7,34 +11,27 @@ include("../lib/LibNotcurses.jl")
 version() = unsafe_string(LibNotcurses.notcurses_version())
 
 
-struct Notcurses
-    nc::LibNotcurses.notcurses
-    function Notcurses()
-        nc = Notcurses.LibNotcurses.notcurses_init(C_NULL, C_NULL)
-        n = Notcurses(nc)
-        finalizer(() -> LibNotcurses.notcurses_stop(n.nc), n)
+
+##########
+# Direct #
+##########
+
+mutable struct NcDirect
+    nc::Ptr{LibNotcurses.ncdirect}
+    function NcDirect()
+        nc = Notcurses.LibNotcurses.ncdirect_init(C_NULL, C_NULL, 0)
+        nc_direct = new(nc)
+        finalizer(nc_direct) do nc_direct
+            LibNotcurses.ncdirect_stop(nc_direct.nc)
+        end
+        return nc_direct
     end
 end
+Base.cconvert(::Type{Ptr{LibNotcurses.ncdirect}}, nc_direct::NcDirect) = nc_direct.nc
 
-render() = 
+cursor_enable(nc_direct::NcDirect) = LibNotcurses.ncdirect_cursor_enable(nc_direct)
+cursor_disable(nc_direct::NcDirect) = LibNotcurses.ncdirect_cursor_disable(nc_direct)
 
-    def __init__(self):
-        opts = ffi.new("notcurses_options *")
-        opts.flags = lib.NCOPTION_NO_ALTERNATE_SCREEN
-        self.nc = lib.notcurses_init(opts, sys.stdout)
-        if not self.nc:
-            raise NotcursesError("Error initializing notcurses")
-        self.stdncplane = Ncplane(lib.notcurses_stdplane(self.nc))
-
-    def __del__(self):
-        lib.notcurses_stop(self.nc)
-
-    def render(self):
-        return lib.notcurses_render(self.nc)
-
-    def stdplane(self):
-        return self.stdncplane
-
-
+set_fg(nc_direct::NcDirect, v::Integer) = LibNotcurses.ncdirect_set_fg_rgb(nc_direct, v)
 
 end #module
