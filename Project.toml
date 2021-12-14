@@ -3,11 +3,19 @@ uuid = "ecd72344-23b7-4e0d-951d-33302b101f57"
 authors = ["KristofferC <kcarlsson89@gmail.com> and contributors"]
 version = "0.1.0"
 
-[extras]
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+[deps]
+CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
+Libdl = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
+Ncurses_jll = "68e3532b-a499-55ff-9963-d1c0c0748b3a"
+Notcurses_jll = "56927b6a-812d-5b37-a4c6-b46ab6359194"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
 [compat]
+CEnum = "0.4"
 julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
 test = ["Test"]
