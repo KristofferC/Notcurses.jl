@@ -3,7 +3,7 @@ using Notcurses
 nc = NotCurses()
 
 plane = stdplane(nc)
-#putstr(stdplane, "Hello, World!")
+putstr(plane, "Hello, World!")
 
 render(nc)
 

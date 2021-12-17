@@ -30,7 +30,7 @@ throw_nc(str) = throw(NotCursesException(str))
 struct Ncplane
     plane_ptr::Ptr{LibNotcurses.ncplane}
 end
-putstr(n::Ncplane, str::AbstractString) = LibNotcurses.ncplane_putstr(n, str)
+putstr(n::Ncplane, str::AbstractString) = LibNotcurses.ncplane_putstr(n.plane_ptr, str)
 
 LibNotcurses.notcurses_options() = 
     LibNotcurses.notcurses_options(C_NULL, LibNotcurses.NCLOGLEVEL_PANIC, 0, 0, 0, 0, 0)
