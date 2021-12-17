@@ -1,12 +1,15 @@
 [general]
-library_name = "libnotcurses"
+library_name = "libnotcurses_core"
 output_file_path = "../lib/LibNotcurses.jl"
 module_name = "LibNotcurses"
 # jll_pkg_name = "Notcurses_jll"
 export_symbol_prefixes = ["nc", "notcurses"]
 prologue_file_path = "./prologue.jl"
+epilogue_file_path = "./epilogue.jl"
 output_ignorelist = [
-    "RESTRICT"
+    "RESTRICT",
+    "notcurses_init", # these are defined in libnotcurses (not core)
+    "ncdirect_init",
 ]
 extract_c_comment_style = "raw"
 show_c_function_prototype = true

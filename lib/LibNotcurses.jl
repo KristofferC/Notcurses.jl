@@ -3,7 +3,6 @@ module LibNotcurses
 using Notcurses_jll
 # export Notcurses_jll
 
-
 const uintmax_t = Culong
 
 """
@@ -20,7 +19,7 @@ API int ncstrwidth(const char* egcs, int* validbytes, int* validwidth);
 ```
 """
 function ncstrwidth(egcs, validbytes, validwidth)
-    @ccall libnotcurses.ncstrwidth(egcs::Ptr{Cchar}, validbytes::Ptr{Cint}, validwidth::Ptr{Cint})::Cint
+    @ccall libnotcurses_core.ncstrwidth(egcs::Ptr{Cchar}, validbytes::Ptr{Cint}, validwidth::Ptr{Cint})::Cint
 end
 
 """
@@ -33,7 +32,7 @@ static inline bool nckey_synthesized_p(uint32_t w);
 ```
 """
 function nckey_synthesized_p(w)
-    @ccall libnotcurses.nckey_synthesized_p(w::UInt32)::Bool
+    @ccall libnotcurses_core.nckey_synthesized_p(w::UInt32)::Bool
 end
 
 """
@@ -46,7 +45,7 @@ static inline bool nckey_pua_p(uint32_t w);
 ```
 """
 function nckey_pua_p(w)
-    @ccall libnotcurses.nckey_pua_p(w::UInt32)::Bool
+    @ccall libnotcurses_core.nckey_pua_p(w::UInt32)::Bool
 end
 
 """
@@ -59,7 +58,7 @@ static inline bool nckey_supppuaa_p(uint32_t w);
 ```
 """
 function nckey_supppuaa_p(w)
-    @ccall libnotcurses.nckey_supppuaa_p(w::UInt32)::Bool
+    @ccall libnotcurses_core.nckey_supppuaa_p(w::UInt32)::Bool
 end
 
 """
@@ -72,7 +71,7 @@ static inline bool nckey_supppuab_p(uint32_t w);
 ```
 """
 function nckey_supppuab_p(w)
-    @ccall libnotcurses.nckey_supppuab_p(w::UInt32)::Bool
+    @ccall libnotcurses_core.nckey_supppuab_p(w::UInt32)::Bool
 end
 
 """
@@ -85,7 +84,7 @@ API const char* notcurses_version(void);
 ```
 """
 function notcurses_version()
-    @ccall libnotcurses.notcurses_version()::Ptr{Cchar}
+    @ccall libnotcurses_core.notcurses_version()::Ptr{Cchar}
 end
 
 """
@@ -99,7 +98,7 @@ API void notcurses_version_components(int* major, int* minor, int* patch, int* t
 ```
 """
 function notcurses_version_components(major, minor, patch, tweak)
-    @ccall libnotcurses.notcurses_version_components(major::Ptr{Cint}, minor::Ptr{Cint}, patch::Ptr{Cint}, tweak::Ptr{Cint})::Cvoid
+    @ccall libnotcurses_core.notcurses_version_components(major::Ptr{Cint}, minor::Ptr{Cint}, patch::Ptr{Cint}, tweak::Ptr{Cint})::Cvoid
 end
 
 mutable struct notcurses end
@@ -194,7 +193,7 @@ static inline unsigned ncchannel_alpha(uint32_t channel);
 ```
 """
 function ncchannel_alpha(channel)
-    @ccall libnotcurses.ncchannel_alpha(channel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncchannel_alpha(channel::UInt32)::Cuint
 end
 
 """
@@ -209,7 +208,7 @@ static inline int ncchannel_set_alpha(uint32_t* channel, unsigned alpha);
 ```
 """
 function ncchannel_set_alpha(channel, alpha)
-    @ccall libnotcurses.ncchannel_set_alpha(channel::Ptr{UInt32}, alpha::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannel_set_alpha(channel::Ptr{UInt32}, alpha::Cuint)::Cint
 end
 
 """
@@ -222,7 +221,7 @@ static inline bool ncchannel_default_p(uint32_t channel);
 ```
 """
 function ncchannel_default_p(channel)
-    @ccall libnotcurses.ncchannel_default_p(channel::UInt32)::Bool
+    @ccall libnotcurses_core.ncchannel_default_p(channel::UInt32)::Bool
 end
 
 """
@@ -235,7 +234,7 @@ static inline uint32_t ncchannel_set_default(uint32_t* channel);
 ```
 """
 function ncchannel_set_default(channel)
-    @ccall libnotcurses.ncchannel_set_default(channel::Ptr{UInt32})::UInt32
+    @ccall libnotcurses_core.ncchannel_set_default(channel::Ptr{UInt32})::UInt32
 end
 
 """
@@ -248,7 +247,7 @@ static inline bool ncchannel_palindex_p(uint32_t channel);
 ```
 """
 function ncchannel_palindex_p(channel)
-    @ccall libnotcurses.ncchannel_palindex_p(channel::UInt32)::Bool
+    @ccall libnotcurses_core.ncchannel_palindex_p(channel::UInt32)::Bool
 end
 
 """
@@ -262,7 +261,7 @@ static inline unsigned ncchannel_palindex(uint32_t channel);
 ```
 """
 function ncchannel_palindex(channel)
-    @ccall libnotcurses.ncchannel_palindex(channel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncchannel_palindex(channel::UInt32)::Cuint
 end
 
 """
@@ -276,7 +275,7 @@ static inline int ncchannel_set_palindex(uint32_t* channel, int idx);
 ```
 """
 function ncchannel_set_palindex(channel, idx)
-    @ccall libnotcurses.ncchannel_set_palindex(channel::Ptr{UInt32}, idx::Cint)::Cint
+    @ccall libnotcurses_core.ncchannel_set_palindex(channel::Ptr{UInt32}, idx::Cint)::Cint
 end
 
 """
@@ -289,7 +288,7 @@ static inline bool ncchannel_rgb_p(uint32_t channel);
 ```
 """
 function ncchannel_rgb_p(channel)
-    @ccall libnotcurses.ncchannel_rgb_p(channel::UInt32)::Bool
+    @ccall libnotcurses_core.ncchannel_rgb_p(channel::UInt32)::Bool
 end
 
 """
@@ -303,7 +302,7 @@ static inline unsigned ncchannel_r(uint32_t channel);
 ```
 """
 function ncchannel_r(channel)
-    @ccall libnotcurses.ncchannel_r(channel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncchannel_r(channel::UInt32)::Cuint
 end
 
 """
@@ -317,7 +316,7 @@ static inline unsigned ncchannel_g(uint32_t channel);
 ```
 """
 function ncchannel_g(channel)
-    @ccall libnotcurses.ncchannel_g(channel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncchannel_g(channel::UInt32)::Cuint
 end
 
 """
@@ -331,7 +330,7 @@ static inline unsigned ncchannel_b(uint32_t channel);
 ```
 """
 function ncchannel_b(channel)
-    @ccall libnotcurses.ncchannel_b(channel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncchannel_b(channel::UInt32)::Cuint
 end
 
 """
@@ -345,7 +344,7 @@ static inline unsigned ncchannel_rgb8(uint32_t channel, unsigned* RESTRICT r, un
 ```
 """
 function ncchannel_rgb8(channel, r, g, b)
-    @ccall libnotcurses.ncchannel_rgb8(channel::UInt32, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::Cuint
+    @ccall libnotcurses_core.ncchannel_rgb8(channel::UInt32, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::Cuint
 end
 
 """
@@ -360,7 +359,7 @@ static inline int ncchannel_set_rgb8(uint32_t* channel, unsigned r, unsigned g, 
 ```
 """
 function ncchannel_set_rgb8(channel, r, g, b)
-    @ccall libnotcurses.ncchannel_set_rgb8(channel::Ptr{UInt32}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannel_set_rgb8(channel::Ptr{UInt32}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -373,7 +372,7 @@ static inline int ncchannel_set(uint32_t* channel, uint32_t rgb);
 ```
 """
 function ncchannel_set(channel, rgb)
-    @ccall libnotcurses.ncchannel_set(channel::Ptr{UInt32}, rgb::UInt32)::Cint
+    @ccall libnotcurses_core.ncchannel_set(channel::Ptr{UInt32}, rgb::UInt32)::Cint
 end
 
 """
@@ -388,7 +387,7 @@ static inline void ncchannel_set_rgb8_clipped(uint32_t* channel, int r, int g, i
 ```
 """
 function ncchannel_set_rgb8_clipped(channel, r, g, b)
-    @ccall libnotcurses.ncchannel_set_rgb8_clipped(channel::Ptr{UInt32}, r::Cint, g::Cint, b::Cint)::Cvoid
+    @ccall libnotcurses_core.ncchannel_set_rgb8_clipped(channel::Ptr{UInt32}, r::Cint, g::Cint, b::Cint)::Cvoid
 end
 
 """
@@ -401,7 +400,7 @@ static inline uint32_t ncchannels_bchannel(uint64_t channels);
 ```
 """
 function ncchannels_bchannel(channels)
-    @ccall libnotcurses.ncchannels_bchannel(channels::UInt64)::UInt32
+    @ccall libnotcurses_core.ncchannels_bchannel(channels::UInt64)::UInt32
 end
 
 """
@@ -414,7 +413,7 @@ static inline uint32_t ncchannels_fchannel(uint64_t channels);
 ```
 """
 function ncchannels_fchannel(channels)
-    @ccall libnotcurses.ncchannels_fchannel(channels::UInt64)::UInt32
+    @ccall libnotcurses_core.ncchannels_fchannel(channels::UInt64)::UInt32
 end
 
 """
@@ -427,7 +426,7 @@ static inline bool ncchannels_bg_rgb_p(uint64_t channels);
 ```
 """
 function ncchannels_bg_rgb_p(channels)
-    @ccall libnotcurses.ncchannels_bg_rgb_p(channels::UInt64)::Bool
+    @ccall libnotcurses_core.ncchannels_bg_rgb_p(channels::UInt64)::Bool
 end
 
 """
@@ -440,7 +439,7 @@ static inline bool ncchannels_fg_rgb_p(uint64_t channels);
 ```
 """
 function ncchannels_fg_rgb_p(channels)
-    @ccall libnotcurses.ncchannels_fg_rgb_p(channels::UInt64)::Bool
+    @ccall libnotcurses_core.ncchannels_fg_rgb_p(channels::UInt64)::Bool
 end
 
 """
@@ -453,7 +452,7 @@ static inline unsigned ncchannels_bg_alpha(uint64_t channels);
 ```
 """
 function ncchannels_bg_alpha(channels)
-    @ccall libnotcurses.ncchannels_bg_alpha(channels::UInt64)::Cuint
+    @ccall libnotcurses_core.ncchannels_bg_alpha(channels::UInt64)::Cuint
 end
 
 """
@@ -466,7 +465,7 @@ static inline uint64_t ncchannels_set_bchannel(uint64_t* channels, uint32_t chan
 ```
 """
 function ncchannels_set_bchannel(channels, channel)
-    @ccall libnotcurses.ncchannels_set_bchannel(channels::Ptr{UInt64}, channel::UInt32)::UInt64
+    @ccall libnotcurses_core.ncchannels_set_bchannel(channels::Ptr{UInt64}, channel::UInt32)::UInt64
 end
 
 """
@@ -479,7 +478,7 @@ static inline uint64_t ncchannels_set_fchannel(uint64_t* channels, uint32_t chan
 ```
 """
 function ncchannels_set_fchannel(channels, channel)
-    @ccall libnotcurses.ncchannels_set_fchannel(channels::Ptr{UInt64}, channel::UInt32)::UInt64
+    @ccall libnotcurses_core.ncchannels_set_fchannel(channels::Ptr{UInt64}, channel::UInt32)::UInt64
 end
 
 """
@@ -492,7 +491,7 @@ static inline int ncchannels_set_bg_alpha(uint64_t* channels, unsigned alpha);
 ```
 """
 function ncchannels_set_bg_alpha(channels, alpha)
-    @ccall libnotcurses.ncchannels_set_bg_alpha(channels::Ptr{UInt64}, alpha::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_bg_alpha(channels::Ptr{UInt64}, alpha::Cuint)::Cint
 end
 
 """
@@ -505,7 +504,7 @@ static inline unsigned ncchannels_fg_alpha(uint64_t channels);
 ```
 """
 function ncchannels_fg_alpha(channels)
-    @ccall libnotcurses.ncchannels_fg_alpha(channels::UInt64)::Cuint
+    @ccall libnotcurses_core.ncchannels_fg_alpha(channels::UInt64)::Cuint
 end
 
 """
@@ -518,7 +517,7 @@ static inline int ncchannels_set_fg_alpha(uint64_t* channels, unsigned alpha);
 ```
 """
 function ncchannels_set_fg_alpha(channels, alpha)
-    @ccall libnotcurses.ncchannels_set_fg_alpha(channels::Ptr{UInt64}, alpha::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_fg_alpha(channels::Ptr{UInt64}, alpha::Cuint)::Cint
 end
 
 """
@@ -534,7 +533,7 @@ static inline uint64_t ncchannels_reverse(uint64_t channels);
 ```
 """
 function ncchannels_reverse(channels)
-    @ccall libnotcurses.ncchannels_reverse(channels::UInt64)::UInt64
+    @ccall libnotcurses_core.ncchannels_reverse(channels::UInt64)::UInt64
 end
 
 """
@@ -548,7 +547,7 @@ static inline uint64_t ncchannels_combine(uint32_t fchan, uint32_t bchan);
 ```
 """
 function ncchannels_combine(fchan, bchan)
-    @ccall libnotcurses.ncchannels_combine(fchan::UInt32, bchan::UInt32)::UInt64
+    @ccall libnotcurses_core.ncchannels_combine(fchan::UInt32, bchan::UInt32)::UInt64
 end
 
 """
@@ -561,7 +560,7 @@ static inline unsigned ncchannels_fg_palindex(uint64_t channels);
 ```
 """
 function ncchannels_fg_palindex(channels)
-    @ccall libnotcurses.ncchannels_fg_palindex(channels::UInt64)::Cuint
+    @ccall libnotcurses_core.ncchannels_fg_palindex(channels::UInt64)::Cuint
 end
 
 """
@@ -574,7 +573,7 @@ static inline unsigned ncchannels_bg_palindex(uint64_t channels);
 ```
 """
 function ncchannels_bg_palindex(channels)
-    @ccall libnotcurses.ncchannels_bg_palindex(channels::UInt64)::Cuint
+    @ccall libnotcurses_core.ncchannels_bg_palindex(channels::UInt64)::Cuint
 end
 
 """
@@ -587,7 +586,7 @@ static inline uint32_t ncchannels_fg_rgb(uint64_t channels);
 ```
 """
 function ncchannels_fg_rgb(channels)
-    @ccall libnotcurses.ncchannels_fg_rgb(channels::UInt64)::UInt32
+    @ccall libnotcurses_core.ncchannels_fg_rgb(channels::UInt64)::UInt32
 end
 
 """
@@ -600,7 +599,7 @@ static inline uint32_t ncchannels_bg_rgb(uint64_t channels);
 ```
 """
 function ncchannels_bg_rgb(channels)
-    @ccall libnotcurses.ncchannels_bg_rgb(channels::UInt64)::UInt32
+    @ccall libnotcurses_core.ncchannels_bg_rgb(channels::UInt64)::UInt32
 end
 
 """
@@ -613,7 +612,7 @@ static inline uint32_t ncchannels_fg_rgb8(uint64_t channels, unsigned* r, unsign
 ```
 """
 function ncchannels_fg_rgb8(channels, r, g, b)
-    @ccall libnotcurses.ncchannels_fg_rgb8(channels::UInt64, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
+    @ccall libnotcurses_core.ncchannels_fg_rgb8(channels::UInt64, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
 end
 
 """
@@ -626,7 +625,7 @@ static inline uint32_t ncchannels_bg_rgb8(uint64_t channels, unsigned* r, unsign
 ```
 """
 function ncchannels_bg_rgb8(channels, r, g, b)
-    @ccall libnotcurses.ncchannels_bg_rgb8(channels::UInt64, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
+    @ccall libnotcurses_core.ncchannels_bg_rgb8(channels::UInt64, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
 end
 
 """
@@ -640,7 +639,7 @@ static inline int ncchannels_set_fg_rgb8(uint64_t* channels, unsigned r, unsigne
 ```
 """
 function ncchannels_set_fg_rgb8(channels, r, g, b)
-    @ccall libnotcurses.ncchannels_set_fg_rgb8(channels::Ptr{UInt64}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_fg_rgb8(channels::Ptr{UInt64}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -653,7 +652,7 @@ static inline void ncchannels_set_fg_rgb8_clipped(uint64_t* channels, int r, int
 ```
 """
 function ncchannels_set_fg_rgb8_clipped(channels, r, g, b)
-    @ccall libnotcurses.ncchannels_set_fg_rgb8_clipped(channels::Ptr{UInt64}, r::Cint, g::Cint, b::Cint)::Cvoid
+    @ccall libnotcurses_core.ncchannels_set_fg_rgb8_clipped(channels::Ptr{UInt64}, r::Cint, g::Cint, b::Cint)::Cvoid
 end
 
 """
@@ -666,7 +665,7 @@ static inline int ncchannels_set_fg_palindex(uint64_t* channels, int idx);
 ```
 """
 function ncchannels_set_fg_palindex(channels, idx)
-    @ccall libnotcurses.ncchannels_set_fg_palindex(channels::Ptr{UInt64}, idx::Cint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_fg_palindex(channels::Ptr{UInt64}, idx::Cint)::Cint
 end
 
 """
@@ -679,7 +678,7 @@ static inline int ncchannels_set_fg_rgb(uint64_t* channels, unsigned rgb);
 ```
 """
 function ncchannels_set_fg_rgb(channels, rgb)
-    @ccall libnotcurses.ncchannels_set_fg_rgb(channels::Ptr{UInt64}, rgb::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_fg_rgb(channels::Ptr{UInt64}, rgb::Cuint)::Cint
 end
 
 """
@@ -693,7 +692,7 @@ static inline int ncchannels_set_bg_rgb8(uint64_t* channels, unsigned r, unsigne
 ```
 """
 function ncchannels_set_bg_rgb8(channels, r, g, b)
-    @ccall libnotcurses.ncchannels_set_bg_rgb8(channels::Ptr{UInt64}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_bg_rgb8(channels::Ptr{UInt64}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -706,7 +705,7 @@ static inline void ncchannels_set_bg_rgb8_clipped(uint64_t* channels, int r, int
 ```
 """
 function ncchannels_set_bg_rgb8_clipped(channels, r, g, b)
-    @ccall libnotcurses.ncchannels_set_bg_rgb8_clipped(channels::Ptr{UInt64}, r::Cint, g::Cint, b::Cint)::Cvoid
+    @ccall libnotcurses_core.ncchannels_set_bg_rgb8_clipped(channels::Ptr{UInt64}, r::Cint, g::Cint, b::Cint)::Cvoid
 end
 
 """
@@ -720,7 +719,7 @@ static inline int ncchannels_set_bg_palindex(uint64_t* channels, int idx);
 ```
 """
 function ncchannels_set_bg_palindex(channels, idx)
-    @ccall libnotcurses.ncchannels_set_bg_palindex(channels::Ptr{UInt64}, idx::Cint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_bg_palindex(channels::Ptr{UInt64}, idx::Cint)::Cint
 end
 
 """
@@ -733,7 +732,7 @@ static inline int ncchannels_set_bg_rgb(uint64_t* channels, unsigned rgb);
 ```
 """
 function ncchannels_set_bg_rgb(channels, rgb)
-    @ccall libnotcurses.ncchannels_set_bg_rgb(channels::Ptr{UInt64}, rgb::Cuint)::Cint
+    @ccall libnotcurses_core.ncchannels_set_bg_rgb(channels::Ptr{UInt64}, rgb::Cuint)::Cint
 end
 
 """
@@ -746,7 +745,7 @@ static inline bool ncchannels_fg_default_p(uint64_t channels);
 ```
 """
 function ncchannels_fg_default_p(channels)
-    @ccall libnotcurses.ncchannels_fg_default_p(channels::UInt64)::Bool
+    @ccall libnotcurses_core.ncchannels_fg_default_p(channels::UInt64)::Bool
 end
 
 """
@@ -759,7 +758,7 @@ static inline bool ncchannels_fg_palindex_p(uint64_t channels);
 ```
 """
 function ncchannels_fg_palindex_p(channels)
-    @ccall libnotcurses.ncchannels_fg_palindex_p(channels::UInt64)::Bool
+    @ccall libnotcurses_core.ncchannels_fg_palindex_p(channels::UInt64)::Bool
 end
 
 """
@@ -774,7 +773,7 @@ static inline bool ncchannels_bg_default_p(uint64_t channels);
 ```
 """
 function ncchannels_bg_default_p(channels)
-    @ccall libnotcurses.ncchannels_bg_default_p(channels::UInt64)::Bool
+    @ccall libnotcurses_core.ncchannels_bg_default_p(channels::UInt64)::Bool
 end
 
 """
@@ -787,7 +786,7 @@ static inline bool ncchannels_bg_palindex_p(uint64_t channels);
 ```
 """
 function ncchannels_bg_palindex_p(channels)
-    @ccall libnotcurses.ncchannels_bg_palindex_p(channels::UInt64)::Bool
+    @ccall libnotcurses_core.ncchannels_bg_palindex_p(channels::UInt64)::Bool
 end
 
 """
@@ -800,7 +799,7 @@ static inline uint64_t ncchannels_set_fg_default(uint64_t* channels);
 ```
 """
 function ncchannels_set_fg_default(channels)
-    @ccall libnotcurses.ncchannels_set_fg_default(channels::Ptr{UInt64})::UInt64
+    @ccall libnotcurses_core.ncchannels_set_fg_default(channels::Ptr{UInt64})::UInt64
 end
 
 """
@@ -813,7 +812,7 @@ static inline uint64_t ncchannels_set_bg_default(uint64_t* channels);
 ```
 """
 function ncchannels_set_bg_default(channels)
-    @ccall libnotcurses.ncchannels_set_bg_default(channels::Ptr{UInt64})::UInt64
+    @ccall libnotcurses_core.ncchannels_set_bg_default(channels::Ptr{UInt64})::UInt64
 end
 
 """
@@ -830,7 +829,7 @@ API int notcurses_ucs32_to_utf8(const uint32_t* ucs32, unsigned ucs32count, unsi
 ```
 """
 function notcurses_ucs32_to_utf8(ucs32, ucs32count, resultbuf, buflen)
-    @ccall libnotcurses.notcurses_ucs32_to_utf8(ucs32::Ptr{UInt32}, ucs32count::Cuint, resultbuf::Ptr{Cuchar}, buflen::Csize_t)::Cint
+    @ccall libnotcurses_core.notcurses_ucs32_to_utf8(ucs32::Ptr{UInt32}, ucs32count::Cuint, resultbuf::Ptr{Cuchar}, buflen::Csize_t)::Cint
 end
 
 """
@@ -905,7 +904,7 @@ static inline void nccell_init(nccell* c);
 ```
 """
 function nccell_init(c)
-    @ccall libnotcurses.nccell_init(c::Ptr{nccell})::Cvoid
+    @ccall libnotcurses_core.nccell_init(c::Ptr{nccell})::Cvoid
 end
 
 mutable struct ncplane end
@@ -922,7 +921,7 @@ API int nccell_load(struct ncplane* n, nccell* c, const char* gcluster);
 ```
 """
 function nccell_load(n, c, gcluster)
-    @ccall libnotcurses.nccell_load(n::Ptr{ncplane}, c::Ptr{nccell}, gcluster::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.nccell_load(n::Ptr{ncplane}, c::Ptr{nccell}, gcluster::Ptr{Cchar})::Cint
 end
 
 """
@@ -935,7 +934,7 @@ static inline int nccell_prime(struct ncplane* n, nccell* c, const char* gcluste
 ```
 """
 function nccell_prime(n, c, gcluster, stylemask, channels)
-    @ccall libnotcurses.nccell_prime(n::Ptr{ncplane}, c::Ptr{nccell}, gcluster::Ptr{Cchar}, stylemask::UInt16, channels::UInt64)::Cint
+    @ccall libnotcurses_core.nccell_prime(n::Ptr{ncplane}, c::Ptr{nccell}, gcluster::Ptr{Cchar}, stylemask::UInt16, channels::UInt64)::Cint
 end
 
 """
@@ -949,7 +948,7 @@ API int nccell_duplicate(struct ncplane* n, nccell* targ, const nccell* c);
 ```
 """
 function nccell_duplicate(n, targ, c)
-    @ccall libnotcurses.nccell_duplicate(n::Ptr{ncplane}, targ::Ptr{nccell}, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.nccell_duplicate(n::Ptr{ncplane}, targ::Ptr{nccell}, c::Ptr{nccell})::Cint
 end
 
 """
@@ -962,7 +961,7 @@ API void nccell_release(struct ncplane* n, nccell* c);
 ```
 """
 function nccell_release(n, c)
-    @ccall libnotcurses.nccell_release(n::Ptr{ncplane}, c::Ptr{nccell})::Cvoid
+    @ccall libnotcurses_core.nccell_release(n::Ptr{ncplane}, c::Ptr{nccell})::Cvoid
 end
 
 """
@@ -976,7 +975,7 @@ static inline void nccell_set_styles(nccell* c, unsigned stylebits);
 ```
 """
 function nccell_set_styles(c, stylebits)
-    @ccall libnotcurses.nccell_set_styles(c::Ptr{nccell}, stylebits::Cuint)::Cvoid
+    @ccall libnotcurses_core.nccell_set_styles(c::Ptr{nccell}, stylebits::Cuint)::Cvoid
 end
 
 """
@@ -989,7 +988,7 @@ static inline uint16_t nccell_styles(const nccell* c);
 ```
 """
 function nccell_styles(c)
-    @ccall libnotcurses.nccell_styles(c::Ptr{nccell})::UInt16
+    @ccall libnotcurses_core.nccell_styles(c::Ptr{nccell})::UInt16
 end
 
 """
@@ -1003,7 +1002,7 @@ static inline void nccell_on_styles(nccell* c, unsigned stylebits);
 ```
 """
 function nccell_on_styles(c, stylebits)
-    @ccall libnotcurses.nccell_on_styles(c::Ptr{nccell}, stylebits::Cuint)::Cvoid
+    @ccall libnotcurses_core.nccell_on_styles(c::Ptr{nccell}, stylebits::Cuint)::Cvoid
 end
 
 """
@@ -1016,7 +1015,7 @@ static inline void nccell_off_styles(nccell* c, unsigned stylebits);
 ```
 """
 function nccell_off_styles(c, stylebits)
-    @ccall libnotcurses.nccell_off_styles(c::Ptr{nccell}, stylebits::Cuint)::Cvoid
+    @ccall libnotcurses_core.nccell_off_styles(c::Ptr{nccell}, stylebits::Cuint)::Cvoid
 end
 
 """
@@ -1029,7 +1028,7 @@ static inline void nccell_set_fg_default(nccell* c);
 ```
 """
 function nccell_set_fg_default(c)
-    @ccall libnotcurses.nccell_set_fg_default(c::Ptr{nccell})::Cvoid
+    @ccall libnotcurses_core.nccell_set_fg_default(c::Ptr{nccell})::Cvoid
 end
 
 """
@@ -1042,7 +1041,7 @@ static inline void nccell_set_bg_default(nccell* c);
 ```
 """
 function nccell_set_bg_default(c)
-    @ccall libnotcurses.nccell_set_bg_default(c::Ptr{nccell})::Cvoid
+    @ccall libnotcurses_core.nccell_set_bg_default(c::Ptr{nccell})::Cvoid
 end
 
 """
@@ -1055,7 +1054,7 @@ static inline int nccell_set_fg_alpha(nccell* c, int alpha);
 ```
 """
 function nccell_set_fg_alpha(c, alpha)
-    @ccall libnotcurses.nccell_set_fg_alpha(c::Ptr{nccell}, alpha::Cint)::Cint
+    @ccall libnotcurses_core.nccell_set_fg_alpha(c::Ptr{nccell}, alpha::Cint)::Cint
 end
 
 """
@@ -1068,7 +1067,7 @@ static inline int nccell_set_bg_alpha(nccell* c, int alpha);
 ```
 """
 function nccell_set_bg_alpha(c, alpha)
-    @ccall libnotcurses.nccell_set_bg_alpha(c::Ptr{nccell}, alpha::Cint)::Cint
+    @ccall libnotcurses_core.nccell_set_bg_alpha(c::Ptr{nccell}, alpha::Cint)::Cint
 end
 
 """
@@ -1081,7 +1080,7 @@ static inline bool nccell_double_wide_p(const nccell* c);
 ```
 """
 function nccell_double_wide_p(c)
-    @ccall libnotcurses.nccell_double_wide_p(c::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccell_double_wide_p(c::Ptr{nccell})::Bool
 end
 
 """
@@ -1094,7 +1093,7 @@ static inline bool nccell_wide_right_p(const nccell* c);
 ```
 """
 function nccell_wide_right_p(c)
-    @ccall libnotcurses.nccell_wide_right_p(c::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccell_wide_right_p(c::Ptr{nccell})::Bool
 end
 
 """
@@ -1107,7 +1106,7 @@ static inline bool nccell_wide_left_p(const nccell* c);
 ```
 """
 function nccell_wide_left_p(c)
-    @ccall libnotcurses.nccell_wide_left_p(c::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccell_wide_left_p(c::Ptr{nccell})::Bool
 end
 
 """
@@ -1121,7 +1120,7 @@ API __attribute__ ((returns_nonnull)) const char* nccell_extended_gcluster(const
 ```
 """
 function nccell_extended_gcluster(n, c)
-    @ccall libnotcurses.nccell_extended_gcluster(n::Ptr{ncplane}, c::Ptr{nccell})::Ptr{Cchar}
+    @ccall libnotcurses_core.nccell_extended_gcluster(n::Ptr{ncplane}, c::Ptr{nccell})::Ptr{Cchar}
 end
 
 """
@@ -1135,7 +1134,7 @@ static inline unsigned nccell_cols(const nccell* c);
 ```
 """
 function nccell_cols(c)
-    @ccall libnotcurses.nccell_cols(c::Ptr{nccell})::Cuint
+    @ccall libnotcurses_core.nccell_cols(c::Ptr{nccell})::Cuint
 end
 
 """
@@ -1149,7 +1148,7 @@ ALLOC static inline char* nccell_strdup(const struct ncplane* n, const nccell* c
 ```
 """
 function nccell_strdup(n, c)
-    @ccall libnotcurses.nccell_strdup(n::Ptr{ncplane}, c::Ptr{nccell})::Ptr{Cchar}
+    @ccall libnotcurses_core.nccell_strdup(n::Ptr{ncplane}, c::Ptr{nccell})::Ptr{Cchar}
 end
 
 """
@@ -1162,7 +1161,7 @@ static inline char* nccell_extract(const struct ncplane* n, const nccell* c, uin
 ```
 """
 function nccell_extract(n, c, stylemask, channels)
-    @ccall libnotcurses.nccell_extract(n::Ptr{ncplane}, c::Ptr{nccell}, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
+    @ccall libnotcurses_core.nccell_extract(n::Ptr{ncplane}, c::Ptr{nccell}, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
 end
 
 """
@@ -1179,7 +1178,7 @@ static inline bool nccellcmp(const struct ncplane* n1, const nccell* RESTRICT c1
 ```
 """
 function nccellcmp(n1, c1, n2, c2)
-    @ccall libnotcurses.nccellcmp(n1::Ptr{ncplane}, c1::Ptr{nccell}, n2::Ptr{ncplane}, c2::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccellcmp(n1::Ptr{ncplane}, c1::Ptr{nccell}, n2::Ptr{ncplane}, c2::Ptr{nccell})::Bool
 end
 
 """
@@ -1193,7 +1192,7 @@ static inline int nccell_load_char(struct ncplane* n, nccell* c, char ch);
 ```
 """
 function nccell_load_char(n, c, ch)
-    @ccall libnotcurses.nccell_load_char(n::Ptr{ncplane}, c::Ptr{nccell}, ch::Cchar)::Cint
+    @ccall libnotcurses_core.nccell_load_char(n::Ptr{ncplane}, c::Ptr{nccell}, ch::Cchar)::Cint
 end
 
 """
@@ -1207,7 +1206,7 @@ static inline int nccell_load_egc32(struct ncplane* n, nccell* c, uint32_t egc);
 ```
 """
 function nccell_load_egc32(n, c, egc)
-    @ccall libnotcurses.nccell_load_egc32(n::Ptr{ncplane}, c::Ptr{nccell}, egc::UInt32)::Cint
+    @ccall libnotcurses_core.nccell_load_egc32(n::Ptr{ncplane}, c::Ptr{nccell}, egc::UInt32)::Cint
 end
 
 """
@@ -1221,7 +1220,7 @@ static inline int nccell_load_ucs32(struct ncplane* n, nccell* c, uint32_t u);
 ```
 """
 function nccell_load_ucs32(n, c, u)
-    @ccall libnotcurses.nccell_load_ucs32(n::Ptr{ncplane}, c::Ptr{nccell}, u::UInt32)::Cint
+    @ccall libnotcurses_core.nccell_load_ucs32(n::Ptr{ncplane}, c::Ptr{nccell}, u::UInt32)::Cint
 end
 
 """
@@ -1273,7 +1272,7 @@ API int notcurses_lex_margins(const char* op, notcurses_options* opts) __attribu
 ```
 """
 function notcurses_lex_margins(op, opts)
-    @ccall libnotcurses.notcurses_lex_margins(op::Ptr{Cchar}, opts::Ptr{notcurses_options})::Cint
+    @ccall libnotcurses_core.notcurses_lex_margins(op::Ptr{Cchar}, opts::Ptr{notcurses_options})::Cint
 end
 
 """
@@ -1286,7 +1285,7 @@ API int notcurses_lex_blitter(const char* op, ncblitter_e* blitter) __attribute_
 ```
 """
 function notcurses_lex_blitter(op, blitter)
-    @ccall libnotcurses.notcurses_lex_blitter(op::Ptr{Cchar}, blitter::Ptr{ncblitter_e})::Cint
+    @ccall libnotcurses_core.notcurses_lex_blitter(op::Ptr{Cchar}, blitter::Ptr{ncblitter_e})::Cint
 end
 
 """
@@ -1299,7 +1298,7 @@ API const char* notcurses_str_blitter(ncblitter_e blitter);
 ```
 """
 function notcurses_str_blitter(blitter)
-    @ccall libnotcurses.notcurses_str_blitter(blitter::ncblitter_e)::Ptr{Cchar}
+    @ccall libnotcurses_core.notcurses_str_blitter(blitter::ncblitter_e)::Ptr{Cchar}
 end
 
 """
@@ -1313,7 +1312,7 @@ API int notcurses_lex_scalemode(const char* op, ncscale_e* scalemode) __attribut
 ```
 """
 function notcurses_lex_scalemode(op, scalemode)
-    @ccall libnotcurses.notcurses_lex_scalemode(op::Ptr{Cchar}, scalemode::Ptr{ncscale_e})::Cint
+    @ccall libnotcurses_core.notcurses_lex_scalemode(op::Ptr{Cchar}, scalemode::Ptr{ncscale_e})::Cint
 end
 
 """
@@ -1326,23 +1325,7 @@ API const char* notcurses_str_scalemode(ncscale_e scalemode);
 ```
 """
 function notcurses_str_scalemode(scalemode)
-    @ccall libnotcurses.notcurses_str_scalemode(scalemode::ncscale_e)::Ptr{Cchar}
-end
-
-"""
-    notcurses_init(opts, fp)
-
-Initialize a Notcurses context on the connected terminal at 'fp'. 'fp' must
-be a tty. You'll usually want stdout. NULL can be supplied for 'fp', in
-which case /dev/tty will be opened. Returns NULL on error, including any
-failure initializing terminfo.
-### Prototype
-```c
-API ALLOC struct notcurses* notcurses_init(const notcurses_options* opts, FILE* fp);
-```
-"""
-function notcurses_init(opts, fp)
-    @ccall libnotcurses.notcurses_init(opts::Ptr{notcurses_options}, fp::Ptr{Libc.FILE})::Ptr{notcurses}
+    @ccall libnotcurses_core.notcurses_str_scalemode(scalemode::ncscale_e)::Ptr{Cchar}
 end
 
 """
@@ -1356,7 +1339,7 @@ API ALLOC struct notcurses* notcurses_core_init(const notcurses_options* opts, F
 ```
 """
 function notcurses_core_init(opts, fp)
-    @ccall libnotcurses.notcurses_core_init(opts::Ptr{notcurses_options}, fp::Ptr{Libc.FILE})::Ptr{notcurses}
+    @ccall libnotcurses_core.notcurses_core_init(opts::Ptr{notcurses_options}, fp::Ptr{Libc.FILE})::Ptr{notcurses}
 end
 
 """
@@ -1369,7 +1352,7 @@ API int notcurses_stop(struct notcurses* nc);
 ```
 """
 function notcurses_stop(nc)
-    @ccall libnotcurses.notcurses_stop(nc::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_stop(nc::Ptr{notcurses})::Cint
 end
 
 """
@@ -1385,7 +1368,7 @@ API int notcurses_enter_alternate_screen(struct notcurses* nc) __attribute__ ((n
 ```
 """
 function notcurses_enter_alternate_screen(nc)
-    @ccall libnotcurses.notcurses_enter_alternate_screen(nc::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_enter_alternate_screen(nc::Ptr{notcurses})::Cint
 end
 
 """
@@ -1399,7 +1382,7 @@ API int notcurses_leave_alternate_screen(struct notcurses* nc) __attribute__ ((n
 ```
 """
 function notcurses_leave_alternate_screen(nc)
-    @ccall libnotcurses.notcurses_leave_alternate_screen(nc::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_leave_alternate_screen(nc::Ptr{notcurses})::Cint
 end
 
 """
@@ -1414,7 +1397,7 @@ API struct ncplane* notcurses_stdplane(struct notcurses* nc) __attribute__ ((non
 ```
 """
 function notcurses_stdplane(nc)
-    @ccall libnotcurses.notcurses_stdplane(nc::Ptr{notcurses})::Ptr{ncplane}
+    @ccall libnotcurses_core.notcurses_stdplane(nc::Ptr{notcurses})::Ptr{ncplane}
 end
 
 """
@@ -1427,7 +1410,7 @@ API const struct ncplane* notcurses_stdplane_const(const struct notcurses* nc) _
 ```
 """
 function notcurses_stdplane_const(nc)
-    @ccall libnotcurses.notcurses_stdplane_const(nc::Ptr{notcurses})::Ptr{ncplane}
+    @ccall libnotcurses_core.notcurses_stdplane_const(nc::Ptr{notcurses})::Ptr{ncplane}
 end
 
 """
@@ -1440,7 +1423,7 @@ API struct ncplane* ncpile_top(struct ncplane* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncpile_top(n)
-    @ccall libnotcurses.ncpile_top(n::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncpile_top(n::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -1453,7 +1436,7 @@ API struct ncplane* ncpile_bottom(struct ncplane* n) __attribute__ ((nonnull (1)
 ```
 """
 function ncpile_bottom(n)
-    @ccall libnotcurses.ncpile_bottom(n::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncpile_bottom(n::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -1466,7 +1449,7 @@ static inline struct ncplane* notcurses_top(struct notcurses* n);
 ```
 """
 function notcurses_top(n)
-    @ccall libnotcurses.notcurses_top(n::Ptr{notcurses})::Ptr{ncplane}
+    @ccall libnotcurses_core.notcurses_top(n::Ptr{notcurses})::Ptr{ncplane}
 end
 
 """
@@ -1479,7 +1462,7 @@ static inline struct ncplane* notcurses_bottom(struct notcurses* n);
 ```
 """
 function notcurses_bottom(n)
-    @ccall libnotcurses.notcurses_bottom(n::Ptr{notcurses})::Ptr{ncplane}
+    @ccall libnotcurses_core.notcurses_bottom(n::Ptr{notcurses})::Ptr{ncplane}
 end
 
 """
@@ -1493,7 +1476,7 @@ API int ncpile_render(struct ncplane* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncpile_render(n)
-    @ccall libnotcurses.ncpile_render(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncpile_render(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -1508,7 +1491,7 @@ API int ncpile_rasterize(struct ncplane* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncpile_rasterize(n)
-    @ccall libnotcurses.ncpile_rasterize(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncpile_rasterize(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -1521,7 +1504,7 @@ static inline int notcurses_render(struct notcurses* nc);
 ```
 """
 function notcurses_render(nc)
-    @ccall libnotcurses.notcurses_render(nc::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_render(nc::Ptr{notcurses})::Cint
 end
 
 """
@@ -1537,7 +1520,7 @@ API int ncpile_render_to_buffer(struct ncplane* p, char** buf, size_t* buflen) _
 ```
 """
 function ncpile_render_to_buffer(p, buf, buflen)
-    @ccall libnotcurses.ncpile_render_to_buffer(p::Ptr{ncplane}, buf::Ptr{Ptr{Cchar}}, buflen::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncpile_render_to_buffer(p::Ptr{ncplane}, buf::Ptr{Ptr{Cchar}}, buflen::Ptr{Csize_t})::Cint
 end
 
 """
@@ -1551,7 +1534,7 @@ API int ncpile_render_to_file(struct ncplane* p, FILE* fp) __attribute__ ((nonnu
 ```
 """
 function ncpile_render_to_file(p, fp)
-    @ccall libnotcurses.ncpile_render_to_file(p::Ptr{ncplane}, fp::Ptr{Libc.FILE})::Cint
+    @ccall libnotcurses_core.ncpile_render_to_file(p::Ptr{ncplane}, fp::Ptr{Libc.FILE})::Cint
 end
 
 """
@@ -1564,7 +1547,7 @@ API void notcurses_drop_planes(struct notcurses* nc) __attribute__ ((nonnull (1)
 ```
 """
 function notcurses_drop_planes(nc)
-    @ccall libnotcurses.notcurses_drop_planes(nc::Ptr{notcurses})::Cvoid
+    @ccall libnotcurses_core.notcurses_drop_planes(nc::Ptr{notcurses})::Cvoid
 end
 
 """
@@ -1577,7 +1560,7 @@ static inline bool nckey_mouse_p(uint32_t r);
 ```
 """
 function nckey_mouse_p(r)
-    @ccall libnotcurses.nckey_mouse_p(r::UInt32)::Bool
+    @ccall libnotcurses_core.nckey_mouse_p(r::UInt32)::Bool
 end
 
 """
@@ -1626,7 +1609,7 @@ static inline bool ncinput_equal_p(const ncinput* n1, const ncinput* n2);
 ```
 """
 function ncinput_equal_p(n1, n2)
-    @ccall libnotcurses.ncinput_equal_p(n1::Ptr{ncinput}, n2::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.ncinput_equal_p(n1::Ptr{ncinput}, n2::Ptr{ncinput})::Bool
 end
 
 """
@@ -1644,7 +1627,7 @@ API uint32_t notcurses_get(struct notcurses* n, const struct timespec* ts, ncinp
 ```
 """
 function notcurses_get(n, ts, ni)
-    @ccall libnotcurses.notcurses_get(n::Ptr{notcurses}, ts::Ptr{Cvoid}, ni::Ptr{ncinput})::UInt32
+    @ccall libnotcurses_core.notcurses_get(n::Ptr{notcurses}, ts::Ptr{Cvoid}, ni::Ptr{ncinput})::UInt32
 end
 
 """
@@ -1658,7 +1641,7 @@ API int notcurses_getvec(struct notcurses* n, const struct timespec* ts, ncinput
 ```
 """
 function notcurses_getvec(n, ts, ni, vcount)
-    @ccall libnotcurses.notcurses_getvec(n::Ptr{notcurses}, ts::Ptr{Cvoid}, ni::Ptr{ncinput}, vcount::Cint)::Cint
+    @ccall libnotcurses_core.notcurses_getvec(n::Ptr{notcurses}, ts::Ptr{Cvoid}, ni::Ptr{ncinput}, vcount::Cint)::Cint
 end
 
 """
@@ -1674,7 +1657,7 @@ API int notcurses_inputready_fd(struct notcurses* n) __attribute__ ((nonnull (1)
 ```
 """
 function notcurses_inputready_fd(n)
-    @ccall libnotcurses.notcurses_inputready_fd(n::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_inputready_fd(n::Ptr{notcurses})::Cint
 end
 
 """
@@ -1688,7 +1671,7 @@ static inline uint32_t notcurses_get_nblock(struct notcurses* n, ncinput* ni);
 ```
 """
 function notcurses_get_nblock(n, ni)
-    @ccall libnotcurses.notcurses_get_nblock(n::Ptr{notcurses}, ni::Ptr{ncinput})::UInt32
+    @ccall libnotcurses_core.notcurses_get_nblock(n::Ptr{notcurses}, ni::Ptr{ncinput})::UInt32
 end
 
 """
@@ -1702,7 +1685,7 @@ static inline uint32_t notcurses_get_blocking(struct notcurses* n, ncinput* ni);
 ```
 """
 function notcurses_get_blocking(n, ni)
-    @ccall libnotcurses.notcurses_get_blocking(n::Ptr{notcurses}, ni::Ptr{ncinput})::UInt32
+    @ccall libnotcurses_core.notcurses_get_blocking(n::Ptr{notcurses}, ni::Ptr{ncinput})::UInt32
 end
 
 """
@@ -1715,7 +1698,7 @@ static inline bool ncinput_nomod_p(const ncinput* ni);
 ```
 """
 function ncinput_nomod_p(ni)
-    @ccall libnotcurses.ncinput_nomod_p(ni::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.ncinput_nomod_p(ni::Ptr{ncinput})::Bool
 end
 
 """
@@ -1730,7 +1713,7 @@ API int notcurses_mice_enable(struct notcurses* n, unsigned eventmask) __attribu
 ```
 """
 function notcurses_mice_enable(n, eventmask)
-    @ccall libnotcurses.notcurses_mice_enable(n::Ptr{notcurses}, eventmask::Cuint)::Cint
+    @ccall libnotcurses_core.notcurses_mice_enable(n::Ptr{notcurses}, eventmask::Cuint)::Cint
 end
 
 """
@@ -1743,7 +1726,7 @@ __attribute__ ((nonnull (1))) static inline int notcurses_mice_disable(struct no
 ```
 """
 function notcurses_mice_disable(n)
-    @ccall libnotcurses.notcurses_mice_disable(n::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_mice_disable(n::Ptr{notcurses})::Cint
 end
 
 """
@@ -1757,7 +1740,7 @@ API int notcurses_linesigs_disable(struct notcurses* n) __attribute__ ((nonnull 
 ```
 """
 function notcurses_linesigs_disable(n)
-    @ccall libnotcurses.notcurses_linesigs_disable(n::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_linesigs_disable(n::Ptr{notcurses})::Cint
 end
 
 """
@@ -1771,7 +1754,7 @@ API int notcurses_linesigs_enable(struct notcurses* n) __attribute__ ((nonnull (
 ```
 """
 function notcurses_linesigs_enable(n)
-    @ccall libnotcurses.notcurses_linesigs_enable(n::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_linesigs_enable(n::Ptr{notcurses})::Cint
 end
 
 """
@@ -1788,7 +1771,7 @@ API int notcurses_refresh(struct notcurses* n, unsigned* RESTRICT y, unsigned* R
 ```
 """
 function notcurses_refresh(n, y, x)
-    @ccall libnotcurses.notcurses_refresh(n::Ptr{notcurses}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cint
+    @ccall libnotcurses_core.notcurses_refresh(n::Ptr{notcurses}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cint
 end
 
 """
@@ -1801,7 +1784,7 @@ API struct notcurses* ncplane_notcurses(const struct ncplane* n) __attribute__ (
 ```
 """
 function ncplane_notcurses(n)
-    @ccall libnotcurses.ncplane_notcurses(n::Ptr{ncplane})::Ptr{notcurses}
+    @ccall libnotcurses_core.ncplane_notcurses(n::Ptr{ncplane})::Ptr{notcurses}
 end
 
 """
@@ -1814,7 +1797,7 @@ API const struct notcurses* ncplane_notcurses_const(const struct ncplane* n) __a
 ```
 """
 function ncplane_notcurses_const(n)
-    @ccall libnotcurses.ncplane_notcurses_const(n::Ptr{ncplane})::Ptr{notcurses}
+    @ccall libnotcurses_core.ncplane_notcurses_const(n::Ptr{ncplane})::Ptr{notcurses}
 end
 
 """
@@ -1827,7 +1810,7 @@ API void ncplane_dim_yx(const struct ncplane* n, unsigned* RESTRICT y, unsigned*
 ```
 """
 function ncplane_dim_yx(n, y, x)
-    @ccall libnotcurses.ncplane_dim_yx(n::Ptr{ncplane}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cvoid
+    @ccall libnotcurses_core.ncplane_dim_yx(n::Ptr{ncplane}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cvoid
 end
 
 """
@@ -1840,7 +1823,7 @@ static inline struct ncplane* notcurses_stddim_yx(struct notcurses* nc, unsigned
 ```
 """
 function notcurses_stddim_yx(nc, y, x)
-    @ccall libnotcurses.notcurses_stddim_yx(nc::Ptr{notcurses}, y::Ptr{Cuint}, x::Ptr{Cuint})::Ptr{ncplane}
+    @ccall libnotcurses_core.notcurses_stddim_yx(nc::Ptr{notcurses}, y::Ptr{Cuint}, x::Ptr{Cuint})::Ptr{ncplane}
 end
 
 """
@@ -1853,7 +1836,7 @@ static inline const struct ncplane* notcurses_stddim_yx_const(const struct notcu
 ```
 """
 function notcurses_stddim_yx_const(nc, y, x)
-    @ccall libnotcurses.notcurses_stddim_yx_const(nc::Ptr{notcurses}, y::Ptr{Cuint}, x::Ptr{Cuint})::Ptr{ncplane}
+    @ccall libnotcurses_core.notcurses_stddim_yx_const(nc::Ptr{notcurses}, y::Ptr{Cuint}, x::Ptr{Cuint})::Ptr{ncplane}
 end
 
 """
@@ -1866,7 +1849,7 @@ static inline unsigned ncplane_dim_y(const struct ncplane* n);
 ```
 """
 function ncplane_dim_y(n)
-    @ccall libnotcurses.ncplane_dim_y(n::Ptr{ncplane})::Cuint
+    @ccall libnotcurses_core.ncplane_dim_y(n::Ptr{ncplane})::Cuint
 end
 
 """
@@ -1879,7 +1862,7 @@ static inline unsigned ncplane_dim_x(const struct ncplane* n);
 ```
 """
 function ncplane_dim_x(n)
-    @ccall libnotcurses.ncplane_dim_x(n::Ptr{ncplane})::Cuint
+    @ccall libnotcurses_core.ncplane_dim_x(n::Ptr{ncplane})::Cuint
 end
 
 """
@@ -1896,7 +1879,7 @@ API void ncplane_pixel_geom(const struct ncplane* n, unsigned* RESTRICT pxy, uns
 ```
 """
 function ncplane_pixel_geom(n, pxy, pxx, celldimy, celldimx, maxbmapy, maxbmapx)
-    @ccall libnotcurses.ncplane_pixel_geom(n::Ptr{ncplane}, pxy::Ptr{Cuint}, pxx::Ptr{Cuint}, celldimy::Ptr{Cuint}, celldimx::Ptr{Cuint}, maxbmapy::Ptr{Cuint}, maxbmapx::Ptr{Cuint})::Cvoid
+    @ccall libnotcurses_core.ncplane_pixel_geom(n::Ptr{ncplane}, pxy::Ptr{Cuint}, pxx::Ptr{Cuint}, celldimy::Ptr{Cuint}, celldimx::Ptr{Cuint}, maxbmapy::Ptr{Cuint}, maxbmapx::Ptr{Cuint})::Cvoid
 end
 
 """
@@ -1909,7 +1892,7 @@ static inline void notcurses_term_dim_yx(const struct notcurses* n, unsigned* RE
 ```
 """
 function notcurses_term_dim_yx(n, rows, cols)
-    @ccall libnotcurses.notcurses_term_dim_yx(n::Ptr{notcurses}, rows::Ptr{Cuint}, cols::Ptr{Cuint})::Cvoid
+    @ccall libnotcurses_core.notcurses_term_dim_yx(n::Ptr{notcurses}, rows::Ptr{Cuint}, cols::Ptr{Cuint})::Cvoid
 end
 
 """
@@ -1924,7 +1907,7 @@ API char* notcurses_at_yx(struct notcurses* nc, unsigned yoff, unsigned xoff, ui
 ```
 """
 function notcurses_at_yx(nc, yoff, xoff, stylemask, channels)
-    @ccall libnotcurses.notcurses_at_yx(nc::Ptr{notcurses}, yoff::Cuint, xoff::Cuint, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
+    @ccall libnotcurses_core.notcurses_at_yx(nc::Ptr{notcurses}, yoff::Cuint, xoff::Cuint, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
 end
 
 struct ncplane_options
@@ -1954,7 +1937,7 @@ API ALLOC struct ncplane* ncplane_create(struct ncplane* n, const ncplane_option
 ```
 """
 function ncplane_create(n, nopts)
-    @ccall libnotcurses.ncplane_create(n::Ptr{ncplane}, nopts::Ptr{ncplane_options})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_create(n::Ptr{ncplane}, nopts::Ptr{ncplane_options})::Ptr{ncplane}
 end
 
 """
@@ -1968,7 +1951,7 @@ API ALLOC struct ncplane* ncpile_create(struct notcurses* nc, const ncplane_opti
 ```
 """
 function ncpile_create(nc, nopts)
-    @ccall libnotcurses.ncpile_create(nc::Ptr{notcurses}, nopts::Ptr{ncplane_options})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncpile_create(nc::Ptr{notcurses}, nopts::Ptr{ncplane_options})::Ptr{ncplane}
 end
 
 """
@@ -1981,7 +1964,7 @@ API int ncplane_resize_maximize(struct ncplane* n);
 ```
 """
 function ncplane_resize_maximize(n)
-    @ccall libnotcurses.ncplane_resize_maximize(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_resize_maximize(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -1995,7 +1978,7 @@ API int ncplane_resize_marginalized(struct ncplane* n);
 ```
 """
 function ncplane_resize_marginalized(n)
-    @ccall libnotcurses.ncplane_resize_marginalized(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_resize_marginalized(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2009,7 +1992,7 @@ API int ncplane_resize_realign(struct ncplane* n);
 ```
 """
 function ncplane_resize_realign(n)
-    @ccall libnotcurses.ncplane_resize_realign(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_resize_realign(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2023,7 +2006,7 @@ API int ncplane_resize_placewithin(struct ncplane* n);
 ```
 """
 function ncplane_resize_placewithin(n)
-    @ccall libnotcurses.ncplane_resize_placewithin(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_resize_placewithin(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2037,7 +2020,7 @@ API void ncplane_set_resizecb(struct ncplane* n, int(*resizecb)(struct ncplane*)
 ```
 """
 function ncplane_set_resizecb(n, resizecb)
-    @ccall libnotcurses.ncplane_set_resizecb(n::Ptr{ncplane}, resizecb::Ptr{Cvoid})::Cvoid
+    @ccall libnotcurses_core.ncplane_set_resizecb(n::Ptr{ncplane}, resizecb::Ptr{Cvoid})::Cvoid
 end
 
 """
@@ -2050,7 +2033,7 @@ API int ncplane_set_name(struct ncplane* n, const char* name) __attribute__ ((no
 ```
 """
 function ncplane_set_name(n, name)
-    @ccall libnotcurses.ncplane_set_name(n::Ptr{ncplane}, name::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_set_name(n::Ptr{ncplane}, name::Ptr{Cchar})::Cint
 end
 
 """
@@ -2063,7 +2046,7 @@ API ALLOC char* ncplane_name(const struct ncplane* n) __attribute__ ((nonnull (1
 ```
 """
 function ncplane_name(n)
-    @ccall libnotcurses.ncplane_name(n::Ptr{ncplane})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncplane_name(n::Ptr{ncplane})::Ptr{Cchar}
 end
 
 """
@@ -2081,7 +2064,7 @@ API struct ncplane* ncplane_reparent(struct ncplane* n, struct ncplane* newparen
 ```
 """
 function ncplane_reparent(n, newparent)
-    @ccall libnotcurses.ncplane_reparent(n::Ptr{ncplane}, newparent::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_reparent(n::Ptr{ncplane}, newparent::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -2096,7 +2079,7 @@ API struct ncplane* ncplane_reparent_family(struct ncplane* n, struct ncplane* n
 ```
 """
 function ncplane_reparent_family(n, newparent)
-    @ccall libnotcurses.ncplane_reparent_family(n::Ptr{ncplane}, newparent::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_reparent_family(n::Ptr{ncplane}, newparent::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -2114,7 +2097,7 @@ API ALLOC struct ncplane* ncplane_dup(const struct ncplane* n, void* opaque) __a
 ```
 """
 function ncplane_dup(n, opaque)
-    @ccall libnotcurses.ncplane_dup(n::Ptr{ncplane}, opaque::Ptr{Cvoid})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_dup(n::Ptr{ncplane}, opaque::Ptr{Cvoid})::Ptr{ncplane}
 end
 
 """
@@ -2129,7 +2112,7 @@ API void ncplane_translate(const struct ncplane* src, const struct ncplane* dst,
 ```
 """
 function ncplane_translate(src, dst, y, x)
-    @ccall libnotcurses.ncplane_translate(src::Ptr{ncplane}, dst::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
+    @ccall libnotcurses_core.ncplane_translate(src::Ptr{ncplane}, dst::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
 end
 
 """
@@ -2145,7 +2128,7 @@ API bool ncplane_translate_abs(const struct ncplane* n, int* RESTRICT y, int* RE
 ```
 """
 function ncplane_translate_abs(n, y, x)
-    @ccall libnotcurses.ncplane_translate_abs(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Bool
+    @ccall libnotcurses_core.ncplane_translate_abs(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Bool
 end
 
 """
@@ -2160,7 +2143,7 @@ API bool ncplane_set_scrolling(struct ncplane* n, unsigned scrollp) __attribute_
 ```
 """
 function ncplane_set_scrolling(n, scrollp)
-    @ccall libnotcurses.ncplane_set_scrolling(n::Ptr{ncplane}, scrollp::Cuint)::Bool
+    @ccall libnotcurses_core.ncplane_set_scrolling(n::Ptr{ncplane}, scrollp::Cuint)::Bool
 end
 
 """
@@ -2173,7 +2156,7 @@ API bool ncplane_scrolling_p(const struct ncplane* n) __attribute__ ((nonnull (1
 ```
 """
 function ncplane_scrolling_p(n)
-    @ccall libnotcurses.ncplane_scrolling_p(n::Ptr{ncplane})::Bool
+    @ccall libnotcurses_core.ncplane_scrolling_p(n::Ptr{ncplane})::Bool
 end
 
 """
@@ -2188,7 +2171,7 @@ API bool ncplane_set_autogrow(struct ncplane* n, unsigned growp) __attribute__ (
 ```
 """
 function ncplane_set_autogrow(n, growp)
-    @ccall libnotcurses.ncplane_set_autogrow(n::Ptr{ncplane}, growp::Cuint)::Bool
+    @ccall libnotcurses_core.ncplane_set_autogrow(n::Ptr{ncplane}, growp::Cuint)::Bool
 end
 
 """
@@ -2201,7 +2184,7 @@ API bool ncplane_autogrow_p(const struct ncplane* n) __attribute__ ((nonnull (1)
 ```
 """
 function ncplane_autogrow_p(n)
-    @ccall libnotcurses.ncplane_autogrow_p(n::Ptr{ncplane})::Bool
+    @ccall libnotcurses_core.ncplane_autogrow_p(n::Ptr{ncplane})::Bool
 end
 
 """
@@ -2228,7 +2211,7 @@ API ALLOC ncpalette* ncpalette_new(struct notcurses* nc) __attribute__ ((nonnull
 ```
 """
 function ncpalette_new(nc)
-    @ccall libnotcurses.ncpalette_new(nc::Ptr{notcurses})::Ptr{ncpalette}
+    @ccall libnotcurses_core.ncpalette_new(nc::Ptr{notcurses})::Ptr{ncpalette}
 end
 
 """
@@ -2242,7 +2225,7 @@ API int ncpalette_use(struct notcurses* nc, const ncpalette* p) __attribute__ ((
 ```
 """
 function ncpalette_use(nc, p)
-    @ccall libnotcurses.ncpalette_use(nc::Ptr{notcurses}, p::Ptr{ncpalette})::Cint
+    @ccall libnotcurses_core.ncpalette_use(nc::Ptr{notcurses}, p::Ptr{ncpalette})::Cint
 end
 
 """
@@ -2255,7 +2238,7 @@ static inline int ncpalette_set_rgb8(ncpalette* p, int idx, unsigned r, unsigned
 ```
 """
 function ncpalette_set_rgb8(p, idx, r, g, b)
-    @ccall libnotcurses.ncpalette_set_rgb8(p::Ptr{ncpalette}, idx::Cint, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncpalette_set_rgb8(p::Ptr{ncpalette}, idx::Cint, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -2268,7 +2251,7 @@ static inline int ncpalette_set(ncpalette* p, int idx, unsigned rgb);
 ```
 """
 function ncpalette_set(p, idx, rgb)
-    @ccall libnotcurses.ncpalette_set(p::Ptr{ncpalette}, idx::Cint, rgb::Cuint)::Cint
+    @ccall libnotcurses_core.ncpalette_set(p::Ptr{ncpalette}, idx::Cint, rgb::Cuint)::Cint
 end
 
 """
@@ -2281,7 +2264,7 @@ static inline int ncpalette_get_rgb8(const ncpalette* p, int idx, unsigned* REST
 ```
 """
 function ncpalette_get_rgb8(p, idx, r, g, b)
-    @ccall libnotcurses.ncpalette_get_rgb8(p::Ptr{ncpalette}, idx::Cint, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::Cint
+    @ccall libnotcurses_core.ncpalette_get_rgb8(p::Ptr{ncpalette}, idx::Cint, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::Cint
 end
 
 """
@@ -2294,7 +2277,7 @@ API void ncpalette_free(ncpalette* p);
 ```
 """
 function ncpalette_free(p)
-    @ccall libnotcurses.ncpalette_free(p::Ptr{ncpalette})::Cvoid
+    @ccall libnotcurses_core.ncpalette_free(p::Ptr{ncpalette})::Cvoid
 end
 
 """
@@ -2326,7 +2309,7 @@ API uint16_t notcurses_supported_styles(const struct notcurses* nc) __attribute_
 ```
 """
 function notcurses_supported_styles(nc)
-    @ccall libnotcurses.notcurses_supported_styles(nc::Ptr{notcurses})::UInt16
+    @ccall libnotcurses_core.notcurses_supported_styles(nc::Ptr{notcurses})::UInt16
 end
 
 """
@@ -2341,7 +2324,7 @@ API unsigned notcurses_palette_size(const struct notcurses* nc) __attribute__ ((
 ```
 """
 function notcurses_palette_size(nc)
-    @ccall libnotcurses.notcurses_palette_size(nc::Ptr{notcurses})::Cuint
+    @ccall libnotcurses_core.notcurses_palette_size(nc::Ptr{notcurses})::Cuint
 end
 
 """
@@ -2355,7 +2338,7 @@ ALLOC API char* notcurses_detected_terminal(const struct notcurses* nc) __attrib
 ```
 """
 function notcurses_detected_terminal(nc)
-    @ccall libnotcurses.notcurses_detected_terminal(nc::Ptr{notcurses})::Ptr{Cchar}
+    @ccall libnotcurses_core.notcurses_detected_terminal(nc::Ptr{notcurses})::Ptr{Cchar}
 end
 
 """
@@ -2368,7 +2351,7 @@ API const nccapabilities* notcurses_capabilities(const struct notcurses* n) __at
 ```
 """
 function notcurses_capabilities(n)
-    @ccall libnotcurses.notcurses_capabilities(n::Ptr{notcurses})::Ptr{nccapabilities}
+    @ccall libnotcurses_core.notcurses_capabilities(n::Ptr{notcurses})::Ptr{nccapabilities}
 end
 
 """
@@ -2397,7 +2380,7 @@ API ncpixelimpl_e notcurses_check_pixel_support(const struct notcurses* nc) __at
 ```
 """
 function notcurses_check_pixel_support(nc)
-    @ccall libnotcurses.notcurses_check_pixel_support(nc::Ptr{notcurses})::ncpixelimpl_e
+    @ccall libnotcurses_core.notcurses_check_pixel_support(nc::Ptr{notcurses})::ncpixelimpl_e
 end
 
 """
@@ -2412,7 +2395,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool nccapabi
 ```
 """
 function nccapability_canchangecolor(caps)
-    @ccall libnotcurses.nccapability_canchangecolor(caps::Ptr{nccapabilities})::Bool
+    @ccall libnotcurses_core.nccapability_canchangecolor(caps::Ptr{nccapabilities})::Bool
 end
 
 """
@@ -2425,7 +2408,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_cantruecolor(nc)
-    @ccall libnotcurses.notcurses_cantruecolor(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_cantruecolor(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2438,7 +2421,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_canchangecolor(nc)
-    @ccall libnotcurses.notcurses_canchangecolor(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canchangecolor(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2451,7 +2434,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_canfade(n)
-    @ccall libnotcurses.notcurses_canfade(n::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canfade(n::Ptr{notcurses})::Bool
 end
 
 """
@@ -2464,7 +2447,7 @@ API bool notcurses_canopen_images(const struct notcurses* nc) __attribute__ ((pu
 ```
 """
 function notcurses_canopen_images(nc)
-    @ccall libnotcurses.notcurses_canopen_images(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canopen_images(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2477,7 +2460,7 @@ API bool notcurses_canopen_videos(const struct notcurses* nc) __attribute__ ((pu
 ```
 """
 function notcurses_canopen_videos(nc)
-    @ccall libnotcurses.notcurses_canopen_videos(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canopen_videos(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2490,7 +2473,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_canutf8(nc)
-    @ccall libnotcurses.notcurses_canutf8(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canutf8(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2503,7 +2486,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_canhalfblock(nc)
-    @ccall libnotcurses.notcurses_canhalfblock(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canhalfblock(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2516,7 +2499,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_canquadrant(nc)
-    @ccall libnotcurses.notcurses_canquadrant(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canquadrant(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2529,7 +2512,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_cansextant(nc)
-    @ccall libnotcurses.notcurses_cansextant(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_cansextant(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2542,7 +2525,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_canbraille(nc)
-    @ccall libnotcurses.notcurses_canbraille(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canbraille(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2555,7 +2538,7 @@ __attribute__ ((nonnull (1))) __attribute__ ((pure)) static inline bool notcurse
 ```
 """
 function notcurses_canpixel(nc)
-    @ccall libnotcurses.notcurses_canpixel(nc::Ptr{notcurses})::Bool
+    @ccall libnotcurses_core.notcurses_canpixel(nc::Ptr{notcurses})::Bool
 end
 
 """
@@ -2614,7 +2597,7 @@ API ALLOC ncstats* notcurses_stats_alloc(const struct notcurses* nc __attribute_
 ```
 """
 function notcurses_stats_alloc(nc)
-    @ccall libnotcurses.notcurses_stats_alloc(nc::Ptr{notcurses})::Ptr{ncstats}
+    @ccall libnotcurses_core.notcurses_stats_alloc(nc::Ptr{notcurses})::Ptr{ncstats}
 end
 
 """
@@ -2627,7 +2610,7 @@ API void notcurses_stats(struct notcurses* nc, ncstats* stats) __attribute__ ((n
 ```
 """
 function notcurses_stats(nc, stats)
-    @ccall libnotcurses.notcurses_stats(nc::Ptr{notcurses}, stats::Ptr{ncstats})::Cvoid
+    @ccall libnotcurses_core.notcurses_stats(nc::Ptr{notcurses}, stats::Ptr{ncstats})::Cvoid
 end
 
 """
@@ -2641,7 +2624,7 @@ API void notcurses_stats_reset(struct notcurses* nc, ncstats* stats) __attribute
 ```
 """
 function notcurses_stats_reset(nc, stats)
-    @ccall libnotcurses.notcurses_stats_reset(nc::Ptr{notcurses}, stats::Ptr{ncstats})::Cvoid
+    @ccall libnotcurses_core.notcurses_stats_reset(nc::Ptr{notcurses}, stats::Ptr{ncstats})::Cvoid
 end
 
 """
@@ -2667,7 +2650,7 @@ API int ncplane_resize(struct ncplane* n, int keepy, int keepx, unsigned keeplen
 ```
 """
 function ncplane_resize(n, keepy, keepx, keepleny, keeplenx, yoff, xoff, ylen, xlen)
-    @ccall libnotcurses.ncplane_resize(n::Ptr{ncplane}, keepy::Cint, keepx::Cint, keepleny::Cuint, keeplenx::Cuint, yoff::Cint, xoff::Cint, ylen::Cuint, xlen::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_resize(n::Ptr{ncplane}, keepy::Cint, keepx::Cint, keepleny::Cuint, keeplenx::Cuint, yoff::Cint, xoff::Cint, ylen::Cuint, xlen::Cuint)::Cint
 end
 
 """
@@ -2681,7 +2664,7 @@ static inline int ncplane_resize_simple(struct ncplane* n, unsigned ylen, unsign
 ```
 """
 function ncplane_resize_simple(n, ylen, xlen)
-    @ccall libnotcurses.ncplane_resize_simple(n::Ptr{ncplane}, ylen::Cuint, xlen::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_resize_simple(n::Ptr{ncplane}, ylen::Cuint, xlen::Cuint)::Cint
 end
 
 """
@@ -2696,7 +2679,7 @@ API int ncplane_destroy(struct ncplane* n);
 ```
 """
 function ncplane_destroy(n)
-    @ccall libnotcurses.ncplane_destroy(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_destroy(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2712,7 +2695,7 @@ API int ncplane_set_base_cell(struct ncplane* n, const nccell* c);
 ```
 """
 function ncplane_set_base_cell(n, c)
-    @ccall libnotcurses.ncplane_set_base_cell(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.ncplane_set_base_cell(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
 end
 
 """
@@ -2728,7 +2711,7 @@ API int ncplane_set_base(struct ncplane* n, const char* egc, uint16_t stylemask,
 ```
 """
 function ncplane_set_base(n, egc, stylemask, channels)
-    @ccall libnotcurses.ncplane_set_base(n::Ptr{ncplane}, egc::Ptr{Cchar}, stylemask::UInt16, channels::UInt64)::Cint
+    @ccall libnotcurses_core.ncplane_set_base(n::Ptr{ncplane}, egc::Ptr{Cchar}, stylemask::UInt16, channels::UInt64)::Cint
 end
 
 """
@@ -2742,7 +2725,7 @@ API int ncplane_base(struct ncplane* n, nccell* c);
 ```
 """
 function ncplane_base(n, c)
-    @ccall libnotcurses.ncplane_base(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.ncplane_base(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
 end
 
 """
@@ -2756,7 +2739,7 @@ API void ncplane_yx(const struct ncplane* n, int* RESTRICT y, int* RESTRICT x) _
 ```
 """
 function ncplane_yx(n, y, x)
-    @ccall libnotcurses.ncplane_yx(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
+    @ccall libnotcurses_core.ncplane_yx(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
 end
 
 """
@@ -2769,7 +2752,7 @@ API int ncplane_y(const struct ncplane* n) __attribute__ ((pure));
 ```
 """
 function ncplane_y(n)
-    @ccall libnotcurses.ncplane_y(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_y(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2782,7 +2765,7 @@ API int ncplane_x(const struct ncplane* n) __attribute__ ((pure));
 ```
 """
 function ncplane_x(n)
-    @ccall libnotcurses.ncplane_x(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_x(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2797,7 +2780,7 @@ API int ncplane_move_yx(struct ncplane* n, int y, int x);
 ```
 """
 function ncplane_move_yx(n, y, x)
-    @ccall libnotcurses.ncplane_move_yx(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_move_yx(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
 end
 
 """
@@ -2811,7 +2794,7 @@ __attribute__ ((nonnull (1))) static inline int ncplane_move_rel(struct ncplane*
 ```
 """
 function ncplane_move_rel(n, y, x)
-    @ccall libnotcurses.ncplane_move_rel(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_move_rel(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
 end
 
 """
@@ -2825,7 +2808,7 @@ API void ncplane_abs_yx(const struct ncplane* n, int* RESTRICT y, int* RESTRICT 
 ```
 """
 function ncplane_abs_yx(n, y, x)
-    @ccall libnotcurses.ncplane_abs_yx(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
+    @ccall libnotcurses_core.ncplane_abs_yx(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
 end
 
 """
@@ -2838,7 +2821,7 @@ API int ncplane_abs_y(const struct ncplane* n) __attribute__ ((pure));
 ```
 """
 function ncplane_abs_y(n)
-    @ccall libnotcurses.ncplane_abs_y(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_abs_y(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2851,7 +2834,7 @@ API int ncplane_abs_x(const struct ncplane* n) __attribute__ ((pure));
 ```
 """
 function ncplane_abs_x(n)
-    @ccall libnotcurses.ncplane_abs_x(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_abs_x(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -2864,7 +2847,7 @@ API struct ncplane* ncplane_parent(struct ncplane* n) __attribute__ ((nonnull (1
 ```
 """
 function ncplane_parent(n)
-    @ccall libnotcurses.ncplane_parent(n::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_parent(n::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -2877,7 +2860,7 @@ API const struct ncplane* ncplane_parent_const(const struct ncplane* n) __attrib
 ```
 """
 function ncplane_parent_const(n)
-    @ccall libnotcurses.ncplane_parent_const(n::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_parent_const(n::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -2890,7 +2873,7 @@ static inline int ncplane_descendant_p(const struct ncplane* n, const struct ncp
 ```
 """
 function ncplane_descendant_p(n, ancestor)
-    @ccall libnotcurses.ncplane_descendant_p(n::Ptr{ncplane}, ancestor::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_descendant_p(n::Ptr{ncplane}, ancestor::Ptr{ncplane})::Cint
 end
 
 """
@@ -2906,7 +2889,7 @@ API int ncplane_move_above(struct ncplane* RESTRICT n, struct ncplane* RESTRICT 
 ```
 """
 function ncplane_move_above(n, above)
-    @ccall libnotcurses.ncplane_move_above(n::Ptr{ncplane}, above::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_move_above(n::Ptr{ncplane}, above::Ptr{ncplane})::Cint
 end
 
 """
@@ -2922,7 +2905,7 @@ API int ncplane_move_below(struct ncplane* RESTRICT n, struct ncplane* RESTRICT 
 ```
 """
 function ncplane_move_below(n, below)
-    @ccall libnotcurses.ncplane_move_below(n::Ptr{ncplane}, below::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_move_below(n::Ptr{ncplane}, below::Ptr{ncplane})::Cint
 end
 
 """
@@ -2935,7 +2918,7 @@ __attribute__ ((nonnull (1))) static inline void ncplane_move_top(struct ncplane
 ```
 """
 function ncplane_move_top(n)
-    @ccall libnotcurses.ncplane_move_top(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_move_top(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -2948,7 +2931,7 @@ __attribute__ ((nonnull (1))) static inline void ncplane_move_bottom(struct ncpl
 ```
 """
 function ncplane_move_bottom(n)
-    @ccall libnotcurses.ncplane_move_bottom(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_move_bottom(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -2965,7 +2948,7 @@ API int ncplane_move_family_above(struct ncplane* n, struct ncplane* targ) __att
 ```
 """
 function ncplane_move_family_above(n, targ)
-    @ccall libnotcurses.ncplane_move_family_above(n::Ptr{ncplane}, targ::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_move_family_above(n::Ptr{ncplane}, targ::Ptr{ncplane})::Cint
 end
 
 """
@@ -2978,7 +2961,7 @@ API int ncplane_move_family_below(struct ncplane* n, struct ncplane* targ) __att
 ```
 """
 function ncplane_move_family_below(n, targ)
-    @ccall libnotcurses.ncplane_move_family_below(n::Ptr{ncplane}, targ::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_move_family_below(n::Ptr{ncplane}, targ::Ptr{ncplane})::Cint
 end
 
 """
@@ -2991,7 +2974,7 @@ __attribute__ ((nonnull (1))) static inline void ncplane_move_family_top(struct 
 ```
 """
 function ncplane_move_family_top(n)
-    @ccall libnotcurses.ncplane_move_family_top(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_move_family_top(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -3004,7 +2987,7 @@ __attribute__ ((nonnull (1))) static inline void ncplane_move_family_bottom(stru
 ```
 """
 function ncplane_move_family_bottom(n)
-    @ccall libnotcurses.ncplane_move_family_bottom(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_move_family_bottom(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -3017,7 +3000,7 @@ API struct ncplane* ncplane_below(struct ncplane* n) __attribute__ ((nonnull (1)
 ```
 """
 function ncplane_below(n)
-    @ccall libnotcurses.ncplane_below(n::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_below(n::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -3030,7 +3013,7 @@ API struct ncplane* ncplane_above(struct ncplane* n) __attribute__ ((nonnull (1)
 ```
 """
 function ncplane_above(n)
-    @ccall libnotcurses.ncplane_above(n::Ptr{ncplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncplane_above(n::Ptr{ncplane})::Ptr{ncplane}
 end
 
 """
@@ -3044,7 +3027,7 @@ API int ncplane_scrollup(struct ncplane* n, int r) __attribute__ ((nonnull (1)))
 ```
 """
 function ncplane_scrollup(n, r)
-    @ccall libnotcurses.ncplane_scrollup(n::Ptr{ncplane}, r::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_scrollup(n::Ptr{ncplane}, r::Cint)::Cint
 end
 
 """
@@ -3060,7 +3043,7 @@ API int ncplane_scrollup_child(struct ncplane* n, const struct ncplane* child) _
 ```
 """
 function ncplane_scrollup_child(n, child)
-    @ccall libnotcurses.ncplane_scrollup_child(n::Ptr{ncplane}, child::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_scrollup_child(n::Ptr{ncplane}, child::Ptr{ncplane})::Cint
 end
 
 """
@@ -3078,7 +3061,7 @@ API int ncplane_rotate_cw(struct ncplane* n);
 ```
 """
 function ncplane_rotate_cw(n)
-    @ccall libnotcurses.ncplane_rotate_cw(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_rotate_cw(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -3091,7 +3074,7 @@ API int ncplane_rotate_ccw(struct ncplane* n);
 ```
 """
 function ncplane_rotate_ccw(n)
-    @ccall libnotcurses.ncplane_rotate_ccw(n::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_rotate_ccw(n::Ptr{ncplane})::Cint
 end
 
 """
@@ -3106,7 +3089,7 @@ API char* ncplane_at_cursor(struct ncplane* n, uint16_t* stylemask, uint64_t* ch
 ```
 """
 function ncplane_at_cursor(n, stylemask, channels)
-    @ccall libnotcurses.ncplane_at_cursor(n::Ptr{ncplane}, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncplane_at_cursor(n::Ptr{ncplane}, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
 end
 
 """
@@ -3121,7 +3104,7 @@ API int ncplane_at_cursor_cell(struct ncplane* n, nccell* c);
 ```
 """
 function ncplane_at_cursor_cell(n, c)
-    @ccall libnotcurses.ncplane_at_cursor_cell(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.ncplane_at_cursor_cell(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
 end
 
 """
@@ -3140,7 +3123,7 @@ API char* ncplane_at_yx(const struct ncplane* n, int y, int x, uint16_t* stylema
 ```
 """
 function ncplane_at_yx(n, y, x, stylemask, channels)
-    @ccall libnotcurses.ncplane_at_yx(n::Ptr{ncplane}, y::Cint, x::Cint, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncplane_at_yx(n::Ptr{ncplane}, y::Cint, x::Cint, stylemask::Ptr{UInt16}, channels::Ptr{UInt64})::Ptr{Cchar}
 end
 
 """
@@ -3157,7 +3140,7 @@ API int ncplane_at_yx_cell(struct ncplane* n, int y, int x, nccell* c);
 ```
 """
 function ncplane_at_yx_cell(n, y, x, c)
-    @ccall libnotcurses.ncplane_at_yx_cell(n::Ptr{ncplane}, y::Cint, x::Cint, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.ncplane_at_yx_cell(n::Ptr{ncplane}, y::Cint, x::Cint, c::Ptr{nccell})::Cint
 end
 
 """
@@ -3174,7 +3157,7 @@ API char* ncplane_contents(struct ncplane* n, int begy, int begx, unsigned leny,
 ```
 """
 function ncplane_contents(n, begy, begx, leny, lenx)
-    @ccall libnotcurses.ncplane_contents(n::Ptr{ncplane}, begy::Cint, begx::Cint, leny::Cuint, lenx::Cuint)::Ptr{Cchar}
+    @ccall libnotcurses_core.ncplane_contents(n::Ptr{ncplane}, begy::Cint, begx::Cint, leny::Cuint, lenx::Cuint)::Ptr{Cchar}
 end
 
 """
@@ -3189,7 +3172,7 @@ API void* ncplane_set_userptr(struct ncplane* n, void* opaque);
 ```
 """
 function ncplane_set_userptr(n, opaque)
-    @ccall libnotcurses.ncplane_set_userptr(n::Ptr{ncplane}, opaque::Ptr{Cvoid})::Ptr{Cvoid}
+    @ccall libnotcurses_core.ncplane_set_userptr(n::Ptr{ncplane}, opaque::Ptr{Cvoid})::Ptr{Cvoid}
 end
 
 """
@@ -3202,7 +3185,7 @@ API void* ncplane_userptr(struct ncplane* n);
 ```
 """
 function ncplane_userptr(n)
-    @ccall libnotcurses.ncplane_userptr(n::Ptr{ncplane})::Ptr{Cvoid}
+    @ccall libnotcurses_core.ncplane_userptr(n::Ptr{ncplane})::Ptr{Cvoid}
 end
 
 """
@@ -3218,7 +3201,7 @@ API void ncplane_center_abs(const struct ncplane* n, int* RESTRICT y, int* RESTR
 ```
 """
 function ncplane_center_abs(n, y, x)
-    @ccall libnotcurses.ncplane_center_abs(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
+    @ccall libnotcurses_core.ncplane_center_abs(n::Ptr{ncplane}, y::Ptr{Cint}, x::Ptr{Cint})::Cvoid
 end
 
 """
@@ -3236,7 +3219,7 @@ API ALLOC uint32_t* ncplane_as_rgba(const struct ncplane* n, ncblitter_e blit, i
 ```
 """
 function ncplane_as_rgba(n, blit, begy, begx, leny, lenx, pxdimy, pxdimx)
-    @ccall libnotcurses.ncplane_as_rgba(n::Ptr{ncplane}, blit::ncblitter_e, begy::Cint, begx::Cint, leny::Cuint, lenx::Cuint, pxdimy::Ptr{Cuint}, pxdimx::Ptr{Cuint})::Ptr{UInt32}
+    @ccall libnotcurses_core.ncplane_as_rgba(n::Ptr{ncplane}, blit::ncblitter_e, begy::Cint, begx::Cint, leny::Cuint, lenx::Cuint, pxdimy::Ptr{Cuint}, pxdimx::Ptr{Cuint})::Ptr{UInt32}
 end
 
 """
@@ -3251,7 +3234,7 @@ static inline int notcurses_align(int availu, ncalign_e align, int u);
 ```
 """
 function notcurses_align(availu, align, u)
-    @ccall libnotcurses.notcurses_align(availu::Cint, align::ncalign_e, u::Cint)::Cint
+    @ccall libnotcurses_core.notcurses_align(availu::Cint, align::ncalign_e, u::Cint)::Cint
 end
 
 """
@@ -3266,7 +3249,7 @@ static inline int ncplane_halign(const struct ncplane* n, ncalign_e align, int c
 ```
 """
 function ncplane_halign(n, align, c)
-    @ccall libnotcurses.ncplane_halign(n::Ptr{ncplane}, align::ncalign_e, c::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_halign(n::Ptr{ncplane}, align::ncalign_e, c::Cint)::Cint
 end
 
 """
@@ -3281,7 +3264,7 @@ static inline int ncplane_valign(const struct ncplane* n, ncalign_e align, int r
 ```
 """
 function ncplane_valign(n, align, r)
-    @ccall libnotcurses.ncplane_valign(n::Ptr{ncplane}, align::ncalign_e, r::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_valign(n::Ptr{ncplane}, align::ncalign_e, r::Cint)::Cint
 end
 
 """
@@ -3296,7 +3279,7 @@ API int ncplane_cursor_move_yx(struct ncplane* n, int y, int x) __attribute__ ((
 ```
 """
 function ncplane_cursor_move_yx(n, y, x)
-    @ccall libnotcurses.ncplane_cursor_move_yx(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_cursor_move_yx(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
 end
 
 """
@@ -3311,7 +3294,7 @@ API int ncplane_cursor_move_rel(struct ncplane* n, int y, int x) __attribute__ (
 ```
 """
 function ncplane_cursor_move_rel(n, y, x)
-    @ccall libnotcurses.ncplane_cursor_move_rel(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_cursor_move_rel(n::Ptr{ncplane}, y::Cint, x::Cint)::Cint
 end
 
 """
@@ -3324,7 +3307,7 @@ API void ncplane_home(struct ncplane* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncplane_home(n)
-    @ccall libnotcurses.ncplane_home(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_home(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -3337,7 +3320,7 @@ API void ncplane_cursor_yx(const struct ncplane* n, unsigned* RESTRICT y, unsign
 ```
 """
 function ncplane_cursor_yx(n, y, x)
-    @ccall libnotcurses.ncplane_cursor_yx(n::Ptr{ncplane}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cvoid
+    @ccall libnotcurses_core.ncplane_cursor_yx(n::Ptr{ncplane}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cvoid
 end
 
 """
@@ -3350,7 +3333,7 @@ API uint64_t ncplane_channels(const struct ncplane* n) __attribute__ ((nonnull (
 ```
 """
 function ncplane_channels(n)
-    @ccall libnotcurses.ncplane_channels(n::Ptr{ncplane})::UInt64
+    @ccall libnotcurses_core.ncplane_channels(n::Ptr{ncplane})::UInt64
 end
 
 """
@@ -3363,7 +3346,7 @@ API uint16_t ncplane_styles(const struct ncplane* n) __attribute__ ((nonnull (1)
 ```
 """
 function ncplane_styles(n)
-    @ccall libnotcurses.ncplane_styles(n::Ptr{ncplane})::UInt16
+    @ccall libnotcurses_core.ncplane_styles(n::Ptr{ncplane})::UInt16
 end
 
 """
@@ -3379,7 +3362,7 @@ API int ncplane_putc_yx(struct ncplane* n, int y, int x, const nccell* c) __attr
 ```
 """
 function ncplane_putc_yx(n, y, x, c)
-    @ccall libnotcurses.ncplane_putc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.ncplane_putc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, c::Ptr{nccell})::Cint
 end
 
 """
@@ -3392,7 +3375,7 @@ static inline int ncplane_putc(struct ncplane* n, const nccell* c);
 ```
 """
 function ncplane_putc(n, c)
-    @ccall libnotcurses.ncplane_putc(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.ncplane_putc(n::Ptr{ncplane}, c::Ptr{nccell})::Cint
 end
 
 """
@@ -3407,7 +3390,7 @@ static inline int ncplane_putchar_yx(struct ncplane* n, int y, int x, char c);
 ```
 """
 function ncplane_putchar_yx(n, y, x, c)
-    @ccall libnotcurses.ncplane_putchar_yx(n::Ptr{ncplane}, y::Cint, x::Cint, c::Cchar)::Cint
+    @ccall libnotcurses_core.ncplane_putchar_yx(n::Ptr{ncplane}, y::Cint, x::Cint, c::Cchar)::Cint
 end
 
 """
@@ -3420,7 +3403,7 @@ static inline int ncplane_putchar(struct ncplane* n, char c);
 ```
 """
 function ncplane_putchar(n, c)
-    @ccall libnotcurses.ncplane_putchar(n::Ptr{ncplane}, c::Cchar)::Cint
+    @ccall libnotcurses_core.ncplane_putchar(n::Ptr{ncplane}, c::Cchar)::Cint
 end
 
 """
@@ -3434,7 +3417,7 @@ API int ncplane_putchar_stained(struct ncplane* n, char c) __attribute__ ((nonnu
 ```
 """
 function ncplane_putchar_stained(n, c)
-    @ccall libnotcurses.ncplane_putchar_stained(n::Ptr{ncplane}, c::Cchar)::Cint
+    @ccall libnotcurses_core.ncplane_putchar_stained(n::Ptr{ncplane}, c::Cchar)::Cint
 end
 
 """
@@ -3451,7 +3434,7 @@ API int ncplane_putegc_yx(struct ncplane* n, int y, int x, const char* gclust, s
 ```
 """
 function ncplane_putegc_yx(n, y, x, gclust, sbytes)
-    @ccall libnotcurses.ncplane_putegc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclust::Ptr{Cchar}, sbytes::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncplane_putegc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclust::Ptr{Cchar}, sbytes::Ptr{Csize_t})::Cint
 end
 
 """
@@ -3464,7 +3447,7 @@ static inline int ncplane_putegc(struct ncplane* n, const char* gclust, size_t* 
 ```
 """
 function ncplane_putegc(n, gclust, sbytes)
-    @ccall libnotcurses.ncplane_putegc(n::Ptr{ncplane}, gclust::Ptr{Cchar}, sbytes::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncplane_putegc(n::Ptr{ncplane}, gclust::Ptr{Cchar}, sbytes::Ptr{Csize_t})::Cint
 end
 
 """
@@ -3478,7 +3461,7 @@ API int ncplane_putegc_stained(struct ncplane* n, const char* gclust, size_t* sb
 ```
 """
 function ncplane_putegc_stained(n, gclust, sbytes)
-    @ccall libnotcurses.ncplane_putegc_stained(n::Ptr{ncplane}, gclust::Ptr{Cchar}, sbytes::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncplane_putegc_stained(n::Ptr{ncplane}, gclust::Ptr{Cchar}, sbytes::Ptr{Csize_t})::Cint
 end
 
 """
@@ -3491,7 +3474,7 @@ ALLOC static inline char* ncwcsrtombs(const wchar_t* src);
 ```
 """
 function ncwcsrtombs(src)
-    @ccall libnotcurses.ncwcsrtombs(src::Ptr{Cwchar_t})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncwcsrtombs(src::Ptr{Cwchar_t})::Ptr{Cchar}
 end
 
 """
@@ -3504,7 +3487,7 @@ static inline int ncplane_putwegc(struct ncplane* n, const wchar_t* gclust, size
 ```
 """
 function ncplane_putwegc(n, gclust, sbytes)
-    @ccall libnotcurses.ncplane_putwegc(n::Ptr{ncplane}, gclust::Ptr{Cwchar_t}, sbytes::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncplane_putwegc(n::Ptr{ncplane}, gclust::Ptr{Cwchar_t}, sbytes::Ptr{Csize_t})::Cint
 end
 
 """
@@ -3517,7 +3500,7 @@ static inline int ncplane_putwegc_yx(struct ncplane* n, int y, int x, const wcha
 ```
 """
 function ncplane_putwegc_yx(n, y, x, gclust, sbytes)
-    @ccall libnotcurses.ncplane_putwegc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclust::Ptr{Cwchar_t}, sbytes::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncplane_putwegc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclust::Ptr{Cwchar_t}, sbytes::Ptr{Csize_t})::Cint
 end
 
 """
@@ -3531,7 +3514,7 @@ API int ncplane_putwegc_stained(struct ncplane* n, const wchar_t* gclust, size_t
 ```
 """
 function ncplane_putwegc_stained(n, gclust, sbytes)
-    @ccall libnotcurses.ncplane_putwegc_stained(n::Ptr{ncplane}, gclust::Ptr{Cwchar_t}, sbytes::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncplane_putwegc_stained(n::Ptr{ncplane}, gclust::Ptr{Cwchar_t}, sbytes::Ptr{Csize_t})::Cint
 end
 
 """
@@ -3549,7 +3532,7 @@ static inline int ncplane_putstr_yx(struct ncplane* n, int y, int x, const char*
 ```
 """
 function ncplane_putstr_yx(n, y, x, gclusters)
-    @ccall libnotcurses.ncplane_putstr_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclusters::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_putstr_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclusters::Ptr{Cchar})::Cint
 end
 
 """
@@ -3562,7 +3545,7 @@ static inline int ncplane_putstr(struct ncplane* n, const char* gclustarr);
 ```
 """
 function ncplane_putstr(n, gclustarr)
-    @ccall libnotcurses.ncplane_putstr(n::Ptr{ncplane}, gclustarr::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_putstr(n::Ptr{ncplane}, gclustarr::Ptr{Cchar})::Cint
 end
 
 """
@@ -3575,7 +3558,7 @@ static inline int ncplane_putstr_aligned(struct ncplane* n, int y, ncalign_e ali
 ```
 """
 function ncplane_putstr_aligned(n, y, align, s)
-    @ccall libnotcurses.ncplane_putstr_aligned(n::Ptr{ncplane}, y::Cint, align::ncalign_e, s::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_putstr_aligned(n::Ptr{ncplane}, y::Cint, align::ncalign_e, s::Ptr{Cchar})::Cint
 end
 
 """
@@ -3589,7 +3572,7 @@ static inline int ncplane_putstr_stained(struct ncplane* n, const char* gcluster
 ```
 """
 function ncplane_putstr_stained(n, gclusters)
-    @ccall libnotcurses.ncplane_putstr_stained(n::Ptr{ncplane}, gclusters::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_putstr_stained(n::Ptr{ncplane}, gclusters::Ptr{Cchar})::Cint
 end
 
 """
@@ -3602,7 +3585,7 @@ API int ncplane_putnstr_aligned(struct ncplane* n, int y, ncalign_e align, size_
 ```
 """
 function ncplane_putnstr_aligned(n, y, align, s, str)
-    @ccall libnotcurses.ncplane_putnstr_aligned(n::Ptr{ncplane}, y::Cint, align::ncalign_e, s::Csize_t, str::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_putnstr_aligned(n::Ptr{ncplane}, y::Cint, align::ncalign_e, s::Csize_t, str::Ptr{Cchar})::Cint
 end
 
 """
@@ -3620,7 +3603,7 @@ static inline int ncplane_putnstr_yx(struct ncplane* n, int y, int x, size_t s, 
 ```
 """
 function ncplane_putnstr_yx(n, y, x, s, gclusters)
-    @ccall libnotcurses.ncplane_putnstr_yx(n::Ptr{ncplane}, y::Cint, x::Cint, s::Csize_t, gclusters::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_putnstr_yx(n::Ptr{ncplane}, y::Cint, x::Cint, s::Csize_t, gclusters::Ptr{Cchar})::Cint
 end
 
 """
@@ -3633,7 +3616,7 @@ static inline int ncplane_putnstr(struct ncplane* n, size_t s, const char* gclus
 ```
 """
 function ncplane_putnstr(n, s, gclustarr)
-    @ccall libnotcurses.ncplane_putnstr(n::Ptr{ncplane}, s::Csize_t, gclustarr::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncplane_putnstr(n::Ptr{ncplane}, s::Csize_t, gclustarr::Ptr{Cchar})::Cint
 end
 
 """
@@ -3647,7 +3630,7 @@ static inline int ncplane_putwstr_yx(struct ncplane* n, int y, int x, const wcha
 ```
 """
 function ncplane_putwstr_yx(n, y, x, gclustarr)
-    @ccall libnotcurses.ncplane_putwstr_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclustarr::Ptr{Cwchar_t})::Cint
+    @ccall libnotcurses_core.ncplane_putwstr_yx(n::Ptr{ncplane}, y::Cint, x::Cint, gclustarr::Ptr{Cwchar_t})::Cint
 end
 
 """
@@ -3660,7 +3643,7 @@ static inline int ncplane_putwstr_aligned(struct ncplane* n, int y, ncalign_e al
 ```
 """
 function ncplane_putwstr_aligned(n, y, align, gclustarr)
-    @ccall libnotcurses.ncplane_putwstr_aligned(n::Ptr{ncplane}, y::Cint, align::ncalign_e, gclustarr::Ptr{Cwchar_t})::Cint
+    @ccall libnotcurses_core.ncplane_putwstr_aligned(n::Ptr{ncplane}, y::Cint, align::ncalign_e, gclustarr::Ptr{Cwchar_t})::Cint
 end
 
 """
@@ -3673,7 +3656,7 @@ API int ncplane_putwstr_stained(struct ncplane* n, const wchar_t* gclustarr) __a
 ```
 """
 function ncplane_putwstr_stained(n, gclustarr)
-    @ccall libnotcurses.ncplane_putwstr_stained(n::Ptr{ncplane}, gclustarr::Ptr{Cwchar_t})::Cint
+    @ccall libnotcurses_core.ncplane_putwstr_stained(n::Ptr{ncplane}, gclustarr::Ptr{Cwchar_t})::Cint
 end
 
 """
@@ -3686,7 +3669,7 @@ static inline int ncplane_putwstr(struct ncplane* n, const wchar_t* gclustarr);
 ```
 """
 function ncplane_putwstr(n, gclustarr)
-    @ccall libnotcurses.ncplane_putwstr(n::Ptr{ncplane}, gclustarr::Ptr{Cwchar_t})::Cint
+    @ccall libnotcurses_core.ncplane_putwstr(n::Ptr{ncplane}, gclustarr::Ptr{Cwchar_t})::Cint
 end
 
 """
@@ -3701,7 +3684,7 @@ static inline int ncplane_pututf32_yx(struct ncplane* n, int y, int x, uint32_t 
 ```
 """
 function ncplane_pututf32_yx(n, y, x, u)
-    @ccall libnotcurses.ncplane_pututf32_yx(n::Ptr{ncplane}, y::Cint, x::Cint, u::UInt32)::Cint
+    @ccall libnotcurses_core.ncplane_pututf32_yx(n::Ptr{ncplane}, y::Cint, x::Cint, u::UInt32)::Cint
 end
 
 """
@@ -3714,7 +3697,7 @@ static inline int ncplane_putwc_yx(struct ncplane* n, int y, int x, wchar_t w);
 ```
 """
 function ncplane_putwc_yx(n, y, x, w)
-    @ccall libnotcurses.ncplane_putwc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, w::Cwchar_t)::Cint
+    @ccall libnotcurses_core.ncplane_putwc_yx(n::Ptr{ncplane}, y::Cint, x::Cint, w::Cwchar_t)::Cint
 end
 
 """
@@ -3727,7 +3710,7 @@ static inline int ncplane_putwc(struct ncplane* n, wchar_t w);
 ```
 """
 function ncplane_putwc(n, w)
-    @ccall libnotcurses.ncplane_putwc(n::Ptr{ncplane}, w::Cwchar_t)::Cint
+    @ccall libnotcurses_core.ncplane_putwc(n::Ptr{ncplane}, w::Cwchar_t)::Cint
 end
 
 """
@@ -3748,7 +3731,7 @@ static inline int ncplane_putwc_utf32(struct ncplane* n, const wchar_t* w, unsig
 ```
 """
 function ncplane_putwc_utf32(n, w, wchars)
-    @ccall libnotcurses.ncplane_putwc_utf32(n::Ptr{ncplane}, w::Ptr{Cwchar_t}, wchars::Ptr{Cuint})::Cint
+    @ccall libnotcurses_core.ncplane_putwc_utf32(n::Ptr{ncplane}, w::Ptr{Cwchar_t}, wchars::Ptr{Cuint})::Cint
 end
 
 """
@@ -3762,7 +3745,7 @@ static inline int ncplane_putwc_stained(struct ncplane* n, wchar_t w);
 ```
 """
 function ncplane_putwc_stained(n, w)
-    @ccall libnotcurses.ncplane_putwc_stained(n::Ptr{ncplane}, w::Cwchar_t)::Cint
+    @ccall libnotcurses_core.ncplane_putwc_stained(n::Ptr{ncplane}, w::Cwchar_t)::Cint
 end
 
 """
@@ -3793,7 +3776,7 @@ API int ncplane_puttext(struct ncplane* n, int y, ncalign_e align, const char* t
 ```
 """
 function ncplane_puttext(n, y, align, text, bytes)
-    @ccall libnotcurses.ncplane_puttext(n::Ptr{ncplane}, y::Cint, align::ncalign_e, text::Ptr{Cchar}, bytes::Ptr{Csize_t})::Cint
+    @ccall libnotcurses_core.ncplane_puttext(n::Ptr{ncplane}, y::Cint, align::ncalign_e, text::Ptr{Cchar}, bytes::Ptr{Csize_t})::Cint
 end
 
 """
@@ -3811,7 +3794,7 @@ API int ncplane_hline_interp(struct ncplane* n, const nccell* c, unsigned len, u
 ```
 """
 function ncplane_hline_interp(n, c, len, c1, c2)
-    @ccall libnotcurses.ncplane_hline_interp(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint, c1::UInt64, c2::UInt64)::Cint
+    @ccall libnotcurses_core.ncplane_hline_interp(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint, c1::UInt64, c2::UInt64)::Cint
 end
 
 """
@@ -3824,7 +3807,7 @@ __attribute__ ((nonnull (1, 2))) static inline int ncplane_hline(struct ncplane*
 ```
 """
 function ncplane_hline(n, c, len)
-    @ccall libnotcurses.ncplane_hline(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_hline(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint)::Cint
 end
 
 """
@@ -3837,7 +3820,7 @@ API int ncplane_vline_interp(struct ncplane* n, const nccell* c, unsigned len, u
 ```
 """
 function ncplane_vline_interp(n, c, len, c1, c2)
-    @ccall libnotcurses.ncplane_vline_interp(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint, c1::UInt64, c2::UInt64)::Cint
+    @ccall libnotcurses_core.ncplane_vline_interp(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint, c1::UInt64, c2::UInt64)::Cint
 end
 
 """
@@ -3850,7 +3833,7 @@ __attribute__ ((nonnull (1, 2))) static inline int ncplane_vline(struct ncplane*
 ```
 """
 function ncplane_vline(n, c, len)
-    @ccall libnotcurses.ncplane_vline(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_vline(n::Ptr{ncplane}, c::Ptr{nccell}, len::Cuint)::Cint
 end
 
 """
@@ -3880,7 +3863,7 @@ API int ncplane_box(struct ncplane* n, const nccell* ul, const nccell* ur, const
 ```
 """
 function ncplane_box(n, ul, ur, ll, lr, hline, vline, ystop, xstop, ctlword)
-    @ccall libnotcurses.ncplane_box(n::Ptr{ncplane}, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hline::Ptr{nccell}, vline::Ptr{nccell}, ystop::Cuint, xstop::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_box(n::Ptr{ncplane}, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hline::Ptr{nccell}, vline::Ptr{nccell}, ystop::Cuint, xstop::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -3895,7 +3878,7 @@ static inline int ncplane_box_sized(struct ncplane* n, const nccell* ul, const n
 ```
 """
 function ncplane_box_sized(n, ul, ur, ll, lr, hline, vline, ystop, xstop, ctlword)
-    @ccall libnotcurses.ncplane_box_sized(n::Ptr{ncplane}, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hline::Ptr{nccell}, vline::Ptr{nccell}, ystop::Cuint, xstop::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_box_sized(n::Ptr{ncplane}, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hline::Ptr{nccell}, vline::Ptr{nccell}, ystop::Cuint, xstop::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -3908,7 +3891,7 @@ static inline int ncplane_perimeter(struct ncplane* n, const nccell* ul, const n
 ```
 """
 function ncplane_perimeter(n, ul, ur, ll, lr, hline, vline, ctlword)
-    @ccall libnotcurses.ncplane_perimeter(n::Ptr{ncplane}, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hline::Ptr{nccell}, vline::Ptr{nccell}, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_perimeter(n::Ptr{ncplane}, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hline::Ptr{nccell}, vline::Ptr{nccell}, ctlword::Cuint)::Cint
 end
 
 """
@@ -3925,7 +3908,7 @@ API int ncplane_polyfill_yx(struct ncplane* n, int y, int x, const nccell* c) __
 ```
 """
 function ncplane_polyfill_yx(n, y, x, c)
-    @ccall libnotcurses.ncplane_polyfill_yx(n::Ptr{ncplane}, y::Cint, x::Cint, c::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.ncplane_polyfill_yx(n::Ptr{ncplane}, y::Cint, x::Cint, c::Ptr{nccell})::Cint
 end
 
 """
@@ -3957,7 +3940,7 @@ API int ncplane_gradient(struct ncplane* n, int y, int x, unsigned ylen, unsigne
 ```
 """
 function ncplane_gradient(n, y, x, ylen, xlen, egc, styles, ul, ur, ll, lr)
-    @ccall libnotcurses.ncplane_gradient(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, egc::Ptr{Cchar}, styles::UInt16, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64)::Cint
+    @ccall libnotcurses_core.ncplane_gradient(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, egc::Ptr{Cchar}, styles::UInt16, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64)::Cint
 end
 
 """
@@ -3973,7 +3956,7 @@ API int ncplane_gradient2x1(struct ncplane* n, int y, int x, unsigned ylen, unsi
 ```
 """
 function ncplane_gradient2x1(n, y, x, ylen, xlen, ul, ur, ll, lr)
-    @ccall libnotcurses.ncplane_gradient2x1(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, ul::UInt32, ur::UInt32, ll::UInt32, lr::UInt32)::Cint
+    @ccall libnotcurses_core.ncplane_gradient2x1(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, ul::UInt32, ur::UInt32, ll::UInt32, lr::UInt32)::Cint
 end
 
 """
@@ -3992,7 +3975,7 @@ API int ncplane_format(struct ncplane* n, int y, int x, unsigned ylen, unsigned 
 ```
 """
 function ncplane_format(n, y, x, ylen, xlen, stylemask)
-    @ccall libnotcurses.ncplane_format(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, stylemask::UInt16)::Cint
+    @ccall libnotcurses_core.ncplane_format(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, stylemask::UInt16)::Cint
 end
 
 """
@@ -4011,7 +3994,7 @@ API int ncplane_stain(struct ncplane* n, int y, int x, unsigned ylen, unsigned x
 ```
 """
 function ncplane_stain(n, y, x, ylen, xlen, ul, ur, ll, lr)
-    @ccall libnotcurses.ncplane_stain(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64)::Cint
+    @ccall libnotcurses_core.ncplane_stain(n::Ptr{ncplane}, y::Cint, x::Cint, ylen::Cuint, xlen::Cuint, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64)::Cint
 end
 
 """
@@ -4025,7 +4008,7 @@ API int ncplane_mergedown_simple(struct ncplane* RESTRICT src, struct ncplane* R
 ```
 """
 function ncplane_mergedown_simple(src, dst)
-    @ccall libnotcurses.ncplane_mergedown_simple(src::Ptr{ncplane}, dst::Ptr{ncplane})::Cint
+    @ccall libnotcurses_core.ncplane_mergedown_simple(src::Ptr{ncplane}, dst::Ptr{ncplane})::Cint
 end
 
 """
@@ -4048,7 +4031,7 @@ API int ncplane_mergedown(struct ncplane* RESTRICT src, struct ncplane* RESTRICT
 ```
 """
 function ncplane_mergedown(src, dst, begsrcy, begsrcx, leny, lenx, dsty, dstx)
-    @ccall libnotcurses.ncplane_mergedown(src::Ptr{ncplane}, dst::Ptr{ncplane}, begsrcy::Cint, begsrcx::Cint, leny::Cuint, lenx::Cuint, dsty::Cint, dstx::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_mergedown(src::Ptr{ncplane}, dst::Ptr{ncplane}, begsrcy::Cint, begsrcx::Cint, leny::Cuint, lenx::Cuint, dsty::Cint, dstx::Cint)::Cint
 end
 
 """
@@ -4064,7 +4047,7 @@ API void ncplane_erase(struct ncplane* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncplane_erase(n)
-    @ccall libnotcurses.ncplane_erase(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_erase(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -4097,7 +4080,7 @@ API int ncplane_erase_region(struct ncplane* n, int ystart, int xstart, int ylen
 ```
 """
 function ncplane_erase_region(n, ystart, xstart, ylen, xlen)
-    @ccall libnotcurses.ncplane_erase_region(n::Ptr{ncplane}, ystart::Cint, xstart::Cint, ylen::Cint, xlen::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_erase_region(n::Ptr{ncplane}, ystart::Cint, xstart::Cint, ylen::Cint, xlen::Cint)::Cint
 end
 
 """
@@ -4110,7 +4093,7 @@ static inline uint32_t nccell_fg_rgb(const nccell* cl);
 ```
 """
 function nccell_fg_rgb(cl)
-    @ccall libnotcurses.nccell_fg_rgb(cl::Ptr{nccell})::UInt32
+    @ccall libnotcurses_core.nccell_fg_rgb(cl::Ptr{nccell})::UInt32
 end
 
 """
@@ -4123,7 +4106,7 @@ static inline uint32_t nccell_bg_rgb(const nccell* cl);
 ```
 """
 function nccell_bg_rgb(cl)
-    @ccall libnotcurses.nccell_bg_rgb(cl::Ptr{nccell})::UInt32
+    @ccall libnotcurses_core.nccell_bg_rgb(cl::Ptr{nccell})::UInt32
 end
 
 """
@@ -4136,7 +4119,7 @@ static inline uint32_t nccell_fg_alpha(const nccell* cl);
 ```
 """
 function nccell_fg_alpha(cl)
-    @ccall libnotcurses.nccell_fg_alpha(cl::Ptr{nccell})::UInt32
+    @ccall libnotcurses_core.nccell_fg_alpha(cl::Ptr{nccell})::UInt32
 end
 
 """
@@ -4149,7 +4132,7 @@ static inline uint32_t nccell_bg_alpha(const nccell* cl);
 ```
 """
 function nccell_bg_alpha(cl)
-    @ccall libnotcurses.nccell_bg_alpha(cl::Ptr{nccell})::UInt32
+    @ccall libnotcurses_core.nccell_bg_alpha(cl::Ptr{nccell})::UInt32
 end
 
 """
@@ -4162,7 +4145,7 @@ static inline uint32_t nccell_fg_rgb8(const nccell* cl, unsigned* r, unsigned* g
 ```
 """
 function nccell_fg_rgb8(cl, r, g, b)
-    @ccall libnotcurses.nccell_fg_rgb8(cl::Ptr{nccell}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
+    @ccall libnotcurses_core.nccell_fg_rgb8(cl::Ptr{nccell}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
 end
 
 """
@@ -4175,7 +4158,7 @@ static inline uint32_t nccell_bg_rgb8(const nccell* cl, unsigned* r, unsigned* g
 ```
 """
 function nccell_bg_rgb8(cl, r, g, b)
-    @ccall libnotcurses.nccell_bg_rgb8(cl::Ptr{nccell}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
+    @ccall libnotcurses_core.nccell_bg_rgb8(cl::Ptr{nccell}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
 end
 
 """
@@ -4189,7 +4172,7 @@ static inline int nccell_set_fg_rgb8(nccell* cl, unsigned r, unsigned g, unsigne
 ```
 """
 function nccell_set_fg_rgb8(cl, r, g, b)
-    @ccall libnotcurses.nccell_set_fg_rgb8(cl::Ptr{nccell}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.nccell_set_fg_rgb8(cl::Ptr{nccell}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -4202,7 +4185,7 @@ static inline void nccell_set_fg_rgb8_clipped(nccell* cl, int r, int g, int b);
 ```
 """
 function nccell_set_fg_rgb8_clipped(cl, r, g, b)
-    @ccall libnotcurses.nccell_set_fg_rgb8_clipped(cl::Ptr{nccell}, r::Cint, g::Cint, b::Cint)::Cvoid
+    @ccall libnotcurses_core.nccell_set_fg_rgb8_clipped(cl::Ptr{nccell}, r::Cint, g::Cint, b::Cint)::Cvoid
 end
 
 """
@@ -4215,7 +4198,7 @@ static inline int nccell_set_fg_rgb(nccell* c, uint32_t channel);
 ```
 """
 function nccell_set_fg_rgb(c, channel)
-    @ccall libnotcurses.nccell_set_fg_rgb(c::Ptr{nccell}, channel::UInt32)::Cint
+    @ccall libnotcurses_core.nccell_set_fg_rgb(c::Ptr{nccell}, channel::UInt32)::Cint
 end
 
 """
@@ -4229,7 +4212,7 @@ static inline int nccell_set_fg_palindex(nccell* cl, int idx);
 ```
 """
 function nccell_set_fg_palindex(cl, idx)
-    @ccall libnotcurses.nccell_set_fg_palindex(cl::Ptr{nccell}, idx::Cint)::Cint
+    @ccall libnotcurses_core.nccell_set_fg_palindex(cl::Ptr{nccell}, idx::Cint)::Cint
 end
 
 """
@@ -4242,7 +4225,7 @@ static inline uint32_t nccell_fg_palindex(const nccell* cl);
 ```
 """
 function nccell_fg_palindex(cl)
-    @ccall libnotcurses.nccell_fg_palindex(cl::Ptr{nccell})::UInt32
+    @ccall libnotcurses_core.nccell_fg_palindex(cl::Ptr{nccell})::UInt32
 end
 
 """
@@ -4256,7 +4239,7 @@ static inline int nccell_set_bg_rgb8(nccell* cl, unsigned r, unsigned g, unsigne
 ```
 """
 function nccell_set_bg_rgb8(cl, r, g, b)
-    @ccall libnotcurses.nccell_set_bg_rgb8(cl::Ptr{nccell}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.nccell_set_bg_rgb8(cl::Ptr{nccell}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -4269,7 +4252,7 @@ static inline void nccell_set_bg_rgb8_clipped(nccell* cl, int r, int g, int b);
 ```
 """
 function nccell_set_bg_rgb8_clipped(cl, r, g, b)
-    @ccall libnotcurses.nccell_set_bg_rgb8_clipped(cl::Ptr{nccell}, r::Cint, g::Cint, b::Cint)::Cvoid
+    @ccall libnotcurses_core.nccell_set_bg_rgb8_clipped(cl::Ptr{nccell}, r::Cint, g::Cint, b::Cint)::Cvoid
 end
 
 """
@@ -4283,7 +4266,7 @@ static inline int nccell_set_bg_rgb(nccell* c, uint32_t channel);
 ```
 """
 function nccell_set_bg_rgb(c, channel)
-    @ccall libnotcurses.nccell_set_bg_rgb(c::Ptr{nccell}, channel::UInt32)::Cint
+    @ccall libnotcurses_core.nccell_set_bg_rgb(c::Ptr{nccell}, channel::UInt32)::Cint
 end
 
 """
@@ -4297,7 +4280,7 @@ static inline int nccell_set_bg_palindex(nccell* cl, int idx);
 ```
 """
 function nccell_set_bg_palindex(cl, idx)
-    @ccall libnotcurses.nccell_set_bg_palindex(cl::Ptr{nccell}, idx::Cint)::Cint
+    @ccall libnotcurses_core.nccell_set_bg_palindex(cl::Ptr{nccell}, idx::Cint)::Cint
 end
 
 """
@@ -4310,7 +4293,7 @@ static inline uint32_t nccell_bg_palindex(const nccell* cl);
 ```
 """
 function nccell_bg_palindex(cl)
-    @ccall libnotcurses.nccell_bg_palindex(cl::Ptr{nccell})::UInt32
+    @ccall libnotcurses_core.nccell_bg_palindex(cl::Ptr{nccell})::UInt32
 end
 
 """
@@ -4323,7 +4306,7 @@ static inline bool nccell_fg_default_p(const nccell* cl);
 ```
 """
 function nccell_fg_default_p(cl)
-    @ccall libnotcurses.nccell_fg_default_p(cl::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccell_fg_default_p(cl::Ptr{nccell})::Bool
 end
 
 """
@@ -4336,7 +4319,7 @@ static inline bool nccell_fg_palindex_p(const nccell* cl);
 ```
 """
 function nccell_fg_palindex_p(cl)
-    @ccall libnotcurses.nccell_fg_palindex_p(cl::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccell_fg_palindex_p(cl::Ptr{nccell})::Bool
 end
 
 """
@@ -4351,7 +4334,7 @@ static inline bool nccell_bg_default_p(const nccell* cl);
 ```
 """
 function nccell_bg_default_p(cl)
-    @ccall libnotcurses.nccell_bg_default_p(cl::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccell_bg_default_p(cl::Ptr{nccell})::Bool
 end
 
 """
@@ -4364,7 +4347,7 @@ static inline bool nccell_bg_palindex_p(const nccell* cl);
 ```
 """
 function nccell_bg_palindex_p(cl)
-    @ccall libnotcurses.nccell_bg_palindex_p(cl::Ptr{nccell})::Bool
+    @ccall libnotcurses_core.nccell_bg_palindex_p(cl::Ptr{nccell})::Bool
 end
 
 """
@@ -4377,7 +4360,7 @@ static inline uint32_t ncplane_bchannel(const struct ncplane* n);
 ```
 """
 function ncplane_bchannel(n)
-    @ccall libnotcurses.ncplane_bchannel(n::Ptr{ncplane})::UInt32
+    @ccall libnotcurses_core.ncplane_bchannel(n::Ptr{ncplane})::UInt32
 end
 
 """
@@ -4390,7 +4373,7 @@ static inline uint32_t ncplane_fchannel(const struct ncplane* n);
 ```
 """
 function ncplane_fchannel(n)
-    @ccall libnotcurses.ncplane_fchannel(n::Ptr{ncplane})::UInt32
+    @ccall libnotcurses_core.ncplane_fchannel(n::Ptr{ncplane})::UInt32
 end
 
 """
@@ -4403,7 +4386,7 @@ API void ncplane_set_channels(struct ncplane* n, uint64_t channels);
 ```
 """
 function ncplane_set_channels(n, channels)
-    @ccall libnotcurses.ncplane_set_channels(n::Ptr{ncplane}, channels::UInt64)::Cvoid
+    @ccall libnotcurses_core.ncplane_set_channels(n::Ptr{ncplane}, channels::UInt64)::Cvoid
 end
 
 """
@@ -4417,7 +4400,7 @@ API void ncplane_set_styles(struct ncplane* n, unsigned stylebits);
 ```
 """
 function ncplane_set_styles(n, stylebits)
-    @ccall libnotcurses.ncplane_set_styles(n::Ptr{ncplane}, stylebits::Cuint)::Cvoid
+    @ccall libnotcurses_core.ncplane_set_styles(n::Ptr{ncplane}, stylebits::Cuint)::Cvoid
 end
 
 """
@@ -4430,7 +4413,7 @@ API void ncplane_on_styles(struct ncplane* n, unsigned stylebits);
 ```
 """
 function ncplane_on_styles(n, stylebits)
-    @ccall libnotcurses.ncplane_on_styles(n::Ptr{ncplane}, stylebits::Cuint)::Cvoid
+    @ccall libnotcurses_core.ncplane_on_styles(n::Ptr{ncplane}, stylebits::Cuint)::Cvoid
 end
 
 """
@@ -4443,7 +4426,7 @@ API void ncplane_off_styles(struct ncplane* n, unsigned stylebits);
 ```
 """
 function ncplane_off_styles(n, stylebits)
-    @ccall libnotcurses.ncplane_off_styles(n::Ptr{ncplane}, stylebits::Cuint)::Cvoid
+    @ccall libnotcurses_core.ncplane_off_styles(n::Ptr{ncplane}, stylebits::Cuint)::Cvoid
 end
 
 """
@@ -4456,7 +4439,7 @@ static inline uint32_t ncplane_fg_rgb(const struct ncplane* n);
 ```
 """
 function ncplane_fg_rgb(n)
-    @ccall libnotcurses.ncplane_fg_rgb(n::Ptr{ncplane})::UInt32
+    @ccall libnotcurses_core.ncplane_fg_rgb(n::Ptr{ncplane})::UInt32
 end
 
 """
@@ -4469,7 +4452,7 @@ static inline uint32_t ncplane_bg_rgb(const struct ncplane* n);
 ```
 """
 function ncplane_bg_rgb(n)
-    @ccall libnotcurses.ncplane_bg_rgb(n::Ptr{ncplane})::UInt32
+    @ccall libnotcurses_core.ncplane_bg_rgb(n::Ptr{ncplane})::UInt32
 end
 
 """
@@ -4482,7 +4465,7 @@ static inline uint32_t ncplane_fg_alpha(const struct ncplane* n);
 ```
 """
 function ncplane_fg_alpha(n)
-    @ccall libnotcurses.ncplane_fg_alpha(n::Ptr{ncplane})::UInt32
+    @ccall libnotcurses_core.ncplane_fg_alpha(n::Ptr{ncplane})::UInt32
 end
 
 """
@@ -4495,7 +4478,7 @@ static inline bool ncplane_fg_default_p(const struct ncplane* n);
 ```
 """
 function ncplane_fg_default_p(n)
-    @ccall libnotcurses.ncplane_fg_default_p(n::Ptr{ncplane})::Bool
+    @ccall libnotcurses_core.ncplane_fg_default_p(n::Ptr{ncplane})::Bool
 end
 
 """
@@ -4508,7 +4491,7 @@ static inline uint32_t ncplane_bg_alpha(const struct ncplane* n);
 ```
 """
 function ncplane_bg_alpha(n)
-    @ccall libnotcurses.ncplane_bg_alpha(n::Ptr{ncplane})::UInt32
+    @ccall libnotcurses_core.ncplane_bg_alpha(n::Ptr{ncplane})::UInt32
 end
 
 """
@@ -4521,7 +4504,7 @@ static inline bool ncplane_bg_default_p(const struct ncplane* n);
 ```
 """
 function ncplane_bg_default_p(n)
-    @ccall libnotcurses.ncplane_bg_default_p(n::Ptr{ncplane})::Bool
+    @ccall libnotcurses_core.ncplane_bg_default_p(n::Ptr{ncplane})::Bool
 end
 
 """
@@ -4534,7 +4517,7 @@ static inline uint32_t ncplane_fg_rgb8(const struct ncplane* n, unsigned* r, uns
 ```
 """
 function ncplane_fg_rgb8(n, r, g, b)
-    @ccall libnotcurses.ncplane_fg_rgb8(n::Ptr{ncplane}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
+    @ccall libnotcurses_core.ncplane_fg_rgb8(n::Ptr{ncplane}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
 end
 
 """
@@ -4547,7 +4530,7 @@ static inline uint32_t ncplane_bg_rgb8(const struct ncplane* n, unsigned* r, uns
 ```
 """
 function ncplane_bg_rgb8(n, r, g, b)
-    @ccall libnotcurses.ncplane_bg_rgb8(n::Ptr{ncplane}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
+    @ccall libnotcurses_core.ncplane_bg_rgb8(n::Ptr{ncplane}, r::Ptr{Cuint}, g::Ptr{Cuint}, b::Ptr{Cuint})::UInt32
 end
 
 """
@@ -4560,7 +4543,7 @@ API uint64_t ncplane_set_fchannel(struct ncplane* n, uint32_t channel);
 ```
 """
 function ncplane_set_fchannel(n, channel)
-    @ccall libnotcurses.ncplane_set_fchannel(n::Ptr{ncplane}, channel::UInt32)::UInt64
+    @ccall libnotcurses_core.ncplane_set_fchannel(n::Ptr{ncplane}, channel::UInt32)::UInt64
 end
 
 """
@@ -4573,7 +4556,7 @@ API uint64_t ncplane_set_bchannel(struct ncplane* n, uint32_t channel);
 ```
 """
 function ncplane_set_bchannel(n, channel)
-    @ccall libnotcurses.ncplane_set_bchannel(n::Ptr{ncplane}, channel::UInt32)::UInt64
+    @ccall libnotcurses_core.ncplane_set_bchannel(n::Ptr{ncplane}, channel::UInt32)::UInt64
 end
 
 """
@@ -4591,7 +4574,7 @@ API int ncplane_set_fg_rgb8(struct ncplane* n, unsigned r, unsigned g, unsigned 
 ```
 """
 function ncplane_set_fg_rgb8(n, r, g, b)
-    @ccall libnotcurses.ncplane_set_fg_rgb8(n::Ptr{ncplane}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_set_fg_rgb8(n::Ptr{ncplane}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -4604,7 +4587,7 @@ API int ncplane_set_bg_rgb8(struct ncplane* n, unsigned r, unsigned g, unsigned 
 ```
 """
 function ncplane_set_bg_rgb8(n, r, g, b)
-    @ccall libnotcurses.ncplane_set_bg_rgb8(n::Ptr{ncplane}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_set_bg_rgb8(n::Ptr{ncplane}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -4617,7 +4600,7 @@ API void ncplane_set_bg_rgb8_clipped(struct ncplane* n, int r, int g, int b);
 ```
 """
 function ncplane_set_bg_rgb8_clipped(n, r, g, b)
-    @ccall libnotcurses.ncplane_set_bg_rgb8_clipped(n::Ptr{ncplane}, r::Cint, g::Cint, b::Cint)::Cvoid
+    @ccall libnotcurses_core.ncplane_set_bg_rgb8_clipped(n::Ptr{ncplane}, r::Cint, g::Cint, b::Cint)::Cvoid
 end
 
 """
@@ -4630,7 +4613,7 @@ API void ncplane_set_fg_rgb8_clipped(struct ncplane* n, int r, int g, int b);
 ```
 """
 function ncplane_set_fg_rgb8_clipped(n, r, g, b)
-    @ccall libnotcurses.ncplane_set_fg_rgb8_clipped(n::Ptr{ncplane}, r::Cint, g::Cint, b::Cint)::Cvoid
+    @ccall libnotcurses_core.ncplane_set_fg_rgb8_clipped(n::Ptr{ncplane}, r::Cint, g::Cint, b::Cint)::Cvoid
 end
 
 """
@@ -4643,7 +4626,7 @@ API int ncplane_set_fg_rgb(struct ncplane* n, uint32_t channel);
 ```
 """
 function ncplane_set_fg_rgb(n, channel)
-    @ccall libnotcurses.ncplane_set_fg_rgb(n::Ptr{ncplane}, channel::UInt32)::Cint
+    @ccall libnotcurses_core.ncplane_set_fg_rgb(n::Ptr{ncplane}, channel::UInt32)::Cint
 end
 
 """
@@ -4656,7 +4639,7 @@ API int ncplane_set_bg_rgb(struct ncplane* n, uint32_t channel);
 ```
 """
 function ncplane_set_bg_rgb(n, channel)
-    @ccall libnotcurses.ncplane_set_bg_rgb(n::Ptr{ncplane}, channel::UInt32)::Cint
+    @ccall libnotcurses_core.ncplane_set_bg_rgb(n::Ptr{ncplane}, channel::UInt32)::Cint
 end
 
 """
@@ -4669,7 +4652,7 @@ API void ncplane_set_fg_default(struct ncplane* n);
 ```
 """
 function ncplane_set_fg_default(n)
-    @ccall libnotcurses.ncplane_set_fg_default(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_set_fg_default(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -4682,7 +4665,7 @@ API void ncplane_set_bg_default(struct ncplane* n);
 ```
 """
 function ncplane_set_bg_default(n)
-    @ccall libnotcurses.ncplane_set_bg_default(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_set_bg_default(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -4696,7 +4679,7 @@ API int ncplane_set_fg_palindex(struct ncplane* n, int idx);
 ```
 """
 function ncplane_set_fg_palindex(n, idx)
-    @ccall libnotcurses.ncplane_set_fg_palindex(n::Ptr{ncplane}, idx::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_set_fg_palindex(n::Ptr{ncplane}, idx::Cint)::Cint
 end
 
 """
@@ -4709,7 +4692,7 @@ API int ncplane_set_bg_palindex(struct ncplane* n, int idx);
 ```
 """
 function ncplane_set_bg_palindex(n, idx)
-    @ccall libnotcurses.ncplane_set_bg_palindex(n::Ptr{ncplane}, idx::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_set_bg_palindex(n::Ptr{ncplane}, idx::Cint)::Cint
 end
 
 """
@@ -4722,7 +4705,7 @@ API int ncplane_set_fg_alpha(struct ncplane* n, int alpha);
 ```
 """
 function ncplane_set_fg_alpha(n, alpha)
-    @ccall libnotcurses.ncplane_set_fg_alpha(n::Ptr{ncplane}, alpha::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_set_fg_alpha(n::Ptr{ncplane}, alpha::Cint)::Cint
 end
 
 """
@@ -4735,7 +4718,7 @@ API int ncplane_set_bg_alpha(struct ncplane* n, int alpha);
 ```
 """
 function ncplane_set_bg_alpha(n, alpha)
-    @ccall libnotcurses.ncplane_set_bg_alpha(n::Ptr{ncplane}, alpha::Cint)::Cint
+    @ccall libnotcurses_core.ncplane_set_bg_alpha(n::Ptr{ncplane}, alpha::Cint)::Cint
 end
 
 # typedef int ( * fadecb ) ( struct notcurses * nc , struct ncplane * n , const struct timespec * , void * curry )
@@ -4759,7 +4742,7 @@ API int ncplane_fadeout(struct ncplane* n, const struct timespec* ts, fadecb fad
 ```
 """
 function ncplane_fadeout(n, ts, fader, curry)
-    @ccall libnotcurses.ncplane_fadeout(n::Ptr{ncplane}, ts::Ptr{Cvoid}, fader::fadecb, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncplane_fadeout(n::Ptr{ncplane}, ts::Ptr{Cvoid}, fader::fadecb, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -4774,7 +4757,7 @@ API int ncplane_fadein(struct ncplane* n, const struct timespec* ts, fadecb fade
 ```
 """
 function ncplane_fadein(n, ts, fader, curry)
-    @ccall libnotcurses.ncplane_fadein(n::Ptr{ncplane}, ts::Ptr{Cvoid}, fader::fadecb, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncplane_fadein(n::Ptr{ncplane}, ts::Ptr{Cvoid}, fader::fadecb, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -4788,7 +4771,7 @@ API ALLOC struct ncfadectx* ncfadectx_setup(struct ncplane* n) __attribute__ ((n
 ```
 """
 function ncfadectx_setup(n)
-    @ccall libnotcurses.ncfadectx_setup(n::Ptr{ncplane})::Ptr{ncfadectx}
+    @ccall libnotcurses_core.ncfadectx_setup(n::Ptr{ncplane})::Ptr{ncfadectx}
 end
 
 """
@@ -4801,7 +4784,7 @@ API int ncfadectx_iterations(const struct ncfadectx* nctx) __attribute__ ((nonnu
 ```
 """
 function ncfadectx_iterations(nctx)
-    @ccall libnotcurses.ncfadectx_iterations(nctx::Ptr{ncfadectx})::Cint
+    @ccall libnotcurses_core.ncfadectx_iterations(nctx::Ptr{ncfadectx})::Cint
 end
 
 """
@@ -4815,7 +4798,7 @@ API int ncplane_fadeout_iteration(struct ncplane* n, struct ncfadectx* nctx, int
 ```
 """
 function ncplane_fadeout_iteration(n, nctx, iter, fader, curry)
-    @ccall libnotcurses.ncplane_fadeout_iteration(n::Ptr{ncplane}, nctx::Ptr{ncfadectx}, iter::Cint, fader::fadecb, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncplane_fadeout_iteration(n::Ptr{ncplane}, nctx::Ptr{ncfadectx}, iter::Cint, fader::fadecb, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -4829,7 +4812,7 @@ API int ncplane_fadein_iteration(struct ncplane* n, struct ncfadectx* nctx, int 
 ```
 """
 function ncplane_fadein_iteration(n, nctx, iter, fader, curry)
-    @ccall libnotcurses.ncplane_fadein_iteration(n::Ptr{ncplane}, nctx::Ptr{ncfadectx}, iter::Cint, fader::fadecb, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncplane_fadein_iteration(n::Ptr{ncplane}, nctx::Ptr{ncfadectx}, iter::Cint, fader::fadecb, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -4846,7 +4829,7 @@ API int ncplane_pulse(struct ncplane* n, const struct timespec* ts, fadecb fader
 ```
 """
 function ncplane_pulse(n, ts, fader, curry)
-    @ccall libnotcurses.ncplane_pulse(n::Ptr{ncplane}, ts::Ptr{Cvoid}, fader::fadecb, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncplane_pulse(n::Ptr{ncplane}, ts::Ptr{Cvoid}, fader::fadecb, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -4859,7 +4842,7 @@ API void ncfadectx_free(struct ncfadectx* nctx);
 ```
 """
 function ncfadectx_free(nctx)
-    @ccall libnotcurses.ncfadectx_free(nctx::Ptr{ncfadectx})::Cvoid
+    @ccall libnotcurses_core.ncfadectx_free(nctx::Ptr{ncfadectx})::Cvoid
 end
 
 """
@@ -4875,7 +4858,7 @@ static inline int nccells_load_box(struct ncplane* n, uint32_t styles, uint64_t 
 ```
 """
 function nccells_load_box(n, styles, channels, ul, ur, ll, lr, hl, vl, gclusters)
-    @ccall libnotcurses.nccells_load_box(n::Ptr{ncplane}, styles::UInt32, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell}, gclusters::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.nccells_load_box(n::Ptr{ncplane}, styles::UInt32, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell}, gclusters::Ptr{Cchar})::Cint
 end
 
 """
@@ -4888,7 +4871,7 @@ static inline int nccells_ascii_box(struct ncplane* n, uint16_t attr, uint64_t c
 ```
 """
 function nccells_ascii_box(n, attr, channels, ul, ur, ll, lr, hl, vl)
-    @ccall libnotcurses.nccells_ascii_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.nccells_ascii_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
 end
 
 """
@@ -4901,7 +4884,7 @@ static inline int nccells_double_box(struct ncplane* n, uint16_t attr, uint64_t 
 ```
 """
 function nccells_double_box(n, attr, channels, ul, ur, ll, lr, hl, vl)
-    @ccall libnotcurses.nccells_double_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.nccells_double_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
 end
 
 """
@@ -4914,7 +4897,7 @@ static inline int nccells_rounded_box(struct ncplane* n, uint16_t attr, uint64_t
 ```
 """
 function nccells_rounded_box(n, attr, channels, ul, ur, ll, lr, hl, vl)
-    @ccall libnotcurses.nccells_rounded_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.nccells_rounded_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
 end
 
 """
@@ -4927,7 +4910,7 @@ static inline int nccells_light_box(struct ncplane* n, uint16_t attr, uint64_t c
 ```
 """
 function nccells_light_box(n, attr, channels, ul, ur, ll, lr, hl, vl)
-    @ccall libnotcurses.nccells_light_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.nccells_light_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
 end
 
 """
@@ -4940,7 +4923,7 @@ static inline int nccells_heavy_box(struct ncplane* n, uint16_t attr, uint64_t c
 ```
 """
 function nccells_heavy_box(n, attr, channels, ul, ur, ll, lr, hl, vl)
-    @ccall libnotcurses.nccells_heavy_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
+    @ccall libnotcurses_core.nccells_heavy_box(n::Ptr{ncplane}, attr::UInt16, channels::UInt64, ul::Ptr{nccell}, ur::Ptr{nccell}, ll::Ptr{nccell}, lr::Ptr{nccell}, hl::Ptr{nccell}, vl::Ptr{nccell})::Cint
 end
 
 """
@@ -4953,7 +4936,7 @@ static inline int ncplane_rounded_box(struct ncplane* n, uint16_t styles, uint64
 ```
 """
 function ncplane_rounded_box(n, styles, channels, ystop, xstop, ctlword)
-    @ccall libnotcurses.ncplane_rounded_box(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ystop::Cuint, xstop::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_rounded_box(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ystop::Cuint, xstop::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -4966,7 +4949,7 @@ static inline int ncplane_perimeter_rounded(struct ncplane* n, uint16_t stylemas
 ```
 """
 function ncplane_perimeter_rounded(n, stylemask, channels, ctlword)
-    @ccall libnotcurses.ncplane_perimeter_rounded(n::Ptr{ncplane}, stylemask::UInt16, channels::UInt64, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_perimeter_rounded(n::Ptr{ncplane}, stylemask::UInt16, channels::UInt64, ctlword::Cuint)::Cint
 end
 
 """
@@ -4979,7 +4962,7 @@ static inline int ncplane_rounded_box_sized(struct ncplane* n, uint16_t styles, 
 ```
 """
 function ncplane_rounded_box_sized(n, styles, channels, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncplane_rounded_box_sized(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_rounded_box_sized(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -4992,7 +4975,7 @@ static inline int ncplane_double_box(struct ncplane* n, uint16_t styles, uint64_
 ```
 """
 function ncplane_double_box(n, styles, channels, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncplane_double_box(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_double_box(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -5005,7 +4988,7 @@ static inline int ncplane_ascii_box(struct ncplane* n, uint16_t styles, uint64_t
 ```
 """
 function ncplane_ascii_box(n, styles, channels, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncplane_ascii_box(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_ascii_box(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -5018,7 +5001,7 @@ static inline int ncplane_perimeter_double(struct ncplane* n, uint16_t stylemask
 ```
 """
 function ncplane_perimeter_double(n, stylemask, channels, ctlword)
-    @ccall libnotcurses.ncplane_perimeter_double(n::Ptr{ncplane}, stylemask::UInt16, channels::UInt64, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_perimeter_double(n::Ptr{ncplane}, stylemask::UInt16, channels::UInt64, ctlword::Cuint)::Cint
 end
 
 """
@@ -5031,7 +5014,7 @@ static inline int ncplane_double_box_sized(struct ncplane* n, uint16_t styles, u
 ```
 """
 function ncplane_double_box_sized(n, styles, channels, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncplane_double_box_sized(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncplane_double_box_sized(n::Ptr{ncplane}, styles::UInt16, channels::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -5045,7 +5028,7 @@ API ALLOC struct ncvisual* ncvisual_from_file(const char* file) __attribute__ ((
 ```
 """
 function ncvisual_from_file(file)
-    @ccall libnotcurses.ncvisual_from_file(file::Ptr{Cchar})::Ptr{ncvisual}
+    @ccall libnotcurses_core.ncvisual_from_file(file::Ptr{Cchar})::Ptr{ncvisual}
 end
 
 """
@@ -5063,7 +5046,7 @@ API ALLOC struct ncvisual* ncvisual_from_rgba(const void* rgba, int rows, int ro
 ```
 """
 function ncvisual_from_rgba(rgba, rows, rowstride, cols)
-    @ccall libnotcurses.ncvisual_from_rgba(rgba::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint)::Ptr{ncvisual}
+    @ccall libnotcurses_core.ncvisual_from_rgba(rgba::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint)::Ptr{ncvisual}
 end
 
 """
@@ -5077,7 +5060,7 @@ API ALLOC struct ncvisual* ncvisual_from_rgb_packed(const void* rgba, int rows, 
 ```
 """
 function ncvisual_from_rgb_packed(rgba, rows, rowstride, cols, alpha)
-    @ccall libnotcurses.ncvisual_from_rgb_packed(rgba::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint, alpha::Cint)::Ptr{ncvisual}
+    @ccall libnotcurses_core.ncvisual_from_rgb_packed(rgba::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint, alpha::Cint)::Ptr{ncvisual}
 end
 
 """
@@ -5091,7 +5074,7 @@ API ALLOC struct ncvisual* ncvisual_from_rgb_loose(const void* rgba, int rows, i
 ```
 """
 function ncvisual_from_rgb_loose(rgba, rows, rowstride, cols, alpha)
-    @ccall libnotcurses.ncvisual_from_rgb_loose(rgba::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint, alpha::Cint)::Ptr{ncvisual}
+    @ccall libnotcurses_core.ncvisual_from_rgb_loose(rgba::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint, alpha::Cint)::Ptr{ncvisual}
 end
 
 """
@@ -5106,7 +5089,7 @@ API ALLOC struct ncvisual* ncvisual_from_bgra(const void* bgra, int rows, int ro
 ```
 """
 function ncvisual_from_bgra(bgra, rows, rowstride, cols)
-    @ccall libnotcurses.ncvisual_from_bgra(bgra::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint)::Ptr{ncvisual}
+    @ccall libnotcurses_core.ncvisual_from_bgra(bgra::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint)::Ptr{ncvisual}
 end
 
 """
@@ -5121,7 +5104,7 @@ API ALLOC struct ncvisual* ncvisual_from_palidx(const void* data, int rows, int 
 ```
 """
 function ncvisual_from_palidx(data, rows, rowstride, cols, palsize, pstride, palette)
-    @ccall libnotcurses.ncvisual_from_palidx(data::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint, palsize::Cint, pstride::Cint, palette::Ptr{UInt32})::Ptr{ncvisual}
+    @ccall libnotcurses_core.ncvisual_from_palidx(data::Ptr{Cvoid}, rows::Cint, rowstride::Cint, cols::Cint, palsize::Cint, pstride::Cint, palette::Ptr{UInt32})::Ptr{ncvisual}
 end
 
 """
@@ -5139,7 +5122,7 @@ API ALLOC struct ncvisual* ncvisual_from_plane(const struct ncplane* n, ncblitte
 ```
 """
 function ncvisual_from_plane(n, blit, begy, begx, leny, lenx)
-    @ccall libnotcurses.ncvisual_from_plane(n::Ptr{ncplane}, blit::ncblitter_e, begy::Cint, begx::Cint, leny::Cuint, lenx::Cuint)::Ptr{ncvisual}
+    @ccall libnotcurses_core.ncvisual_from_plane(n::Ptr{ncplane}, blit::ncblitter_e, begy::Cint, begx::Cint, leny::Cuint, lenx::Cuint)::Ptr{ncvisual}
 end
 
 struct ncvisual_options
@@ -5212,7 +5195,7 @@ API int ncvisual_geom(const struct notcurses* nc, const struct ncvisual* n, cons
 ```
 """
 function ncvisual_geom(nc, n, vopts, geom)
-    @ccall libnotcurses.ncvisual_geom(nc::Ptr{notcurses}, n::Ptr{ncvisual}, vopts::Ptr{ncvisual_options}, geom::Ptr{ncvgeom})::Cint
+    @ccall libnotcurses_core.ncvisual_geom(nc::Ptr{notcurses}, n::Ptr{ncvisual}, vopts::Ptr{ncvisual_options}, geom::Ptr{ncvgeom})::Cint
 end
 
 """
@@ -5226,7 +5209,7 @@ API void ncvisual_destroy(struct ncvisual* ncv);
 ```
 """
 function ncvisual_destroy(ncv)
-    @ccall libnotcurses.ncvisual_destroy(ncv::Ptr{ncvisual})::Cvoid
+    @ccall libnotcurses_core.ncvisual_destroy(ncv::Ptr{ncvisual})::Cvoid
 end
 
 """
@@ -5240,7 +5223,7 @@ API int ncvisual_decode(struct ncvisual* nc) __attribute__ ((nonnull (1)));
 ```
 """
 function ncvisual_decode(nc)
-    @ccall libnotcurses.ncvisual_decode(nc::Ptr{ncvisual})::Cint
+    @ccall libnotcurses_core.ncvisual_decode(nc::Ptr{ncvisual})::Cint
 end
 
 """
@@ -5256,7 +5239,7 @@ API int ncvisual_decode_loop(struct ncvisual* nc) __attribute__ ((nonnull (1)));
 ```
 """
 function ncvisual_decode_loop(nc)
-    @ccall libnotcurses.ncvisual_decode_loop(nc::Ptr{ncvisual})::Cint
+    @ccall libnotcurses_core.ncvisual_decode_loop(nc::Ptr{ncvisual})::Cint
 end
 
 """
@@ -5270,7 +5253,7 @@ API int ncvisual_rotate(struct ncvisual* n, double rads) __attribute__ ((nonnull
 ```
 """
 function ncvisual_rotate(n, rads)
-    @ccall libnotcurses.ncvisual_rotate(n::Ptr{ncvisual}, rads::Cdouble)::Cint
+    @ccall libnotcurses_core.ncvisual_rotate(n::Ptr{ncvisual}, rads::Cdouble)::Cint
 end
 
 """
@@ -5284,7 +5267,7 @@ API int ncvisual_resize(struct ncvisual* n, int rows, int cols) __attribute__ ((
 ```
 """
 function ncvisual_resize(n, rows, cols)
-    @ccall libnotcurses.ncvisual_resize(n::Ptr{ncvisual}, rows::Cint, cols::Cint)::Cint
+    @ccall libnotcurses_core.ncvisual_resize(n::Ptr{ncvisual}, rows::Cint, cols::Cint)::Cint
 end
 
 """
@@ -5298,7 +5281,7 @@ API int ncvisual_resize_noninterpolative(struct ncvisual* n, int rows, int cols)
 ```
 """
 function ncvisual_resize_noninterpolative(n, rows, cols)
-    @ccall libnotcurses.ncvisual_resize_noninterpolative(n::Ptr{ncvisual}, rows::Cint, cols::Cint)::Cint
+    @ccall libnotcurses_core.ncvisual_resize_noninterpolative(n::Ptr{ncvisual}, rows::Cint, cols::Cint)::Cint
 end
 
 """
@@ -5311,7 +5294,7 @@ API int ncvisual_polyfill_yx(struct ncvisual* n, unsigned y, unsigned x, uint32_
 ```
 """
 function ncvisual_polyfill_yx(n, y, x, rgba)
-    @ccall libnotcurses.ncvisual_polyfill_yx(n::Ptr{ncvisual}, y::Cuint, x::Cuint, rgba::UInt32)::Cint
+    @ccall libnotcurses_core.ncvisual_polyfill_yx(n::Ptr{ncvisual}, y::Cuint, x::Cuint, rgba::UInt32)::Cint
 end
 
 """
@@ -5324,7 +5307,7 @@ API int ncvisual_at_yx(const struct ncvisual* n, unsigned y, unsigned x, uint32_
 ```
 """
 function ncvisual_at_yx(n, y, x, pixel)
-    @ccall libnotcurses.ncvisual_at_yx(n::Ptr{ncvisual}, y::Cuint, x::Cuint, pixel::Ptr{UInt32})::Cint
+    @ccall libnotcurses_core.ncvisual_at_yx(n::Ptr{ncvisual}, y::Cuint, x::Cuint, pixel::Ptr{UInt32})::Cint
 end
 
 """
@@ -5337,7 +5320,7 @@ API int ncvisual_set_yx(const struct ncvisual* n, unsigned y, unsigned x, uint32
 ```
 """
 function ncvisual_set_yx(n, y, x, pixel)
-    @ccall libnotcurses.ncvisual_set_yx(n::Ptr{ncvisual}, y::Cuint, x::Cuint, pixel::UInt32)::Cint
+    @ccall libnotcurses_core.ncvisual_set_yx(n::Ptr{ncvisual}, y::Cuint, x::Cuint, pixel::UInt32)::Cint
 end
 
 """
@@ -5360,7 +5343,7 @@ API struct ncplane* ncvisual_blit(struct notcurses* nc, struct ncvisual* ncv, co
 ```
 """
 function ncvisual_blit(nc, ncv, vopts)
-    @ccall libnotcurses.ncvisual_blit(nc::Ptr{notcurses}, ncv::Ptr{ncvisual}, vopts::Ptr{ncvisual_options})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncvisual_blit(nc::Ptr{notcurses}, ncv::Ptr{ncvisual}, vopts::Ptr{ncvisual_options})::Ptr{ncplane}
 end
 
 """
@@ -5376,7 +5359,7 @@ __attribute__ ((nonnull (1, 2, 3))) static inline struct ncplane* ncvisualplane_
 ```
 """
 function ncvisualplane_create(nc, opts, ncv, vopts)
-    @ccall libnotcurses.ncvisualplane_create(nc::Ptr{notcurses}, opts::Ptr{ncplane_options}, ncv::Ptr{ncvisual}, vopts::Ptr{ncvisual_options})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncvisualplane_create(nc::Ptr{notcurses}, opts::Ptr{ncplane_options}, ncv::Ptr{ncvisual}, vopts::Ptr{ncvisual_options})::Ptr{ncplane}
 end
 
 """
@@ -5391,7 +5374,7 @@ API ALLOC struct ncplane* ncvisual_subtitle_plane(struct ncplane* parent, const 
 ```
 """
 function ncvisual_subtitle_plane(parent, ncv)
-    @ccall libnotcurses.ncvisual_subtitle_plane(parent::Ptr{ncplane}, ncv::Ptr{ncvisual})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncvisual_subtitle_plane(parent::Ptr{ncplane}, ncv::Ptr{ncvisual})::Ptr{ncplane}
 end
 
 """
@@ -5411,7 +5394,7 @@ API ncblitter_e ncvisual_media_defblitter(const struct notcurses* nc, ncscale_e 
 ```
 """
 function ncvisual_media_defblitter(nc, scale)
-    @ccall libnotcurses.ncvisual_media_defblitter(nc::Ptr{notcurses}, scale::ncscale_e)::ncblitter_e
+    @ccall libnotcurses_core.ncvisual_media_defblitter(nc::Ptr{notcurses}, scale::ncscale_e)::ncblitter_e
 end
 
 # typedef int ( * ncstreamcb ) ( struct ncvisual * , struct ncvisual_options * , const struct timespec * , void * )
@@ -5434,7 +5417,7 @@ API int ncvisual_simple_streamer(struct ncvisual* ncv, struct ncvisual_options* 
 ```
 """
 function ncvisual_simple_streamer(ncv, vopts, tspec, curry)
-    @ccall libnotcurses.ncvisual_simple_streamer(ncv::Ptr{ncvisual}, vopts::Ptr{ncvisual_options}, tspec::Ptr{Cvoid}, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncvisual_simple_streamer(ncv::Ptr{ncvisual}, vopts::Ptr{ncvisual_options}, tspec::Ptr{Cvoid}, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -5455,7 +5438,7 @@ API int ncvisual_stream(struct notcurses* nc, struct ncvisual* ncv, float timesc
 ```
 """
 function ncvisual_stream(nc, ncv, timescale, streamer, vopts, curry)
-    @ccall libnotcurses.ncvisual_stream(nc::Ptr{notcurses}, ncv::Ptr{ncvisual}, timescale::Cfloat, streamer::ncstreamcb, vopts::Ptr{ncvisual_options}, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncvisual_stream(nc::Ptr{notcurses}, ncv::Ptr{ncvisual}, timescale::Cfloat, streamer::ncstreamcb, vopts::Ptr{ncvisual_options}, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -5474,7 +5457,7 @@ API int ncblit_rgba(const void* data, int linesize, const struct ncvisual_option
 ```
 """
 function ncblit_rgba(data, linesize, vopts)
-    @ccall libnotcurses.ncblit_rgba(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options})::Cint
+    @ccall libnotcurses_core.ncblit_rgba(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options})::Cint
 end
 
 """
@@ -5487,7 +5470,7 @@ API int ncblit_bgrx(const void* data, int linesize, const struct ncvisual_option
 ```
 """
 function ncblit_bgrx(data, linesize, vopts)
-    @ccall libnotcurses.ncblit_bgrx(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options})::Cint
+    @ccall libnotcurses_core.ncblit_bgrx(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options})::Cint
 end
 
 """
@@ -5500,7 +5483,7 @@ API int ncblit_rgb_packed(const void* data, int linesize, const struct ncvisual_
 ```
 """
 function ncblit_rgb_packed(data, linesize, vopts, alpha)
-    @ccall libnotcurses.ncblit_rgb_packed(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options}, alpha::Cint)::Cint
+    @ccall libnotcurses_core.ncblit_rgb_packed(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options}, alpha::Cint)::Cint
 end
 
 """
@@ -5514,7 +5497,7 @@ API int ncblit_rgb_loose(const void* data, int linesize, const struct ncvisual_o
 ```
 """
 function ncblit_rgb_loose(data, linesize, vopts, alpha)
-    @ccall libnotcurses.ncblit_rgb_loose(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options}, alpha::Cint)::Cint
+    @ccall libnotcurses_core.ncblit_rgb_loose(data::Ptr{Cvoid}, linesize::Cint, vopts::Ptr{ncvisual_options}, alpha::Cint)::Cint
 end
 
 """
@@ -5527,7 +5510,7 @@ static inline unsigned ncpixel_a(uint32_t pixel);
 ```
 """
 function ncpixel_a(pixel)
-    @ccall libnotcurses.ncpixel_a(pixel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncpixel_a(pixel::UInt32)::Cuint
 end
 
 """
@@ -5540,7 +5523,7 @@ static inline unsigned ncpixel_r(uint32_t pixel);
 ```
 """
 function ncpixel_r(pixel)
-    @ccall libnotcurses.ncpixel_r(pixel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncpixel_r(pixel::UInt32)::Cuint
 end
 
 """
@@ -5553,7 +5536,7 @@ static inline unsigned ncpixel_g(uint32_t pixel);
 ```
 """
 function ncpixel_g(pixel)
-    @ccall libnotcurses.ncpixel_g(pixel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncpixel_g(pixel::UInt32)::Cuint
 end
 
 """
@@ -5566,7 +5549,7 @@ static inline unsigned ncpixel_b(uint32_t pixel);
 ```
 """
 function ncpixel_b(pixel)
-    @ccall libnotcurses.ncpixel_b(pixel::UInt32)::Cuint
+    @ccall libnotcurses_core.ncpixel_b(pixel::UInt32)::Cuint
 end
 
 """
@@ -5579,7 +5562,7 @@ static inline int ncpixel_set_a(uint32_t* pixel, unsigned a);
 ```
 """
 function ncpixel_set_a(pixel, a)
-    @ccall libnotcurses.ncpixel_set_a(pixel::Ptr{UInt32}, a::Cuint)::Cint
+    @ccall libnotcurses_core.ncpixel_set_a(pixel::Ptr{UInt32}, a::Cuint)::Cint
 end
 
 """
@@ -5592,7 +5575,7 @@ static inline int ncpixel_set_r(uint32_t* pixel, unsigned r);
 ```
 """
 function ncpixel_set_r(pixel, r)
-    @ccall libnotcurses.ncpixel_set_r(pixel::Ptr{UInt32}, r::Cuint)::Cint
+    @ccall libnotcurses_core.ncpixel_set_r(pixel::Ptr{UInt32}, r::Cuint)::Cint
 end
 
 """
@@ -5605,7 +5588,7 @@ static inline int ncpixel_set_g(uint32_t* pixel, unsigned g);
 ```
 """
 function ncpixel_set_g(pixel, g)
-    @ccall libnotcurses.ncpixel_set_g(pixel::Ptr{UInt32}, g::Cuint)::Cint
+    @ccall libnotcurses_core.ncpixel_set_g(pixel::Ptr{UInt32}, g::Cuint)::Cint
 end
 
 """
@@ -5618,7 +5601,7 @@ static inline int ncpixel_set_b(uint32_t* pixel, unsigned b);
 ```
 """
 function ncpixel_set_b(pixel, b)
-    @ccall libnotcurses.ncpixel_set_b(pixel::Ptr{UInt32}, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncpixel_set_b(pixel::Ptr{UInt32}, b::Cuint)::Cint
 end
 
 """
@@ -5631,7 +5614,7 @@ static inline uint32_t ncpixel(int r, int g, int b);
 ```
 """
 function ncpixel(r, g, b)
-    @ccall libnotcurses.ncpixel(r::Cint, g::Cint, b::Cint)::UInt32
+    @ccall libnotcurses_core.ncpixel(r::Cint, g::Cint, b::Cint)::UInt32
 end
 
 """
@@ -5644,7 +5627,7 @@ static inline int ncpixel_set_rgb8(uint32_t* pixel, unsigned r, unsigned g, unsi
 ```
 """
 function ncpixel_set_rgb8(pixel, r, g, b)
-    @ccall libnotcurses.ncpixel_set_rgb8(pixel::Ptr{UInt32}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncpixel_set_rgb8(pixel::Ptr{UInt32}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 struct ncreel_options
@@ -5667,7 +5650,7 @@ API ALLOC struct ncreel* ncreel_create(struct ncplane* n, const ncreel_options* 
 ```
 """
 function ncreel_create(n, popts)
-    @ccall libnotcurses.ncreel_create(n::Ptr{ncplane}, popts::Ptr{ncreel_options})::Ptr{ncreel}
+    @ccall libnotcurses_core.ncreel_create(n::Ptr{ncplane}, popts::Ptr{ncreel_options})::Ptr{ncreel}
 end
 
 """
@@ -5680,7 +5663,7 @@ API struct ncplane* ncreel_plane(struct ncreel* nr) __attribute__ ((nonnull (1))
 ```
 """
 function ncreel_plane(nr)
-    @ccall libnotcurses.ncreel_plane(nr::Ptr{ncreel})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncreel_plane(nr::Ptr{ncreel})::Ptr{ncplane}
 end
 
 # typedef int ( * tabletcb ) ( struct nctablet * t , bool drawfromtop )
@@ -5708,7 +5691,7 @@ API ALLOC struct nctablet* ncreel_add(struct ncreel* nr, struct nctablet* after,
 ```
 """
 function ncreel_add(nr, after, before, cb, opaque)
-    @ccall libnotcurses.ncreel_add(nr::Ptr{ncreel}, after::Ptr{nctablet}, before::Ptr{nctablet}, cb::tabletcb, opaque::Ptr{Cvoid})::Ptr{nctablet}
+    @ccall libnotcurses_core.ncreel_add(nr::Ptr{ncreel}, after::Ptr{nctablet}, before::Ptr{nctablet}, cb::tabletcb, opaque::Ptr{Cvoid})::Ptr{nctablet}
 end
 
 """
@@ -5721,7 +5704,7 @@ API int ncreel_tabletcount(const struct ncreel* nr) __attribute__ ((nonnull (1))
 ```
 """
 function ncreel_tabletcount(nr)
-    @ccall libnotcurses.ncreel_tabletcount(nr::Ptr{ncreel})::Cint
+    @ccall libnotcurses_core.ncreel_tabletcount(nr::Ptr{ncreel})::Cint
 end
 
 """
@@ -5735,7 +5718,7 @@ API int ncreel_del(struct ncreel* nr, struct nctablet* t) __attribute__ ((nonnul
 ```
 """
 function ncreel_del(nr, t)
-    @ccall libnotcurses.ncreel_del(nr::Ptr{ncreel}, t::Ptr{nctablet})::Cint
+    @ccall libnotcurses_core.ncreel_del(nr::Ptr{ncreel}, t::Ptr{nctablet})::Cint
 end
 
 """
@@ -5750,7 +5733,7 @@ API int ncreel_redraw(struct ncreel* nr) __attribute__ ((nonnull (1)));
 ```
 """
 function ncreel_redraw(nr)
-    @ccall libnotcurses.ncreel_redraw(nr::Ptr{ncreel})::Cint
+    @ccall libnotcurses_core.ncreel_redraw(nr::Ptr{ncreel})::Cint
 end
 
 """
@@ -5768,7 +5751,7 @@ API bool ncreel_offer_input(struct ncreel* nr, const ncinput* ni) __attribute__ 
 ```
 """
 function ncreel_offer_input(nr, ni)
-    @ccall libnotcurses.ncreel_offer_input(nr::Ptr{ncreel}, ni::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.ncreel_offer_input(nr::Ptr{ncreel}, ni::Ptr{ncinput})::Bool
 end
 
 """
@@ -5782,7 +5765,7 @@ API struct nctablet* ncreel_focused(struct ncreel* nr) __attribute__ ((nonnull (
 ```
 """
 function ncreel_focused(nr)
-    @ccall libnotcurses.ncreel_focused(nr::Ptr{ncreel})::Ptr{nctablet}
+    @ccall libnotcurses_core.ncreel_focused(nr::Ptr{ncreel})::Ptr{nctablet}
 end
 
 """
@@ -5795,7 +5778,7 @@ API struct nctablet* ncreel_next(struct ncreel* nr) __attribute__ ((nonnull (1))
 ```
 """
 function ncreel_next(nr)
-    @ccall libnotcurses.ncreel_next(nr::Ptr{ncreel})::Ptr{nctablet}
+    @ccall libnotcurses_core.ncreel_next(nr::Ptr{ncreel})::Ptr{nctablet}
 end
 
 """
@@ -5808,7 +5791,7 @@ API struct nctablet* ncreel_prev(struct ncreel* nr) __attribute__ ((nonnull (1))
 ```
 """
 function ncreel_prev(nr)
-    @ccall libnotcurses.ncreel_prev(nr::Ptr{ncreel})::Ptr{nctablet}
+    @ccall libnotcurses_core.ncreel_prev(nr::Ptr{ncreel})::Ptr{nctablet}
 end
 
 """
@@ -5821,7 +5804,7 @@ API void ncreel_destroy(struct ncreel* nr);
 ```
 """
 function ncreel_destroy(nr)
-    @ccall libnotcurses.ncreel_destroy(nr::Ptr{ncreel})::Cvoid
+    @ccall libnotcurses_core.ncreel_destroy(nr::Ptr{ncreel})::Cvoid
 end
 
 """
@@ -5834,7 +5817,7 @@ API void* nctablet_userptr(struct nctablet* t);
 ```
 """
 function nctablet_userptr(t)
-    @ccall libnotcurses.nctablet_userptr(t::Ptr{nctablet})::Ptr{Cvoid}
+    @ccall libnotcurses_core.nctablet_userptr(t::Ptr{nctablet})::Ptr{Cvoid}
 end
 
 """
@@ -5847,7 +5830,7 @@ API struct ncplane* nctablet_plane(struct nctablet* t);
 ```
 """
 function nctablet_plane(t)
-    @ccall libnotcurses.nctablet_plane(t::Ptr{nctablet})::Ptr{ncplane}
+    @ccall libnotcurses_core.nctablet_plane(t::Ptr{nctablet})::Ptr{ncplane}
 end
 
 """
@@ -5878,7 +5861,7 @@ API const char* ncnmetric(uintmax_t val, size_t s, uintmax_t decimal, char* buf,
 ```
 """
 function ncnmetric(val, s, decimal, buf, omitdec, mult, uprefix)
-    @ccall libnotcurses.ncnmetric(val::uintmax_t, s::Csize_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint, mult::uintmax_t, uprefix::Cint)::Ptr{Cchar}
+    @ccall libnotcurses_core.ncnmetric(val::uintmax_t, s::Csize_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint, mult::uintmax_t, uprefix::Cint)::Ptr{Cchar}
 end
 
 """
@@ -5891,7 +5874,7 @@ static inline const char* ncqprefix(uintmax_t val, uintmax_t decimal, char* buf,
 ```
 """
 function ncqprefix(val, decimal, buf, omitdec)
-    @ccall libnotcurses.ncqprefix(val::uintmax_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint)::Ptr{Cchar}
+    @ccall libnotcurses_core.ncqprefix(val::uintmax_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint)::Ptr{Cchar}
 end
 
 """
@@ -5904,7 +5887,7 @@ static inline const char* nciprefix(uintmax_t val, uintmax_t decimal, char* buf,
 ```
 """
 function nciprefix(val, decimal, buf, omitdec)
-    @ccall libnotcurses.nciprefix(val::uintmax_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint)::Ptr{Cchar}
+    @ccall libnotcurses_core.nciprefix(val::uintmax_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint)::Ptr{Cchar}
 end
 
 """
@@ -5917,7 +5900,7 @@ static inline const char* ncbprefix(uintmax_t val, uintmax_t decimal, char* buf,
 ```
 """
 function ncbprefix(val, decimal, buf, omitdec)
-    @ccall libnotcurses.ncbprefix(val::uintmax_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint)::Ptr{Cchar}
+    @ccall libnotcurses_core.ncbprefix(val::uintmax_t, decimal::uintmax_t, buf::Ptr{Cchar}, omitdec::Cint)::Ptr{Cchar}
 end
 
 """
@@ -5932,7 +5915,7 @@ API int notcurses_default_foreground(const struct notcurses* nc, uint32_t* fg) _
 ```
 """
 function notcurses_default_foreground(nc, fg)
-    @ccall libnotcurses.notcurses_default_foreground(nc::Ptr{notcurses}, fg::Ptr{UInt32})::Cint
+    @ccall libnotcurses_core.notcurses_default_foreground(nc::Ptr{notcurses}, fg::Ptr{UInt32})::Cint
 end
 
 """
@@ -5948,7 +5931,7 @@ API int notcurses_default_background(const struct notcurses* nc, uint32_t* bg) _
 ```
 """
 function notcurses_default_background(nc, bg)
-    @ccall libnotcurses.notcurses_default_background(nc::Ptr{notcurses}, bg::Ptr{UInt32})::Cint
+    @ccall libnotcurses_core.notcurses_default_background(nc::Ptr{notcurses}, bg::Ptr{UInt32})::Cint
 end
 
 """
@@ -5964,7 +5947,7 @@ API int notcurses_cursor_enable(struct notcurses* nc, int y, int x) __attribute_
 ```
 """
 function notcurses_cursor_enable(nc, y, x)
-    @ccall libnotcurses.notcurses_cursor_enable(nc::Ptr{notcurses}, y::Cint, x::Cint)::Cint
+    @ccall libnotcurses_core.notcurses_cursor_enable(nc::Ptr{notcurses}, y::Cint, x::Cint)::Cint
 end
 
 """
@@ -5978,7 +5961,7 @@ API int notcurses_cursor_disable(struct notcurses* nc) __attribute__ ((nonnull (
 ```
 """
 function notcurses_cursor_disable(nc)
-    @ccall libnotcurses.notcurses_cursor_disable(nc::Ptr{notcurses})::Cint
+    @ccall libnotcurses_core.notcurses_cursor_disable(nc::Ptr{notcurses})::Cint
 end
 
 """
@@ -5991,7 +5974,7 @@ API int notcurses_cursor_yx(const struct notcurses* nc, int* y, int* x) __attrib
 ```
 """
 function notcurses_cursor_yx(nc, y, x)
-    @ccall libnotcurses.notcurses_cursor_yx(nc::Ptr{notcurses}, y::Ptr{Cint}, x::Ptr{Cint})::Cint
+    @ccall libnotcurses_core.notcurses_cursor_yx(nc::Ptr{notcurses}, y::Ptr{Cint}, x::Ptr{Cint})::Cint
 end
 
 """
@@ -6004,7 +5987,7 @@ API void ncplane_greyscale(struct ncplane* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncplane_greyscale(n)
-    @ccall libnotcurses.ncplane_greyscale(n::Ptr{ncplane})::Cvoid
+    @ccall libnotcurses_core.ncplane_greyscale(n::Ptr{ncplane})::Cvoid
 end
 
 """
@@ -6045,7 +6028,7 @@ API ALLOC struct ncselector* ncselector_create(struct ncplane* n, const ncselect
 ```
 """
 function ncselector_create(n, opts)
-    @ccall libnotcurses.ncselector_create(n::Ptr{ncplane}, opts::Ptr{ncselector_options})::Ptr{ncselector}
+    @ccall libnotcurses_core.ncselector_create(n::Ptr{ncplane}, opts::Ptr{ncselector_options})::Ptr{ncselector}
 end
 
 """
@@ -6059,7 +6042,7 @@ API int ncselector_additem(struct ncselector* n, const struct ncselector_item* i
 ```
 """
 function ncselector_additem(n, item)
-    @ccall libnotcurses.ncselector_additem(n::Ptr{ncselector}, item::Ptr{ncselector_item})::Cint
+    @ccall libnotcurses_core.ncselector_additem(n::Ptr{ncselector}, item::Ptr{ncselector_item})::Cint
 end
 
 """
@@ -6072,7 +6055,7 @@ API int ncselector_delitem(struct ncselector* n, const char* item);
 ```
 """
 function ncselector_delitem(n, item)
-    @ccall libnotcurses.ncselector_delitem(n::Ptr{ncselector}, item::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncselector_delitem(n::Ptr{ncselector}, item::Ptr{Cchar})::Cint
 end
 
 """
@@ -6085,7 +6068,7 @@ API const char* ncselector_selected(const struct ncselector* n) __attribute__ ((
 ```
 """
 function ncselector_selected(n)
-    @ccall libnotcurses.ncselector_selected(n::Ptr{ncselector})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncselector_selected(n::Ptr{ncselector})::Ptr{Cchar}
 end
 
 """
@@ -6098,7 +6081,7 @@ API struct ncplane* ncselector_plane(struct ncselector* n) __attribute__ ((nonnu
 ```
 """
 function ncselector_plane(n)
-    @ccall libnotcurses.ncselector_plane(n::Ptr{ncselector})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncselector_plane(n::Ptr{ncselector})::Ptr{ncplane}
 end
 
 """
@@ -6112,7 +6095,7 @@ API const char* ncselector_previtem(struct ncselector* n) __attribute__ ((nonnul
 ```
 """
 function ncselector_previtem(n)
-    @ccall libnotcurses.ncselector_previtem(n::Ptr{ncselector})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncselector_previtem(n::Ptr{ncselector})::Ptr{Cchar}
 end
 
 """
@@ -6125,7 +6108,7 @@ API const char* ncselector_nextitem(struct ncselector* n) __attribute__ ((nonnul
 ```
 """
 function ncselector_nextitem(n)
-    @ccall libnotcurses.ncselector_nextitem(n::Ptr{ncselector})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncselector_nextitem(n::Ptr{ncselector})::Ptr{Cchar}
 end
 
 """
@@ -6144,7 +6127,7 @@ API bool ncselector_offer_input(struct ncselector* n, const ncinput* nc) __attri
 ```
 """
 function ncselector_offer_input(n, nc)
-    @ccall libnotcurses.ncselector_offer_input(n::Ptr{ncselector}, nc::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.ncselector_offer_input(n::Ptr{ncselector}, nc::Ptr{ncinput})::Bool
 end
 
 """
@@ -6157,7 +6140,7 @@ API void ncselector_destroy(struct ncselector* n, char** item);
 ```
 """
 function ncselector_destroy(n, item)
-    @ccall libnotcurses.ncselector_destroy(n::Ptr{ncselector}, item::Ptr{Ptr{Cchar}})::Cvoid
+    @ccall libnotcurses_core.ncselector_destroy(n::Ptr{ncselector}, item::Ptr{Ptr{Cchar}})::Cvoid
 end
 
 struct ncmselector_item
@@ -6198,7 +6181,7 @@ API ALLOC struct ncmultiselector* ncmultiselector_create(struct ncplane* n, cons
 ```
 """
 function ncmultiselector_create(n, opts)
-    @ccall libnotcurses.ncmultiselector_create(n::Ptr{ncplane}, opts::Ptr{ncmultiselector_options})::Ptr{ncmultiselector}
+    @ccall libnotcurses_core.ncmultiselector_create(n::Ptr{ncplane}, opts::Ptr{ncmultiselector_options})::Ptr{ncmultiselector}
 end
 
 """
@@ -6212,7 +6195,7 @@ API int ncmultiselector_selected(struct ncmultiselector* n, bool* selected, unsi
 ```
 """
 function ncmultiselector_selected(n, selected, count)
-    @ccall libnotcurses.ncmultiselector_selected(n::Ptr{ncmultiselector}, selected::Ptr{Bool}, count::Cuint)::Cint
+    @ccall libnotcurses_core.ncmultiselector_selected(n::Ptr{ncmultiselector}, selected::Ptr{Bool}, count::Cuint)::Cint
 end
 
 """
@@ -6225,7 +6208,7 @@ API struct ncplane* ncmultiselector_plane(struct ncmultiselector* n);
 ```
 """
 function ncmultiselector_plane(n)
-    @ccall libnotcurses.ncmultiselector_plane(n::Ptr{ncmultiselector})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncmultiselector_plane(n::Ptr{ncmultiselector})::Ptr{ncplane}
 end
 
 """
@@ -6244,7 +6227,7 @@ API bool ncmultiselector_offer_input(struct ncmultiselector* n, const ncinput* n
 ```
 """
 function ncmultiselector_offer_input(n, nc)
-    @ccall libnotcurses.ncmultiselector_offer_input(n::Ptr{ncmultiselector}, nc::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.ncmultiselector_offer_input(n::Ptr{ncmultiselector}, nc::Ptr{ncinput})::Bool
 end
 
 """
@@ -6257,7 +6240,7 @@ API void ncmultiselector_destroy(struct ncmultiselector* n);
 ```
 """
 function ncmultiselector_destroy(n)
-    @ccall libnotcurses.ncmultiselector_destroy(n::Ptr{ncmultiselector})::Cvoid
+    @ccall libnotcurses_core.ncmultiselector_destroy(n::Ptr{ncmultiselector})::Cvoid
 end
 
 """
@@ -6292,7 +6275,7 @@ API ALLOC struct nctree* nctree_create(struct ncplane* n, const nctree_options* 
 ```
 """
 function nctree_create(n, opts)
-    @ccall libnotcurses.nctree_create(n::Ptr{ncplane}, opts::Ptr{nctree_options})::Ptr{nctree}
+    @ccall libnotcurses_core.nctree_create(n::Ptr{ncplane}, opts::Ptr{nctree_options})::Ptr{nctree}
 end
 
 """
@@ -6305,7 +6288,7 @@ API struct ncplane* nctree_plane(struct nctree* n) __attribute__ ((nonnull (1)))
 ```
 """
 function nctree_plane(n)
-    @ccall libnotcurses.nctree_plane(n::Ptr{nctree})::Ptr{ncplane}
+    @ccall libnotcurses_core.nctree_plane(n::Ptr{nctree})::Ptr{ncplane}
 end
 
 """
@@ -6320,7 +6303,7 @@ API int nctree_redraw(struct nctree* n) __attribute__ ((nonnull (1)));
 ```
 """
 function nctree_redraw(n)
-    @ccall libnotcurses.nctree_redraw(n::Ptr{nctree})::Cint
+    @ccall libnotcurses_core.nctree_redraw(n::Ptr{nctree})::Cint
 end
 
 """
@@ -6338,7 +6321,7 @@ API bool nctree_offer_input(struct nctree* n, const ncinput* ni) __attribute__ (
 ```
 """
 function nctree_offer_input(n, ni)
-    @ccall libnotcurses.nctree_offer_input(n::Ptr{nctree}, ni::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.nctree_offer_input(n::Ptr{nctree}, ni::Ptr{ncinput})::Bool
 end
 
 """
@@ -6352,7 +6335,7 @@ API void* nctree_focused(struct nctree* n) __attribute__ ((nonnull (1)));
 ```
 """
 function nctree_focused(n)
-    @ccall libnotcurses.nctree_focused(n::Ptr{nctree})::Ptr{Cvoid}
+    @ccall libnotcurses_core.nctree_focused(n::Ptr{nctree})::Ptr{Cvoid}
 end
 
 """
@@ -6365,7 +6348,7 @@ API void* nctree_next(struct nctree* n) __attribute__ ((nonnull (1)));
 ```
 """
 function nctree_next(n)
-    @ccall libnotcurses.nctree_next(n::Ptr{nctree})::Ptr{Cvoid}
+    @ccall libnotcurses_core.nctree_next(n::Ptr{nctree})::Ptr{Cvoid}
 end
 
 """
@@ -6378,7 +6361,7 @@ API void* nctree_prev(struct nctree* n) __attribute__ ((nonnull (1)));
 ```
 """
 function nctree_prev(n)
-    @ccall libnotcurses.nctree_prev(n::Ptr{nctree})::Ptr{Cvoid}
+    @ccall libnotcurses_core.nctree_prev(n::Ptr{nctree})::Ptr{Cvoid}
 end
 
 """
@@ -6396,7 +6379,7 @@ API void* nctree_goto(struct nctree* n, const unsigned* spec, int* failspec);
 ```
 """
 function nctree_goto(n, spec, failspec)
-    @ccall libnotcurses.nctree_goto(n::Ptr{nctree}, spec::Ptr{Cuint}, failspec::Ptr{Cint})::Ptr{Cvoid}
+    @ccall libnotcurses_core.nctree_goto(n::Ptr{nctree}, spec::Ptr{Cuint}, failspec::Ptr{Cint})::Ptr{Cvoid}
 end
 
 """
@@ -6411,7 +6394,7 @@ API int nctree_add(struct nctree* n, const unsigned* spec, const struct nctree_i
 ```
 """
 function nctree_add(n, spec, add)
-    @ccall libnotcurses.nctree_add(n::Ptr{nctree}, spec::Ptr{Cuint}, add::Ptr{nctree_item})::Cint
+    @ccall libnotcurses_core.nctree_add(n::Ptr{nctree}, spec::Ptr{Cuint}, add::Ptr{nctree_item})::Cint
 end
 
 """
@@ -6424,7 +6407,7 @@ API int nctree_del(struct nctree* n, const unsigned* spec) __attribute__ ((nonnu
 ```
 """
 function nctree_del(n, spec)
-    @ccall libnotcurses.nctree_del(n::Ptr{nctree}, spec::Ptr{Cuint})::Cint
+    @ccall libnotcurses_core.nctree_del(n::Ptr{nctree}, spec::Ptr{Cuint})::Cint
 end
 
 """
@@ -6437,7 +6420,7 @@ API void nctree_destroy(struct nctree* n);
 ```
 """
 function nctree_destroy(n)
-    @ccall libnotcurses.nctree_destroy(n::Ptr{nctree})::Cvoid
+    @ccall libnotcurses_core.nctree_destroy(n::Ptr{nctree})::Cvoid
 end
 
 """
@@ -6481,7 +6464,7 @@ API ALLOC struct ncmenu* ncmenu_create(struct ncplane* n, const ncmenu_options* 
 ```
 """
 function ncmenu_create(n, opts)
-    @ccall libnotcurses.ncmenu_create(n::Ptr{ncplane}, opts::Ptr{ncmenu_options})::Ptr{ncmenu}
+    @ccall libnotcurses_core.ncmenu_create(n::Ptr{ncplane}, opts::Ptr{ncmenu_options})::Ptr{ncmenu}
 end
 
 """
@@ -6495,7 +6478,7 @@ API int ncmenu_unroll(struct ncmenu* n, int sectionidx);
 ```
 """
 function ncmenu_unroll(n, sectionidx)
-    @ccall libnotcurses.ncmenu_unroll(n::Ptr{ncmenu}, sectionidx::Cint)::Cint
+    @ccall libnotcurses_core.ncmenu_unroll(n::Ptr{ncmenu}, sectionidx::Cint)::Cint
 end
 
 """
@@ -6508,7 +6491,7 @@ API int ncmenu_rollup(struct ncmenu* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncmenu_rollup(n)
-    @ccall libnotcurses.ncmenu_rollup(n::Ptr{ncmenu})::Cint
+    @ccall libnotcurses_core.ncmenu_rollup(n::Ptr{ncmenu})::Cint
 end
 
 """
@@ -6522,7 +6505,7 @@ API int ncmenu_nextsection(struct ncmenu* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncmenu_nextsection(n)
-    @ccall libnotcurses.ncmenu_nextsection(n::Ptr{ncmenu})::Cint
+    @ccall libnotcurses_core.ncmenu_nextsection(n::Ptr{ncmenu})::Cint
 end
 
 """
@@ -6535,7 +6518,7 @@ API int ncmenu_prevsection(struct ncmenu* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncmenu_prevsection(n)
-    @ccall libnotcurses.ncmenu_prevsection(n::Ptr{ncmenu})::Cint
+    @ccall libnotcurses_core.ncmenu_prevsection(n::Ptr{ncmenu})::Cint
 end
 
 """
@@ -6549,7 +6532,7 @@ API int ncmenu_nextitem(struct ncmenu* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncmenu_nextitem(n)
-    @ccall libnotcurses.ncmenu_nextitem(n::Ptr{ncmenu})::Cint
+    @ccall libnotcurses_core.ncmenu_nextitem(n::Ptr{ncmenu})::Cint
 end
 
 """
@@ -6562,7 +6545,7 @@ API int ncmenu_previtem(struct ncmenu* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncmenu_previtem(n)
-    @ccall libnotcurses.ncmenu_previtem(n::Ptr{ncmenu})::Cint
+    @ccall libnotcurses_core.ncmenu_previtem(n::Ptr{ncmenu})::Cint
 end
 
 """
@@ -6575,7 +6558,7 @@ API int ncmenu_item_set_status(struct ncmenu* n, const char* section, const char
 ```
 """
 function ncmenu_item_set_status(n, section, item, enabled)
-    @ccall libnotcurses.ncmenu_item_set_status(n::Ptr{ncmenu}, section::Ptr{Cchar}, item::Ptr{Cchar}, enabled::Bool)::Cint
+    @ccall libnotcurses_core.ncmenu_item_set_status(n::Ptr{ncmenu}, section::Ptr{Cchar}, item::Ptr{Cchar}, enabled::Bool)::Cint
 end
 
 """
@@ -6590,7 +6573,7 @@ API const char* ncmenu_selected(const struct ncmenu* n, ncinput* ni);
 ```
 """
 function ncmenu_selected(n, ni)
-    @ccall libnotcurses.ncmenu_selected(n::Ptr{ncmenu}, ni::Ptr{ncinput})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncmenu_selected(n::Ptr{ncmenu}, ni::Ptr{ncinput})::Ptr{Cchar}
 end
 
 """
@@ -6606,7 +6589,7 @@ API const char* ncmenu_mouse_selected(const struct ncmenu* n, const ncinput* cli
 ```
 """
 function ncmenu_mouse_selected(n, click, ni)
-    @ccall libnotcurses.ncmenu_mouse_selected(n::Ptr{ncmenu}, click::Ptr{ncinput}, ni::Ptr{ncinput})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncmenu_mouse_selected(n::Ptr{ncmenu}, click::Ptr{ncinput}, ni::Ptr{ncinput})::Ptr{Cchar}
 end
 
 """
@@ -6619,7 +6602,7 @@ API struct ncplane* ncmenu_plane(struct ncmenu* n);
 ```
 """
 function ncmenu_plane(n)
-    @ccall libnotcurses.ncmenu_plane(n::Ptr{ncmenu})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncmenu_plane(n::Ptr{ncmenu})::Ptr{ncplane}
 end
 
 """
@@ -6640,7 +6623,7 @@ API bool ncmenu_offer_input(struct ncmenu* n, const ncinput* nc) __attribute__ (
 ```
 """
 function ncmenu_offer_input(n, nc)
-    @ccall libnotcurses.ncmenu_offer_input(n::Ptr{ncmenu}, nc::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.ncmenu_offer_input(n::Ptr{ncmenu}, nc::Ptr{ncinput})::Bool
 end
 
 """
@@ -6653,7 +6636,7 @@ API void ncmenu_destroy(struct ncmenu* n);
 ```
 """
 function ncmenu_destroy(n)
-    @ccall libnotcurses.ncmenu_destroy(n::Ptr{ncmenu})::Cvoid
+    @ccall libnotcurses_core.ncmenu_destroy(n::Ptr{ncmenu})::Cvoid
 end
 
 struct ncprogbar_options
@@ -6675,7 +6658,7 @@ API ALLOC struct ncprogbar* ncprogbar_create(struct ncplane* n, const ncprogbar_
 ```
 """
 function ncprogbar_create(n, opts)
-    @ccall libnotcurses.ncprogbar_create(n::Ptr{ncplane}, opts::Ptr{ncprogbar_options})::Ptr{ncprogbar}
+    @ccall libnotcurses_core.ncprogbar_create(n::Ptr{ncplane}, opts::Ptr{ncprogbar_options})::Ptr{ncprogbar}
 end
 
 """
@@ -6688,7 +6671,7 @@ API struct ncplane* ncprogbar_plane(struct ncprogbar* n) __attribute__ ((nonnull
 ```
 """
 function ncprogbar_plane(n)
-    @ccall libnotcurses.ncprogbar_plane(n::Ptr{ncprogbar})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncprogbar_plane(n::Ptr{ncprogbar})::Ptr{ncplane}
 end
 
 """
@@ -6701,7 +6684,7 @@ API int ncprogbar_set_progress(struct ncprogbar* n, double p) __attribute__ ((no
 ```
 """
 function ncprogbar_set_progress(n, p)
-    @ccall libnotcurses.ncprogbar_set_progress(n::Ptr{ncprogbar}, p::Cdouble)::Cint
+    @ccall libnotcurses_core.ncprogbar_set_progress(n::Ptr{ncprogbar}, p::Cdouble)::Cint
 end
 
 """
@@ -6714,7 +6697,7 @@ API double ncprogbar_progress(const struct ncprogbar* n) __attribute__ ((nonnull
 ```
 """
 function ncprogbar_progress(n)
-    @ccall libnotcurses.ncprogbar_progress(n::Ptr{ncprogbar})::Cdouble
+    @ccall libnotcurses_core.ncprogbar_progress(n::Ptr{ncprogbar})::Cdouble
 end
 
 """
@@ -6727,7 +6710,7 @@ API void ncprogbar_destroy(struct ncprogbar* n);
 ```
 """
 function ncprogbar_destroy(n)
-    @ccall libnotcurses.ncprogbar_destroy(n::Ptr{ncprogbar})::Cvoid
+    @ccall libnotcurses_core.ncprogbar_destroy(n::Ptr{ncprogbar})::Cvoid
 end
 
 struct nctabbed_options
@@ -6760,7 +6743,7 @@ API ALLOC struct nctabbed* nctabbed_create(struct ncplane* n, const nctabbed_opt
 ```
 """
 function nctabbed_create(n, opts)
-    @ccall libnotcurses.nctabbed_create(n::Ptr{ncplane}, opts::Ptr{nctabbed_options})::Ptr{nctabbed}
+    @ccall libnotcurses_core.nctabbed_create(n::Ptr{ncplane}, opts::Ptr{nctabbed_options})::Ptr{nctabbed}
 end
 
 """
@@ -6775,7 +6758,7 @@ API void nctabbed_destroy(struct nctabbed* nt);
 ```
 """
 function nctabbed_destroy(nt)
-    @ccall libnotcurses.nctabbed_destroy(nt::Ptr{nctabbed})::Cvoid
+    @ccall libnotcurses_core.nctabbed_destroy(nt::Ptr{nctabbed})::Cvoid
 end
 
 """
@@ -6790,7 +6773,7 @@ API void nctabbed_redraw(struct nctabbed* nt) __attribute__ ((nonnull (1)));
 ```
 """
 function nctabbed_redraw(nt)
-    @ccall libnotcurses.nctabbed_redraw(nt::Ptr{nctabbed})::Cvoid
+    @ccall libnotcurses_core.nctabbed_redraw(nt::Ptr{nctabbed})::Cvoid
 end
 
 """
@@ -6805,7 +6788,7 @@ API void nctabbed_ensure_selected_header_visible(struct nctabbed* nt) __attribut
 ```
 """
 function nctabbed_ensure_selected_header_visible(nt)
-    @ccall libnotcurses.nctabbed_ensure_selected_header_visible(nt::Ptr{nctabbed})::Cvoid
+    @ccall libnotcurses_core.nctabbed_ensure_selected_header_visible(nt::Ptr{nctabbed})::Cvoid
 end
 
 """
@@ -6818,7 +6801,7 @@ API struct nctab* nctabbed_selected(struct nctabbed* nt) __attribute__ ((nonnull
 ```
 """
 function nctabbed_selected(nt)
-    @ccall libnotcurses.nctabbed_selected(nt::Ptr{nctabbed})::Ptr{nctab}
+    @ccall libnotcurses_core.nctabbed_selected(nt::Ptr{nctabbed})::Ptr{nctab}
 end
 
 """
@@ -6831,7 +6814,7 @@ API struct nctab* nctabbed_leftmost(struct nctabbed* nt) __attribute__ ((nonnull
 ```
 """
 function nctabbed_leftmost(nt)
-    @ccall libnotcurses.nctabbed_leftmost(nt::Ptr{nctabbed})::Ptr{nctab}
+    @ccall libnotcurses_core.nctabbed_leftmost(nt::Ptr{nctabbed})::Ptr{nctab}
 end
 
 """
@@ -6844,7 +6827,7 @@ API int nctabbed_tabcount(struct nctabbed* nt) __attribute__ ((nonnull (1)));
 ```
 """
 function nctabbed_tabcount(nt)
-    @ccall libnotcurses.nctabbed_tabcount(nt::Ptr{nctabbed})::Cint
+    @ccall libnotcurses_core.nctabbed_tabcount(nt::Ptr{nctabbed})::Cint
 end
 
 """
@@ -6857,7 +6840,7 @@ API struct ncplane* nctabbed_plane(struct nctabbed* nt) __attribute__ ((nonnull 
 ```
 """
 function nctabbed_plane(nt)
-    @ccall libnotcurses.nctabbed_plane(nt::Ptr{nctabbed})::Ptr{ncplane}
+    @ccall libnotcurses_core.nctabbed_plane(nt::Ptr{nctabbed})::Ptr{ncplane}
 end
 
 """
@@ -6870,7 +6853,7 @@ API struct ncplane* nctabbed_content_plane(struct nctabbed* nt) __attribute__ ((
 ```
 """
 function nctabbed_content_plane(nt)
-    @ccall libnotcurses.nctabbed_content_plane(nt::Ptr{nctabbed})::Ptr{ncplane}
+    @ccall libnotcurses_core.nctabbed_content_plane(nt::Ptr{nctabbed})::Ptr{ncplane}
 end
 
 """
@@ -6883,7 +6866,7 @@ API tabcb nctab_cb(struct nctab* t) __attribute__ ((nonnull (1)));
 ```
 """
 function nctab_cb(t)
-    @ccall libnotcurses.nctab_cb(t::Ptr{nctab})::tabcb
+    @ccall libnotcurses_core.nctab_cb(t::Ptr{nctab})::tabcb
 end
 
 """
@@ -6896,7 +6879,7 @@ API const char* nctab_name(struct nctab* t) __attribute__ ((nonnull (1)));
 ```
 """
 function nctab_name(t)
-    @ccall libnotcurses.nctab_name(t::Ptr{nctab})::Ptr{Cchar}
+    @ccall libnotcurses_core.nctab_name(t::Ptr{nctab})::Ptr{Cchar}
 end
 
 """
@@ -6909,7 +6892,7 @@ API int nctab_name_width(struct nctab* t) __attribute__ ((nonnull (1)));
 ```
 """
 function nctab_name_width(t)
-    @ccall libnotcurses.nctab_name_width(t::Ptr{nctab})::Cint
+    @ccall libnotcurses_core.nctab_name_width(t::Ptr{nctab})::Cint
 end
 
 """
@@ -6922,7 +6905,7 @@ API void* nctab_userptr(struct nctab* t) __attribute__ ((nonnull (1)));
 ```
 """
 function nctab_userptr(t)
-    @ccall libnotcurses.nctab_userptr(t::Ptr{nctab})::Ptr{Cvoid}
+    @ccall libnotcurses_core.nctab_userptr(t::Ptr{nctab})::Ptr{Cvoid}
 end
 
 """
@@ -6935,7 +6918,7 @@ API struct nctab* nctab_next(struct nctab* t) __attribute__ ((nonnull (1)));
 ```
 """
 function nctab_next(t)
-    @ccall libnotcurses.nctab_next(t::Ptr{nctab})::Ptr{nctab}
+    @ccall libnotcurses_core.nctab_next(t::Ptr{nctab})::Ptr{nctab}
 end
 
 """
@@ -6948,7 +6931,7 @@ API struct nctab* nctab_prev(struct nctab* t) __attribute__ ((nonnull (1)));
 ```
 """
 function nctab_prev(t)
-    @ccall libnotcurses.nctab_prev(t::Ptr{nctab})::Ptr{nctab}
+    @ccall libnotcurses_core.nctab_prev(t::Ptr{nctab})::Ptr{nctab}
 end
 
 """
@@ -6969,7 +6952,7 @@ API ALLOC struct nctab* nctabbed_add(struct nctabbed* nt, struct nctab* after, s
 ```
 """
 function nctabbed_add(nt, after, before, tcb, name, opaque)
-    @ccall libnotcurses.nctabbed_add(nt::Ptr{nctabbed}, after::Ptr{nctab}, before::Ptr{nctab}, tcb::tabcb, name::Ptr{Cchar}, opaque::Ptr{Cvoid})::Ptr{nctab}
+    @ccall libnotcurses_core.nctabbed_add(nt::Ptr{nctabbed}, after::Ptr{nctab}, before::Ptr{nctab}, tcb::tabcb, name::Ptr{Cchar}, opaque::Ptr{Cvoid})::Ptr{nctab}
 end
 
 """
@@ -6986,7 +6969,7 @@ API int nctabbed_del(struct nctabbed* nt, struct nctab* t) __attribute__ ((nonnu
 ```
 """
 function nctabbed_del(nt, t)
-    @ccall libnotcurses.nctabbed_del(nt::Ptr{nctabbed}, t::Ptr{nctab})::Cint
+    @ccall libnotcurses_core.nctabbed_del(nt::Ptr{nctabbed}, t::Ptr{nctab})::Cint
 end
 
 """
@@ -7001,7 +6984,7 @@ API int nctab_move(struct nctabbed* nt, struct nctab* t, struct nctab* after, st
 ```
 """
 function nctab_move(nt, t, after, before)
-    @ccall libnotcurses.nctab_move(nt::Ptr{nctabbed}, t::Ptr{nctab}, after::Ptr{nctab}, before::Ptr{nctab})::Cint
+    @ccall libnotcurses_core.nctab_move(nt::Ptr{nctabbed}, t::Ptr{nctab}, after::Ptr{nctab}, before::Ptr{nctab})::Cint
 end
 
 """
@@ -7014,7 +6997,7 @@ API void nctab_move_right(struct nctabbed* nt, struct nctab* t) __attribute__ ((
 ```
 """
 function nctab_move_right(nt, t)
-    @ccall libnotcurses.nctab_move_right(nt::Ptr{nctabbed}, t::Ptr{nctab})::Cvoid
+    @ccall libnotcurses_core.nctab_move_right(nt::Ptr{nctabbed}, t::Ptr{nctab})::Cvoid
 end
 
 """
@@ -7027,7 +7010,7 @@ API void nctab_move_left(struct nctabbed* nt, struct nctab* t) __attribute__ ((n
 ```
 """
 function nctab_move_left(nt, t)
-    @ccall libnotcurses.nctab_move_left(nt::Ptr{nctabbed}, t::Ptr{nctab})::Cvoid
+    @ccall libnotcurses_core.nctab_move_left(nt::Ptr{nctabbed}, t::Ptr{nctab})::Cvoid
 end
 
 """
@@ -7042,7 +7025,7 @@ API void nctabbed_rotate(struct nctabbed* nt, int amt) __attribute__ ((nonnull (
 ```
 """
 function nctabbed_rotate(nt, amt)
-    @ccall libnotcurses.nctabbed_rotate(nt::Ptr{nctabbed}, amt::Cint)::Cvoid
+    @ccall libnotcurses_core.nctabbed_rotate(nt::Ptr{nctabbed}, amt::Cint)::Cvoid
 end
 
 """
@@ -7056,7 +7039,7 @@ API struct nctab* nctabbed_next(struct nctabbed* nt) __attribute__ ((nonnull (1)
 ```
 """
 function nctabbed_next(nt)
-    @ccall libnotcurses.nctabbed_next(nt::Ptr{nctabbed})::Ptr{nctab}
+    @ccall libnotcurses_core.nctabbed_next(nt::Ptr{nctabbed})::Ptr{nctab}
 end
 
 """
@@ -7070,7 +7053,7 @@ API struct nctab* nctabbed_prev(struct nctabbed* nt) __attribute__ ((nonnull (1)
 ```
 """
 function nctabbed_prev(nt)
-    @ccall libnotcurses.nctabbed_prev(nt::Ptr{nctabbed})::Ptr{nctab}
+    @ccall libnotcurses_core.nctabbed_prev(nt::Ptr{nctabbed})::Ptr{nctab}
 end
 
 """
@@ -7083,7 +7066,7 @@ API struct nctab* nctabbed_select(struct nctabbed* nt, struct nctab* t) __attrib
 ```
 """
 function nctabbed_select(nt, t)
-    @ccall libnotcurses.nctabbed_select(nt::Ptr{nctabbed}, t::Ptr{nctab})::Ptr{nctab}
+    @ccall libnotcurses_core.nctabbed_select(nt::Ptr{nctabbed}, t::Ptr{nctab})::Ptr{nctab}
 end
 
 """
@@ -7097,7 +7080,7 @@ API void nctabbed_channels(struct nctabbed* nt, uint64_t* RESTRICT hdrchan, uint
 ```
 """
 function nctabbed_channels(nt, hdrchan, selchan, sepchan)
-    @ccall libnotcurses.nctabbed_channels(nt::Ptr{nctabbed}, hdrchan::Ptr{UInt64}, selchan::Ptr{UInt64}, sepchan::Ptr{UInt64})::Cvoid
+    @ccall libnotcurses_core.nctabbed_channels(nt::Ptr{nctabbed}, hdrchan::Ptr{UInt64}, selchan::Ptr{UInt64}, sepchan::Ptr{UInt64})::Cvoid
 end
 
 """
@@ -7110,7 +7093,7 @@ static inline uint64_t nctabbed_hdrchan(struct nctabbed* nt);
 ```
 """
 function nctabbed_hdrchan(nt)
-    @ccall libnotcurses.nctabbed_hdrchan(nt::Ptr{nctabbed})::UInt64
+    @ccall libnotcurses_core.nctabbed_hdrchan(nt::Ptr{nctabbed})::UInt64
 end
 
 """
@@ -7123,7 +7106,7 @@ static inline uint64_t nctabbed_selchan(struct nctabbed* nt);
 ```
 """
 function nctabbed_selchan(nt)
-    @ccall libnotcurses.nctabbed_selchan(nt::Ptr{nctabbed})::UInt64
+    @ccall libnotcurses_core.nctabbed_selchan(nt::Ptr{nctabbed})::UInt64
 end
 
 """
@@ -7136,7 +7119,7 @@ static inline uint64_t nctabbed_sepchan(struct nctabbed* nt);
 ```
 """
 function nctabbed_sepchan(nt)
-    @ccall libnotcurses.nctabbed_sepchan(nt::Ptr{nctabbed})::UInt64
+    @ccall libnotcurses_core.nctabbed_sepchan(nt::Ptr{nctabbed})::UInt64
 end
 
 """
@@ -7151,7 +7134,7 @@ API const char* nctabbed_separator(struct nctabbed* nt) __attribute__ ((nonnull 
 ```
 """
 function nctabbed_separator(nt)
-    @ccall libnotcurses.nctabbed_separator(nt::Ptr{nctabbed})::Ptr{Cchar}
+    @ccall libnotcurses_core.nctabbed_separator(nt::Ptr{nctabbed})::Ptr{Cchar}
 end
 
 """
@@ -7164,7 +7147,7 @@ API int nctabbed_separator_width(struct nctabbed* nt) __attribute__ ((nonnull (1
 ```
 """
 function nctabbed_separator_width(nt)
-    @ccall libnotcurses.nctabbed_separator_width(nt::Ptr{nctabbed})::Cint
+    @ccall libnotcurses_core.nctabbed_separator_width(nt::Ptr{nctabbed})::Cint
 end
 
 """
@@ -7177,7 +7160,7 @@ API void nctabbed_set_hdrchan(struct nctabbed* nt, uint64_t chan) __attribute__ 
 ```
 """
 function nctabbed_set_hdrchan(nt, chan)
-    @ccall libnotcurses.nctabbed_set_hdrchan(nt::Ptr{nctabbed}, chan::UInt64)::Cvoid
+    @ccall libnotcurses_core.nctabbed_set_hdrchan(nt::Ptr{nctabbed}, chan::UInt64)::Cvoid
 end
 
 """
@@ -7190,7 +7173,7 @@ API void nctabbed_set_selchan(struct nctabbed* nt, uint64_t chan) __attribute__ 
 ```
 """
 function nctabbed_set_selchan(nt, chan)
-    @ccall libnotcurses.nctabbed_set_selchan(nt::Ptr{nctabbed}, chan::UInt64)::Cvoid
+    @ccall libnotcurses_core.nctabbed_set_selchan(nt::Ptr{nctabbed}, chan::UInt64)::Cvoid
 end
 
 """
@@ -7203,7 +7186,7 @@ API void nctabbed_set_sepchan(struct nctabbed* nt, uint64_t chan) __attribute__ 
 ```
 """
 function nctabbed_set_sepchan(nt, chan)
-    @ccall libnotcurses.nctabbed_set_sepchan(nt::Ptr{nctabbed}, chan::UInt64)::Cvoid
+    @ccall libnotcurses_core.nctabbed_set_sepchan(nt::Ptr{nctabbed}, chan::UInt64)::Cvoid
 end
 
 """
@@ -7216,7 +7199,7 @@ API tabcb nctab_set_cb(struct nctab* t, tabcb newcb) __attribute__ ((nonnull (1)
 ```
 """
 function nctab_set_cb(t, newcb)
-    @ccall libnotcurses.nctab_set_cb(t::Ptr{nctab}, newcb::tabcb)::tabcb
+    @ccall libnotcurses_core.nctab_set_cb(t::Ptr{nctab}, newcb::tabcb)::tabcb
 end
 
 """
@@ -7229,7 +7212,7 @@ API int nctab_set_name(struct nctab* t, const char* newname) __attribute__ ((non
 ```
 """
 function nctab_set_name(t, newname)
-    @ccall libnotcurses.nctab_set_name(t::Ptr{nctab}, newname::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.nctab_set_name(t::Ptr{nctab}, newname::Ptr{Cchar})::Cint
 end
 
 """
@@ -7242,7 +7225,7 @@ API void* nctab_set_userptr(struct nctab* t, void* newopaque) __attribute__ ((no
 ```
 """
 function nctab_set_userptr(t, newopaque)
-    @ccall libnotcurses.nctab_set_userptr(t::Ptr{nctab}, newopaque::Ptr{Cvoid})::Ptr{Cvoid}
+    @ccall libnotcurses_core.nctab_set_userptr(t::Ptr{nctab}, newopaque::Ptr{Cvoid})::Ptr{Cvoid}
 end
 
 """
@@ -7256,7 +7239,7 @@ API int nctabbed_set_separator(struct nctabbed* nt, const char* separator) __att
 ```
 """
 function nctabbed_set_separator(nt, separator)
-    @ccall libnotcurses.nctabbed_set_separator(nt::Ptr{nctabbed}, separator::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.nctabbed_set_separator(nt::Ptr{nctabbed}, separator::Ptr{Cchar})::Cint
 end
 
 struct ncplot_options
@@ -7282,7 +7265,7 @@ API ALLOC struct ncuplot* ncuplot_create(struct ncplane* n, const ncplot_options
 ```
 """
 function ncuplot_create(n, opts, miny, maxy)
-    @ccall libnotcurses.ncuplot_create(n::Ptr{ncplane}, opts::Ptr{ncplot_options}, miny::UInt64, maxy::UInt64)::Ptr{ncuplot}
+    @ccall libnotcurses_core.ncuplot_create(n::Ptr{ncplane}, opts::Ptr{ncplot_options}, miny::UInt64, maxy::UInt64)::Ptr{ncuplot}
 end
 
 """
@@ -7295,7 +7278,7 @@ API ALLOC struct ncdplot* ncdplot_create(struct ncplane* n, const ncplot_options
 ```
 """
 function ncdplot_create(n, opts, miny, maxy)
-    @ccall libnotcurses.ncdplot_create(n::Ptr{ncplane}, opts::Ptr{ncplot_options}, miny::Cdouble, maxy::Cdouble)::Ptr{ncdplot}
+    @ccall libnotcurses_core.ncdplot_create(n::Ptr{ncplane}, opts::Ptr{ncplot_options}, miny::Cdouble, maxy::Cdouble)::Ptr{ncdplot}
 end
 
 """
@@ -7308,7 +7291,7 @@ API struct ncplane* ncuplot_plane(struct ncuplot* n) __attribute__ ((nonnull (1)
 ```
 """
 function ncuplot_plane(n)
-    @ccall libnotcurses.ncuplot_plane(n::Ptr{ncuplot})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncuplot_plane(n::Ptr{ncuplot})::Ptr{ncplane}
 end
 
 """
@@ -7321,7 +7304,7 @@ API struct ncplane* ncdplot_plane(struct ncdplot* n) __attribute__ ((nonnull (1)
 ```
 """
 function ncdplot_plane(n)
-    @ccall libnotcurses.ncdplot_plane(n::Ptr{ncdplot})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncdplot_plane(n::Ptr{ncdplot})::Ptr{ncplane}
 end
 
 """
@@ -7337,7 +7320,7 @@ API int ncuplot_add_sample(struct ncuplot* n, uint64_t x, uint64_t y) __attribut
 ```
 """
 function ncuplot_add_sample(n, x, y)
-    @ccall libnotcurses.ncuplot_add_sample(n::Ptr{ncuplot}, x::UInt64, y::UInt64)::Cint
+    @ccall libnotcurses_core.ncuplot_add_sample(n::Ptr{ncuplot}, x::UInt64, y::UInt64)::Cint
 end
 
 """
@@ -7350,7 +7333,7 @@ API int ncdplot_add_sample(struct ncdplot* n, uint64_t x, double y) __attribute_
 ```
 """
 function ncdplot_add_sample(n, x, y)
-    @ccall libnotcurses.ncdplot_add_sample(n::Ptr{ncdplot}, x::UInt64, y::Cdouble)::Cint
+    @ccall libnotcurses_core.ncdplot_add_sample(n::Ptr{ncdplot}, x::UInt64, y::Cdouble)::Cint
 end
 
 """
@@ -7363,7 +7346,7 @@ API int ncuplot_set_sample(struct ncuplot* n, uint64_t x, uint64_t y) __attribut
 ```
 """
 function ncuplot_set_sample(n, x, y)
-    @ccall libnotcurses.ncuplot_set_sample(n::Ptr{ncuplot}, x::UInt64, y::UInt64)::Cint
+    @ccall libnotcurses_core.ncuplot_set_sample(n::Ptr{ncuplot}, x::UInt64, y::UInt64)::Cint
 end
 
 """
@@ -7376,7 +7359,7 @@ API int ncdplot_set_sample(struct ncdplot* n, uint64_t x, double y) __attribute_
 ```
 """
 function ncdplot_set_sample(n, x, y)
-    @ccall libnotcurses.ncdplot_set_sample(n::Ptr{ncdplot}, x::UInt64, y::Cdouble)::Cint
+    @ccall libnotcurses_core.ncdplot_set_sample(n::Ptr{ncdplot}, x::UInt64, y::Cdouble)::Cint
 end
 
 """
@@ -7389,7 +7372,7 @@ API int ncuplot_sample(const struct ncuplot* n, uint64_t x, uint64_t* y) __attri
 ```
 """
 function ncuplot_sample(n, x, y)
-    @ccall libnotcurses.ncuplot_sample(n::Ptr{ncuplot}, x::UInt64, y::Ptr{UInt64})::Cint
+    @ccall libnotcurses_core.ncuplot_sample(n::Ptr{ncuplot}, x::UInt64, y::Ptr{UInt64})::Cint
 end
 
 """
@@ -7402,7 +7385,7 @@ API int ncdplot_sample(const struct ncdplot* n, uint64_t x, double* y) __attribu
 ```
 """
 function ncdplot_sample(n, x, y)
-    @ccall libnotcurses.ncdplot_sample(n::Ptr{ncdplot}, x::UInt64, y::Ptr{Cdouble})::Cint
+    @ccall libnotcurses_core.ncdplot_sample(n::Ptr{ncdplot}, x::UInt64, y::Ptr{Cdouble})::Cint
 end
 
 """
@@ -7415,7 +7398,7 @@ API void ncuplot_destroy(struct ncuplot* n);
 ```
 """
 function ncuplot_destroy(n)
-    @ccall libnotcurses.ncuplot_destroy(n::Ptr{ncuplot})::Cvoid
+    @ccall libnotcurses_core.ncuplot_destroy(n::Ptr{ncuplot})::Cvoid
 end
 
 """
@@ -7428,7 +7411,7 @@ API void ncdplot_destroy(struct ncdplot* n);
 ```
 """
 function ncdplot_destroy(n)
-    @ccall libnotcurses.ncdplot_destroy(n::Ptr{ncdplot})::Cvoid
+    @ccall libnotcurses_core.ncdplot_destroy(n::Ptr{ncdplot})::Cvoid
 end
 
 # typedef int ( * ncfdplane_callback ) ( struct ncfdplane * n , const void * buf , size_t s , void * curry )
@@ -7463,7 +7446,7 @@ API ALLOC struct ncfdplane* ncfdplane_create(struct ncplane* n, const ncfdplane_
 ```
 """
 function ncfdplane_create(n, opts, fd, cbfxn, donecbfxn)
-    @ccall libnotcurses.ncfdplane_create(n::Ptr{ncplane}, opts::Ptr{ncfdplane_options}, fd::Cint, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncfdplane}
+    @ccall libnotcurses_core.ncfdplane_create(n::Ptr{ncplane}, opts::Ptr{ncfdplane_options}, fd::Cint, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncfdplane}
 end
 
 """
@@ -7476,7 +7459,7 @@ API struct ncplane* ncfdplane_plane(struct ncfdplane* n) __attribute__ ((nonnull
 ```
 """
 function ncfdplane_plane(n)
-    @ccall libnotcurses.ncfdplane_plane(n::Ptr{ncfdplane})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncfdplane_plane(n::Ptr{ncfdplane})::Ptr{ncplane}
 end
 
 """
@@ -7489,7 +7472,7 @@ API int ncfdplane_destroy(struct ncfdplane* n);
 ```
 """
 function ncfdplane_destroy(n)
-    @ccall libnotcurses.ncfdplane_destroy(n::Ptr{ncfdplane})::Cint
+    @ccall libnotcurses_core.ncfdplane_destroy(n::Ptr{ncfdplane})::Cint
 end
 
 struct ncsubproc_options
@@ -7508,7 +7491,7 @@ API ALLOC struct ncsubproc* ncsubproc_createv(struct ncplane* n, const ncsubproc
 ```
 """
 function ncsubproc_createv(n, opts, bin, arg, cbfxn, donecbfxn)
-    @ccall libnotcurses.ncsubproc_createv(n::Ptr{ncplane}, opts::Ptr{ncsubproc_options}, bin::Ptr{Cchar}, arg::Ptr{Ptr{Cchar}}, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncsubproc}
+    @ccall libnotcurses_core.ncsubproc_createv(n::Ptr{ncplane}, opts::Ptr{ncsubproc_options}, bin::Ptr{Cchar}, arg::Ptr{Ptr{Cchar}}, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncsubproc}
 end
 
 """
@@ -7521,7 +7504,7 @@ API ALLOC struct ncsubproc* ncsubproc_createvp(struct ncplane* n, const ncsubpro
 ```
 """
 function ncsubproc_createvp(n, opts, bin, arg, cbfxn, donecbfxn)
-    @ccall libnotcurses.ncsubproc_createvp(n::Ptr{ncplane}, opts::Ptr{ncsubproc_options}, bin::Ptr{Cchar}, arg::Ptr{Ptr{Cchar}}, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncsubproc}
+    @ccall libnotcurses_core.ncsubproc_createvp(n::Ptr{ncplane}, opts::Ptr{ncsubproc_options}, bin::Ptr{Cchar}, arg::Ptr{Ptr{Cchar}}, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncsubproc}
 end
 
 """
@@ -7534,7 +7517,7 @@ API ALLOC struct ncsubproc* ncsubproc_createvpe(struct ncplane* n, const ncsubpr
 ```
 """
 function ncsubproc_createvpe(n, opts, bin, arg, env, cbfxn, donecbfxn)
-    @ccall libnotcurses.ncsubproc_createvpe(n::Ptr{ncplane}, opts::Ptr{ncsubproc_options}, bin::Ptr{Cchar}, arg::Ptr{Ptr{Cchar}}, env::Ptr{Ptr{Cchar}}, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncsubproc}
+    @ccall libnotcurses_core.ncsubproc_createvpe(n::Ptr{ncplane}, opts::Ptr{ncsubproc_options}, bin::Ptr{Cchar}, arg::Ptr{Ptr{Cchar}}, env::Ptr{Ptr{Cchar}}, cbfxn::ncfdplane_callback, donecbfxn::ncfdplane_done_cb)::Ptr{ncsubproc}
 end
 
 """
@@ -7547,7 +7530,7 @@ API struct ncplane* ncsubproc_plane(struct ncsubproc* n) __attribute__ ((nonnull
 ```
 """
 function ncsubproc_plane(n)
-    @ccall libnotcurses.ncsubproc_plane(n::Ptr{ncsubproc})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncsubproc_plane(n::Ptr{ncsubproc})::Ptr{ncplane}
 end
 
 """
@@ -7560,7 +7543,7 @@ API int ncsubproc_destroy(struct ncsubproc* n);
 ```
 """
 function ncsubproc_destroy(n)
-    @ccall libnotcurses.ncsubproc_destroy(n::Ptr{ncsubproc})::Cint
+    @ccall libnotcurses_core.ncsubproc_destroy(n::Ptr{ncsubproc})::Cint
 end
 
 """
@@ -7577,7 +7560,7 @@ API int ncplane_qrcode(struct ncplane* n, unsigned* ymax, unsigned* xmax, const 
 ```
 """
 function ncplane_qrcode(n, ymax, xmax, data, len)
-    @ccall libnotcurses.ncplane_qrcode(n::Ptr{ncplane}, ymax::Ptr{Cuint}, xmax::Ptr{Cuint}, data::Ptr{Cvoid}, len::Csize_t)::Cint
+    @ccall libnotcurses_core.ncplane_qrcode(n::Ptr{ncplane}, ymax::Ptr{Cuint}, xmax::Ptr{Cuint}, data::Ptr{Cvoid}, len::Csize_t)::Cint
 end
 
 struct ncreader_options
@@ -7598,7 +7581,7 @@ API ALLOC struct ncreader* ncreader_create(struct ncplane* n, const ncreader_opt
 ```
 """
 function ncreader_create(n, opts)
-    @ccall libnotcurses.ncreader_create(n::Ptr{ncplane}, opts::Ptr{ncreader_options})::Ptr{ncreader}
+    @ccall libnotcurses_core.ncreader_create(n::Ptr{ncplane}, opts::Ptr{ncreader_options})::Ptr{ncreader}
 end
 
 """
@@ -7611,7 +7594,7 @@ API int ncreader_clear(struct ncreader* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncreader_clear(n)
-    @ccall libnotcurses.ncreader_clear(n::Ptr{ncreader})::Cint
+    @ccall libnotcurses_core.ncreader_clear(n::Ptr{ncreader})::Cint
 end
 
 """
@@ -7624,7 +7607,7 @@ API struct ncplane* ncreader_plane(struct ncreader* n) __attribute__ ((nonnull (
 ```
 """
 function ncreader_plane(n)
-    @ccall libnotcurses.ncreader_plane(n::Ptr{ncreader})::Ptr{ncplane}
+    @ccall libnotcurses_core.ncreader_plane(n::Ptr{ncreader})::Ptr{ncplane}
 end
 
 """
@@ -7639,7 +7622,7 @@ API bool ncreader_offer_input(struct ncreader* n, const ncinput* ni) __attribute
 ```
 """
 function ncreader_offer_input(n, ni)
-    @ccall libnotcurses.ncreader_offer_input(n::Ptr{ncreader}, ni::Ptr{ncinput})::Bool
+    @ccall libnotcurses_core.ncreader_offer_input(n::Ptr{ncreader}, ni::Ptr{ncinput})::Bool
 end
 
 """
@@ -7653,7 +7636,7 @@ API int ncreader_move_left(struct ncreader* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncreader_move_left(n)
-    @ccall libnotcurses.ncreader_move_left(n::Ptr{ncreader})::Cint
+    @ccall libnotcurses_core.ncreader_move_left(n::Ptr{ncreader})::Cint
 end
 
 """
@@ -7666,7 +7649,7 @@ API int ncreader_move_right(struct ncreader* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncreader_move_right(n)
-    @ccall libnotcurses.ncreader_move_right(n::Ptr{ncreader})::Cint
+    @ccall libnotcurses_core.ncreader_move_right(n::Ptr{ncreader})::Cint
 end
 
 """
@@ -7679,7 +7662,7 @@ API int ncreader_move_up(struct ncreader* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncreader_move_up(n)
-    @ccall libnotcurses.ncreader_move_up(n::Ptr{ncreader})::Cint
+    @ccall libnotcurses_core.ncreader_move_up(n::Ptr{ncreader})::Cint
 end
 
 """
@@ -7692,7 +7675,7 @@ API int ncreader_move_down(struct ncreader* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncreader_move_down(n)
-    @ccall libnotcurses.ncreader_move_down(n::Ptr{ncreader})::Cint
+    @ccall libnotcurses_core.ncreader_move_down(n::Ptr{ncreader})::Cint
 end
 
 """
@@ -7706,7 +7689,7 @@ API int ncreader_write_egc(struct ncreader* n, const char* egc) __attribute__ ((
 ```
 """
 function ncreader_write_egc(n, egc)
-    @ccall libnotcurses.ncreader_write_egc(n::Ptr{ncreader}, egc::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncreader_write_egc(n::Ptr{ncreader}, egc::Ptr{Cchar})::Cint
 end
 
 """
@@ -7719,7 +7702,7 @@ API char* ncreader_contents(const struct ncreader* n) __attribute__ ((nonnull (1
 ```
 """
 function ncreader_contents(n)
-    @ccall libnotcurses.ncreader_contents(n::Ptr{ncreader})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncreader_contents(n::Ptr{ncreader})::Ptr{Cchar}
 end
 
 """
@@ -7733,7 +7716,7 @@ API void ncreader_destroy(struct ncreader* n, char** contents);
 ```
 """
 function ncreader_destroy(n, contents)
-    @ccall libnotcurses.ncreader_destroy(n::Ptr{ncreader}, contents::Ptr{Ptr{Cchar}})::Cvoid
+    @ccall libnotcurses_core.ncreader_destroy(n::Ptr{ncreader}, contents::Ptr{Ptr{Cchar}})::Cvoid
 end
 
 """
@@ -7746,7 +7729,7 @@ API ALLOC char* notcurses_accountname(void);
 ```
 """
 function notcurses_accountname()
-    @ccall libnotcurses.notcurses_accountname()::Ptr{Cchar}
+    @ccall libnotcurses_core.notcurses_accountname()::Ptr{Cchar}
 end
 
 """
@@ -7759,7 +7742,7 @@ API ALLOC char* notcurses_hostname(void);
 ```
 """
 function notcurses_hostname()
-    @ccall libnotcurses.notcurses_hostname()::Ptr{Cchar}
+    @ccall libnotcurses_core.notcurses_hostname()::Ptr{Cchar}
 end
 
 """
@@ -7772,7 +7755,7 @@ API ALLOC char* notcurses_osversion(void);
 ```
 """
 function notcurses_osversion()
-    @ccall libnotcurses.notcurses_osversion()::Ptr{Cchar}
+    @ccall libnotcurses_core.notcurses_osversion()::Ptr{Cchar}
 end
 
 """
@@ -7787,26 +7770,7 @@ API void notcurses_debug(const struct notcurses* nc, FILE* debugfp) __attribute_
 ```
 """
 function notcurses_debug(nc, debugfp)
-    @ccall libnotcurses.notcurses_debug(nc::Ptr{notcurses}, debugfp::Ptr{Libc.FILE})::Cvoid
-end
-
-"""
-    ncdirect_init(termtype, fp, flags)
-
-Initialize a direct-mode Notcurses context on the connected terminal at 'fp'.
-'fp' must be a tty. You'll usually want stdout. Direct mode supports a
-limited subset of Notcurses routines which directly affect 'fp', and neither
-supports nor requires notcurses_render(). This can be used to add color and
-styling to text in the standard output paradigm. 'flags' is a bitmask over
-NCDIRECT_OPTION_*.
-Returns NULL on error, including any failure initializing terminfo.
-### Prototype
-```c
-API ALLOC struct ncdirect* ncdirect_init(const char* termtype, FILE* fp, uint64_t flags);
-```
-"""
-function ncdirect_init(termtype, fp, flags)
-    @ccall libnotcurses.ncdirect_init(termtype::Ptr{Cchar}, fp::Ptr{Libc.FILE}, flags::UInt64)::Ptr{ncdirect}
+    @ccall libnotcurses_core.notcurses_debug(nc::Ptr{notcurses}, debugfp::Ptr{Libc.FILE})::Cvoid
 end
 
 """
@@ -7820,7 +7784,7 @@ API ALLOC struct ncdirect* ncdirect_core_init(const char* termtype, FILE* fp, ui
 ```
 """
 function ncdirect_core_init(termtype, fp, flags)
-    @ccall libnotcurses.ncdirect_core_init(termtype::Ptr{Cchar}, fp::Ptr{Libc.FILE}, flags::UInt64)::Ptr{ncdirect}
+    @ccall libnotcurses_core.ncdirect_core_init(termtype::Ptr{Cchar}, fp::Ptr{Libc.FILE}, flags::UInt64)::Ptr{ncdirect}
 end
 
 """
@@ -7834,7 +7798,7 @@ __attribute__ ((nonnull (1))) API ALLOC char* ncdirect_readline(struct ncdirect*
 ```
 """
 function ncdirect_readline(nc, prompt)
-    @ccall libnotcurses.ncdirect_readline(nc::Ptr{ncdirect}, prompt::Ptr{Cchar})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncdirect_readline(nc::Ptr{ncdirect}, prompt::Ptr{Cchar})::Ptr{Cchar}
 end
 
 """
@@ -7849,7 +7813,7 @@ API int ncdirect_set_fg_rgb(struct ncdirect* nc, unsigned rgb) __attribute__ ((n
 ```
 """
 function ncdirect_set_fg_rgb(nc, rgb)
-    @ccall libnotcurses.ncdirect_set_fg_rgb(nc::Ptr{ncdirect}, rgb::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_set_fg_rgb(nc::Ptr{ncdirect}, rgb::Cuint)::Cint
 end
 
 """
@@ -7862,7 +7826,7 @@ API int ncdirect_set_bg_rgb(struct ncdirect* nc, unsigned rgb) __attribute__ ((n
 ```
 """
 function ncdirect_set_bg_rgb(nc, rgb)
-    @ccall libnotcurses.ncdirect_set_bg_rgb(nc::Ptr{ncdirect}, rgb::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_set_bg_rgb(nc::Ptr{ncdirect}, rgb::Cuint)::Cint
 end
 
 """
@@ -7875,7 +7839,7 @@ API int ncdirect_set_fg_palindex(struct ncdirect* nc, int pidx) __attribute__ ((
 ```
 """
 function ncdirect_set_fg_palindex(nc, pidx)
-    @ccall libnotcurses.ncdirect_set_fg_palindex(nc::Ptr{ncdirect}, pidx::Cint)::Cint
+    @ccall libnotcurses_core.ncdirect_set_fg_palindex(nc::Ptr{ncdirect}, pidx::Cint)::Cint
 end
 
 """
@@ -7888,7 +7852,7 @@ API int ncdirect_set_bg_palindex(struct ncdirect* nc, int pidx) __attribute__ ((
 ```
 """
 function ncdirect_set_bg_palindex(nc, pidx)
-    @ccall libnotcurses.ncdirect_set_bg_palindex(nc::Ptr{ncdirect}, pidx::Cint)::Cint
+    @ccall libnotcurses_core.ncdirect_set_bg_palindex(nc::Ptr{ncdirect}, pidx::Cint)::Cint
 end
 
 """
@@ -7903,7 +7867,7 @@ API unsigned ncdirect_palette_size(const struct ncdirect* nc) __attribute__ ((no
 ```
 """
 function ncdirect_palette_size(nc)
-    @ccall libnotcurses.ncdirect_palette_size(nc::Ptr{ncdirect})::Cuint
+    @ccall libnotcurses_core.ncdirect_palette_size(nc::Ptr{ncdirect})::Cuint
 end
 
 """
@@ -7918,7 +7882,7 @@ API int ncdirect_putstr(struct ncdirect* nc, uint64_t channels, const char* utf8
 ```
 """
 function ncdirect_putstr(nc, channels, utf8)
-    @ccall libnotcurses.ncdirect_putstr(nc::Ptr{ncdirect}, channels::UInt64, utf8::Ptr{Cchar})::Cint
+    @ccall libnotcurses_core.ncdirect_putstr(nc::Ptr{ncdirect}, channels::UInt64, utf8::Ptr{Cchar})::Cint
 end
 
 """
@@ -7934,7 +7898,7 @@ API int ncdirect_putegc(struct ncdirect* nc, uint64_t channels, const char* utf8
 ```
 """
 function ncdirect_putegc(nc, channels, utf8, sbytes)
-    @ccall libnotcurses.ncdirect_putegc(nc::Ptr{ncdirect}, channels::UInt64, utf8::Ptr{Cchar}, sbytes::Ptr{Cint})::Cint
+    @ccall libnotcurses_core.ncdirect_putegc(nc::Ptr{ncdirect}, channels::UInt64, utf8::Ptr{Cchar}, sbytes::Ptr{Cint})::Cint
 end
 
 """
@@ -7947,7 +7911,7 @@ API int ncdirect_flush(const struct ncdirect* nc) __attribute__ ((nonnull (1)));
 ```
 """
 function ncdirect_flush(nc)
-    @ccall libnotcurses.ncdirect_flush(nc::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_flush(nc::Ptr{ncdirect})::Cint
 end
 
 """
@@ -7960,7 +7924,7 @@ static inline int ncdirect_set_bg_rgb8(struct ncdirect* nc, unsigned r, unsigned
 ```
 """
 function ncdirect_set_bg_rgb8(nc, r, g, b)
-    @ccall libnotcurses.ncdirect_set_bg_rgb8(nc::Ptr{ncdirect}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_set_bg_rgb8(nc::Ptr{ncdirect}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -7973,7 +7937,7 @@ static inline int ncdirect_set_fg_rgb8(struct ncdirect* nc, unsigned r, unsigned
 ```
 """
 function ncdirect_set_fg_rgb8(nc, r, g, b)
-    @ccall libnotcurses.ncdirect_set_fg_rgb8(nc::Ptr{ncdirect}, r::Cuint, g::Cuint, b::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_set_fg_rgb8(nc::Ptr{ncdirect}, r::Cuint, g::Cuint, b::Cuint)::Cint
 end
 
 """
@@ -7986,7 +7950,7 @@ API int ncdirect_set_fg_default(struct ncdirect* nc) __attribute__ ((nonnull (1)
 ```
 """
 function ncdirect_set_fg_default(nc)
-    @ccall libnotcurses.ncdirect_set_fg_default(nc::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_set_fg_default(nc::Ptr{ncdirect})::Cint
 end
 
 """
@@ -7999,7 +7963,7 @@ API int ncdirect_set_bg_default(struct ncdirect* nc) __attribute__ ((nonnull (1)
 ```
 """
 function ncdirect_set_bg_default(nc)
-    @ccall libnotcurses.ncdirect_set_bg_default(nc::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_set_bg_default(nc::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8012,7 +7976,7 @@ API unsigned ncdirect_dim_x(struct ncdirect* nc) __attribute__ ((nonnull (1)));
 ```
 """
 function ncdirect_dim_x(nc)
-    @ccall libnotcurses.ncdirect_dim_x(nc::Ptr{ncdirect})::Cuint
+    @ccall libnotcurses_core.ncdirect_dim_x(nc::Ptr{ncdirect})::Cuint
 end
 
 """
@@ -8025,7 +7989,7 @@ API unsigned ncdirect_dim_y(struct ncdirect* nc) __attribute__ ((nonnull (1)));
 ```
 """
 function ncdirect_dim_y(nc)
-    @ccall libnotcurses.ncdirect_dim_y(nc::Ptr{ncdirect})::Cuint
+    @ccall libnotcurses_core.ncdirect_dim_y(nc::Ptr{ncdirect})::Cuint
 end
 
 """
@@ -8041,7 +8005,7 @@ API uint16_t ncdirect_supported_styles(const struct ncdirect* nc) __attribute__ 
 ```
 """
 function ncdirect_supported_styles(nc)
-    @ccall libnotcurses.ncdirect_supported_styles(nc::Ptr{ncdirect})::UInt16
+    @ccall libnotcurses_core.ncdirect_supported_styles(nc::Ptr{ncdirect})::UInt16
 end
 
 """
@@ -8054,7 +8018,7 @@ API int ncdirect_set_styles(struct ncdirect* n, unsigned stylebits) __attribute_
 ```
 """
 function ncdirect_set_styles(n, stylebits)
-    @ccall libnotcurses.ncdirect_set_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_set_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
 end
 
 """
@@ -8067,7 +8031,7 @@ API int ncdirect_on_styles(struct ncdirect* n, unsigned stylebits) __attribute__
 ```
 """
 function ncdirect_on_styles(n, stylebits)
-    @ccall libnotcurses.ncdirect_on_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_on_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
 end
 
 """
@@ -8080,7 +8044,7 @@ API int ncdirect_off_styles(struct ncdirect* n, unsigned stylebits) __attribute_
 ```
 """
 function ncdirect_off_styles(n, stylebits)
-    @ccall libnotcurses.ncdirect_off_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_off_styles(n::Ptr{ncdirect}, stylebits::Cuint)::Cint
 end
 
 """
@@ -8093,7 +8057,7 @@ API uint16_t ncdirect_styles(const struct ncdirect* n) __attribute__ ((nonnull (
 ```
 """
 function ncdirect_styles(n)
-    @ccall libnotcurses.ncdirect_styles(n::Ptr{ncdirect})::UInt16
+    @ccall libnotcurses_core.ncdirect_styles(n::Ptr{ncdirect})::UInt16
 end
 
 """
@@ -8106,7 +8070,7 @@ API int ncdirect_cursor_move_yx(struct ncdirect* n, int y, int x) __attribute__ 
 ```
 """
 function ncdirect_cursor_move_yx(n, y, x)
-    @ccall libnotcurses.ncdirect_cursor_move_yx(n::Ptr{ncdirect}, y::Cint, x::Cint)::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_move_yx(n::Ptr{ncdirect}, y::Cint, x::Cint)::Cint
 end
 
 """
@@ -8119,7 +8083,7 @@ API int ncdirect_cursor_enable(struct ncdirect* nc) __attribute__ ((nonnull (1))
 ```
 """
 function ncdirect_cursor_enable(nc)
-    @ccall libnotcurses.ncdirect_cursor_enable(nc::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_enable(nc::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8132,7 +8096,7 @@ API int ncdirect_cursor_disable(struct ncdirect* nc) __attribute__ ((nonnull (1)
 ```
 """
 function ncdirect_cursor_disable(nc)
-    @ccall libnotcurses.ncdirect_cursor_disable(nc::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_disable(nc::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8145,7 +8109,7 @@ API int ncdirect_cursor_up(struct ncdirect* nc, int num) __attribute__ ((nonnull
 ```
 """
 function ncdirect_cursor_up(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_up(nc::Ptr{ncdirect}, num::Cint)::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_up(nc::Ptr{ncdirect}, num::Cint)::Cint
 end
 
 """
@@ -8158,7 +8122,7 @@ API int ncdirect_cursor_left(struct ncdirect* nc, int num) __attribute__ ((nonnu
 ```
 """
 function ncdirect_cursor_left(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_left(nc::Ptr{ncdirect}, num::Cint)::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_left(nc::Ptr{ncdirect}, num::Cint)::Cint
 end
 
 """
@@ -8171,7 +8135,7 @@ API int ncdirect_cursor_right(struct ncdirect* nc, int num) __attribute__ ((nonn
 ```
 """
 function ncdirect_cursor_right(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_right(nc::Ptr{ncdirect}, num::Cint)::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_right(nc::Ptr{ncdirect}, num::Cint)::Cint
 end
 
 """
@@ -8184,7 +8148,7 @@ API int ncdirect_cursor_down(struct ncdirect* nc, int num) __attribute__ ((nonnu
 ```
 """
 function ncdirect_cursor_down(nc, num)
-    @ccall libnotcurses.ncdirect_cursor_down(nc::Ptr{ncdirect}, num::Cint)::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_down(nc::Ptr{ncdirect}, num::Cint)::Cint
 end
 
 """
@@ -8199,7 +8163,7 @@ API int ncdirect_cursor_yx(struct ncdirect* n, unsigned* y, unsigned* x) __attri
 ```
 """
 function ncdirect_cursor_yx(n, y, x)
-    @ccall libnotcurses.ncdirect_cursor_yx(n::Ptr{ncdirect}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_yx(n::Ptr{ncdirect}, y::Ptr{Cuint}, x::Ptr{Cuint})::Cint
 end
 
 """
@@ -8213,7 +8177,7 @@ API int ncdirect_cursor_push(struct ncdirect* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncdirect_cursor_push(n)
-    @ccall libnotcurses.ncdirect_cursor_push(n::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_push(n::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8226,7 +8190,7 @@ API int ncdirect_cursor_pop(struct ncdirect* n) __attribute__ ((nonnull (1)));
 ```
 """
 function ncdirect_cursor_pop(n)
-    @ccall libnotcurses.ncdirect_cursor_pop(n::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_cursor_pop(n::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8239,7 +8203,7 @@ API int ncdirect_clear(struct ncdirect* nc) __attribute__ ((nonnull (1)));
 ```
 """
 function ncdirect_clear(nc)
-    @ccall libnotcurses.ncdirect_clear(nc::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_clear(nc::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8252,7 +8216,7 @@ API const nccapabilities* ncdirect_capabilities(const struct ncdirect* n) __attr
 ```
 """
 function ncdirect_capabilities(n)
-    @ccall libnotcurses.ncdirect_capabilities(n::Ptr{ncdirect})::Ptr{nccapabilities}
+    @ccall libnotcurses_core.ncdirect_capabilities(n::Ptr{ncdirect})::Ptr{nccapabilities}
 end
 
 """
@@ -8269,7 +8233,7 @@ API int ncdirect_hline_interp(struct ncdirect* n, const char* egc, unsigned len,
 ```
 """
 function ncdirect_hline_interp(n, egc, len, h1, h2)
-    @ccall libnotcurses.ncdirect_hline_interp(n::Ptr{ncdirect}, egc::Ptr{Cchar}, len::Cuint, h1::UInt64, h2::UInt64)::Cint
+    @ccall libnotcurses_core.ncdirect_hline_interp(n::Ptr{ncdirect}, egc::Ptr{Cchar}, len::Cuint, h1::UInt64, h2::UInt64)::Cint
 end
 
 """
@@ -8282,7 +8246,7 @@ API int ncdirect_vline_interp(struct ncdirect* n, const char* egc, unsigned len,
 ```
 """
 function ncdirect_vline_interp(n, egc, len, h1, h2)
-    @ccall libnotcurses.ncdirect_vline_interp(n::Ptr{ncdirect}, egc::Ptr{Cchar}, len::Cuint, h1::UInt64, h2::UInt64)::Cint
+    @ccall libnotcurses_core.ncdirect_vline_interp(n::Ptr{ncdirect}, egc::Ptr{Cchar}, len::Cuint, h1::UInt64, h2::UInt64)::Cint
 end
 
 """
@@ -8298,7 +8262,7 @@ API int ncdirect_box(struct ncdirect* n, uint64_t ul, uint64_t ur, uint64_t ll, 
 ```
 """
 function ncdirect_box(n, ul, ur, ll, lr, wchars, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, wchars::Ptr{Cwchar_t}, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, wchars::Ptr{Cwchar_t}, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -8311,7 +8275,7 @@ __attribute__ ((nonnull (1))) static inline int ncdirect_light_box(struct ncdire
 ```
 """
 function ncdirect_light_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_light_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_light_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -8324,7 +8288,7 @@ __attribute__ ((nonnull (1))) static inline int ncdirect_heavy_box(struct ncdire
 ```
 """
 function ncdirect_heavy_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_heavy_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_heavy_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -8337,7 +8301,7 @@ __attribute__ ((nonnull (1))) static inline int ncdirect_ascii_box(struct ncdire
 ```
 """
 function ncdirect_ascii_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_ascii_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_ascii_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -8350,7 +8314,7 @@ API int ncdirect_rounded_box(struct ncdirect* n, uint64_t ul, uint64_t ur, uint6
 ```
 """
 function ncdirect_rounded_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_rounded_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_rounded_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -8363,7 +8327,7 @@ API int ncdirect_double_box(struct ncdirect* n, uint64_t ul, uint64_t ur, uint64
 ```
 """
 function ncdirect_double_box(n, ul, ur, ll, lr, ylen, xlen, ctlword)
-    @ccall libnotcurses.ncdirect_double_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
+    @ccall libnotcurses_core.ncdirect_double_box(n::Ptr{ncdirect}, ul::UInt64, ur::UInt64, ll::UInt64, lr::UInt64, ylen::Cuint, xlen::Cuint, ctlword::Cuint)::Cint
 end
 
 """
@@ -8380,7 +8344,7 @@ API uint32_t ncdirect_get(struct ncdirect* n, const struct timespec* absdl, ncin
 ```
 """
 function ncdirect_get(n, absdl, ni)
-    @ccall libnotcurses.ncdirect_get(n::Ptr{ncdirect}, absdl::Ptr{Cvoid}, ni::Ptr{ncinput})::UInt32
+    @ccall libnotcurses_core.ncdirect_get(n::Ptr{ncdirect}, absdl::Ptr{Cvoid}, ni::Ptr{ncinput})::UInt32
 end
 
 """
@@ -8396,7 +8360,7 @@ API int ncdirect_inputready_fd(struct ncdirect* n) __attribute__ ((nonnull (1)))
 ```
 """
 function ncdirect_inputready_fd(n)
-    @ccall libnotcurses.ncdirect_inputready_fd(n::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_inputready_fd(n::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8410,7 +8374,7 @@ static inline uint32_t ncdirect_get_nblock(struct ncdirect* n, ncinput* ni);
 ```
 """
 function ncdirect_get_nblock(n, ni)
-    @ccall libnotcurses.ncdirect_get_nblock(n::Ptr{ncdirect}, ni::Ptr{ncinput})::UInt32
+    @ccall libnotcurses_core.ncdirect_get_nblock(n::Ptr{ncdirect}, ni::Ptr{ncinput})::UInt32
 end
 
 """
@@ -8424,7 +8388,7 @@ static inline uint32_t ncdirect_get_blocking(struct ncdirect* n, ncinput* ni);
 ```
 """
 function ncdirect_get_blocking(n, ni)
-    @ccall libnotcurses.ncdirect_get_blocking(n::Ptr{ncdirect}, ni::Ptr{ncinput})::UInt32
+    @ccall libnotcurses_core.ncdirect_get_blocking(n::Ptr{ncdirect}, ni::Ptr{ncinput})::UInt32
 end
 
 """
@@ -8437,7 +8401,7 @@ API int ncdirect_stop(struct ncdirect* nc);
 ```
 """
 function ncdirect_stop(nc)
-    @ccall libnotcurses.ncdirect_stop(nc::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_stop(nc::Ptr{ncdirect})::Cint
 end
 
 const ncdirectv = ncplane
@@ -8457,7 +8421,7 @@ API int ncdirect_render_image(struct ncdirect* n, const char* filename, ncalign_
 ```
 """
 function ncdirect_render_image(n, filename, align, blitter, scale)
-    @ccall libnotcurses.ncdirect_render_image(n::Ptr{ncdirect}, filename::Ptr{Cchar}, align::ncalign_e, blitter::ncblitter_e, scale::ncscale_e)::Cint
+    @ccall libnotcurses_core.ncdirect_render_image(n::Ptr{ncdirect}, filename::Ptr{Cchar}, align::ncalign_e, blitter::ncblitter_e, scale::ncscale_e)::Cint
 end
 
 """
@@ -8475,7 +8439,7 @@ API ALLOC ncdirectv* ncdirect_render_frame(struct ncdirect* n, const char* filen
 ```
 """
 function ncdirect_render_frame(n, filename, blitter, scale, maxy, maxx)
-    @ccall libnotcurses.ncdirect_render_frame(n::Ptr{ncdirect}, filename::Ptr{Cchar}, blitter::ncblitter_e, scale::ncscale_e, maxy::Cint, maxx::Cint)::Ptr{ncdirectv}
+    @ccall libnotcurses_core.ncdirect_render_frame(n::Ptr{ncdirect}, filename::Ptr{Cchar}, blitter::ncblitter_e, scale::ncscale_e, maxy::Cint, maxx::Cint)::Ptr{ncdirectv}
 end
 
 """
@@ -8489,7 +8453,7 @@ API int ncdirect_raster_frame(struct ncdirect* n, ncdirectv* ncdv, ncalign_e ali
 ```
 """
 function ncdirect_raster_frame(n, ncdv, align)
-    @ccall libnotcurses.ncdirect_raster_frame(n::Ptr{ncdirect}, ncdv::Ptr{ncdirectv}, align::ncalign_e)::Cint
+    @ccall libnotcurses_core.ncdirect_raster_frame(n::Ptr{ncdirect}, ncdv::Ptr{ncdirectv}, align::ncalign_e)::Cint
 end
 
 """
@@ -8505,7 +8469,7 @@ API ALLOC ncdirectf* ncdirectf_from_file(struct ncdirect* n, const char* filenam
 ```
 """
 function ncdirectf_from_file(n, filename)
-    @ccall libnotcurses.ncdirectf_from_file(n::Ptr{ncdirect}, filename::Ptr{Cchar})::Ptr{ncdirectf}
+    @ccall libnotcurses_core.ncdirectf_from_file(n::Ptr{ncdirect}, filename::Ptr{Cchar})::Ptr{ncdirectf}
 end
 
 """
@@ -8518,7 +8482,7 @@ API void ncdirectf_free(ncdirectf* frame);
 ```
 """
 function ncdirectf_free(frame)
-    @ccall libnotcurses.ncdirectf_free(frame::Ptr{ncdirectf})::Cvoid
+    @ccall libnotcurses_core.ncdirectf_free(frame::Ptr{ncdirectf})::Cvoid
 end
 
 """
@@ -8533,7 +8497,7 @@ API ALLOC ncdirectv* ncdirectf_render(struct ncdirect* n, ncdirectf* frame, cons
 ```
 """
 function ncdirectf_render(n, frame, vopts)
-    @ccall libnotcurses.ncdirectf_render(n::Ptr{ncdirect}, frame::Ptr{ncdirectf}, vopts::Ptr{ncvisual_options})::Ptr{ncdirectv}
+    @ccall libnotcurses_core.ncdirectf_render(n::Ptr{ncdirect}, frame::Ptr{ncdirectf}, vopts::Ptr{ncvisual_options})::Ptr{ncdirectv}
 end
 
 """
@@ -8546,7 +8510,7 @@ API int ncdirectf_geom(struct ncdirect* n, ncdirectf* frame, const struct ncvisu
 ```
 """
 function ncdirectf_geom(n, frame, vopts, geom)
-    @ccall libnotcurses.ncdirectf_geom(n::Ptr{ncdirect}, frame::Ptr{ncdirectf}, vopts::Ptr{ncvisual_options}, geom::Ptr{ncvgeom})::Cint
+    @ccall libnotcurses_core.ncdirectf_geom(n::Ptr{ncdirect}, frame::Ptr{ncdirectf}, vopts::Ptr{ncvisual_options}, geom::Ptr{ncvgeom})::Cint
 end
 
 """
@@ -8559,7 +8523,7 @@ API int ncdirect_stream(struct ncdirect* n, const char* filename, ncstreamcb str
 ```
 """
 function ncdirect_stream(n, filename, streamer, vopts, curry)
-    @ccall libnotcurses.ncdirect_stream(n::Ptr{ncdirect}, filename::Ptr{Cchar}, streamer::ncstreamcb, vopts::Ptr{ncvisual_options}, curry::Ptr{Cvoid})::Cint
+    @ccall libnotcurses_core.ncdirect_stream(n::Ptr{ncdirect}, filename::Ptr{Cchar}, streamer::ncstreamcb, vopts::Ptr{ncvisual_options}, curry::Ptr{Cvoid})::Cint
 end
 
 """
@@ -8572,7 +8536,7 @@ ALLOC API char* ncdirect_detected_terminal(const struct ncdirect* n) __attribute
 ```
 """
 function ncdirect_detected_terminal(n)
-    @ccall libnotcurses.ncdirect_detected_terminal(n::Ptr{ncdirect})::Ptr{Cchar}
+    @ccall libnotcurses_core.ncdirect_detected_terminal(n::Ptr{ncdirect})::Ptr{Cchar}
 end
 
 """
@@ -8585,7 +8549,7 @@ static inline bool ncdirect_cantruecolor(const struct ncdirect* n);
 ```
 """
 function ncdirect_cantruecolor(n)
-    @ccall libnotcurses.ncdirect_cantruecolor(n::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_cantruecolor(n::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8598,7 +8562,7 @@ static inline bool ncdirect_canchangecolor(const struct ncdirect* n);
 ```
 """
 function ncdirect_canchangecolor(n)
-    @ccall libnotcurses.ncdirect_canchangecolor(n::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canchangecolor(n::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8611,7 +8575,7 @@ static inline bool ncdirect_canfade(const struct ncdirect* n);
 ```
 """
 function ncdirect_canfade(n)
-    @ccall libnotcurses.ncdirect_canfade(n::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canfade(n::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8624,7 +8588,7 @@ static inline bool ncdirect_canopen_images(const struct ncdirect* n __attribute_
 ```
 """
 function ncdirect_canopen_images(n)
-    @ccall libnotcurses.ncdirect_canopen_images(n::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canopen_images(n::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8637,7 +8601,7 @@ static inline bool ncdirect_canopen_videos(const struct ncdirect* n __attribute_
 ```
 """
 function ncdirect_canopen_videos(n)
-    @ccall libnotcurses.ncdirect_canopen_videos(n::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canopen_videos(n::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8650,7 +8614,7 @@ API bool ncdirect_canutf8(const struct ncdirect* n) __attribute__ ((nonnull (1))
 ```
 """
 function ncdirect_canutf8(n)
-    @ccall libnotcurses.ncdirect_canutf8(n::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canutf8(n::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8663,7 +8627,7 @@ API int ncdirect_check_pixel_support(const struct ncdirect* n) __attribute__ ((n
 ```
 """
 function ncdirect_check_pixel_support(n)
-    @ccall libnotcurses.ncdirect_check_pixel_support(n::Ptr{ncdirect})::Cint
+    @ccall libnotcurses_core.ncdirect_check_pixel_support(n::Ptr{ncdirect})::Cint
 end
 
 """
@@ -8676,7 +8640,7 @@ static inline bool ncdirect_canhalfblock(const struct ncdirect* nc);
 ```
 """
 function ncdirect_canhalfblock(nc)
-    @ccall libnotcurses.ncdirect_canhalfblock(nc::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canhalfblock(nc::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8689,7 +8653,7 @@ static inline bool ncdirect_canquadrant(const struct ncdirect* nc);
 ```
 """
 function ncdirect_canquadrant(nc)
-    @ccall libnotcurses.ncdirect_canquadrant(nc::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canquadrant(nc::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8702,7 +8666,7 @@ static inline bool ncdirect_cansextant(const struct ncdirect* nc);
 ```
 """
 function ncdirect_cansextant(nc)
-    @ccall libnotcurses.ncdirect_cansextant(nc::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_cansextant(nc::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8715,7 +8679,7 @@ static inline bool ncdirect_canbraille(const struct ncdirect* nc);
 ```
 """
 function ncdirect_canbraille(nc)
-    @ccall libnotcurses.ncdirect_canbraille(nc::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canbraille(nc::Ptr{ncdirect})::Bool
 end
 
 """
@@ -8729,7 +8693,7 @@ API bool ncdirect_canget_cursor(const struct ncdirect* nc) __attribute__ ((nonnu
 ```
 """
 function ncdirect_canget_cursor(nc)
-    @ccall libnotcurses.ncdirect_canget_cursor(nc::Ptr{ncdirect})::Bool
+    @ccall libnotcurses_core.ncdirect_canget_cursor(nc::Ptr{ncdirect})::Bool
 end
 
 htole(x) = __bswap_32(htonl(x))
@@ -9215,6 +9179,41 @@ const NCDIRECT_OPTION_NO_QUIT_SIGHANDLERS = Culonglong(0x0008)
 const NCDIRECT_OPTION_VERBOSE = Culonglong(0x0010)
 
 const NCDIRECT_OPTION_VERY_VERBOSE = Culonglong(0x0020)
+
+"""
+    ncdirect_init(termtype, fp, flags)
+
+Initialize a direct-mode Notcurses context on the connected terminal at 'fp'.
+'fp' must be a tty. You'll usually want stdout. Direct mode supports a
+limited subset of Notcurses routines which directly affect 'fp', and neither
+supports nor requires notcurses_render(). This can be used to add color and
+styling to text in the standard output paradigm. 'flags' is a bitmask over
+NCDIRECT_OPTION_*.
+Returns NULL on error, including any failure initializing terminfo.
+### Prototype
+```c
+API ALLOC struct ncdirect* ncdirect_init(const char* termtype, FILE* fp, uint64_t flags);
+```
+"""
+function ncdirect_init(termtype, fp, flags)
+    @ccall libnotcurses.ncdirect_init(termtype::Ptr{Cchar}, fp::Ptr{Libc.FILE}, flags::UInt64)::Ptr{ncdirect}
+end
+
+"""
+    notcurses_init(opts, fp)
+
+Initialize a Notcurses context on the connected terminal at 'fp'. 'fp' must
+be a tty. You'll usually want stdout. NULL can be supplied for 'fp', in
+which case /dev/tty will be opened. Returns NULL on error, including any
+failure initializing terminfo.
+### Prototype
+```c
+API ALLOC struct notcurses* notcurses_init(const notcurses_options* opts, FILE* fp);
+```
+"""
+function notcurses_init(opts, fp)
+    @ccall libnotcurses.notcurses_init(opts::Ptr{notcurses_options}, fp::Ptr{Libc.FILE})::Ptr{notcurses}
+end
 
 # exports
 const PREFIXES = ["nc", "notcurses"]
