@@ -2,9 +2,9 @@ using Notcurses
 
 nc = NotCurses()
 
-plane = stdplane(nc)
-putstr(plane, "Hello, World!")
+plane = Notcurses.stdplane(nc)
+Notcurses.putstr(plane, "Hello, World!")
 
-render(nc)
+Notcurses.render(nc)
 
 sleep(3)

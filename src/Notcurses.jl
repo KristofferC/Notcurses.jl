@@ -1,7 +1,7 @@
 module Notcurses
 
 export Ncplane, putstr
-export NotCurses, render, stdplane
+export NotCurses
 export NcDirect
 
 export cursor_enable, cursor_disable, set_fg
@@ -30,12 +30,20 @@ throw_nc(str) = throw(NotCursesException(str))
 struct Ncplane
     plane_ptr::Ptr{LibNotcurses.ncplane}
 end
+Base.cconvert(::Type{Ptr{LibNotcurses.ncplane}}, nc::Ncplane) = nc.plane_ptr
+
 putstr(n::Ncplane, str::AbstractString) = LibNotcurses.ncplane_putstr(n.plane_ptr, str)
+putstr_yx(n::Ncplane, y::Integer, x::Integer, str::AbstractString) = LibNotcurses.ncplane_putstr_yx(n.plane_ptr, y, x, str)
+
+set_bg_rgb8_clipped(n::Ncplane, r::Integer, g::Integer, b::Integer) = LibNotcurses.ncplane_set_bg_rgb8_clipped(n.plane_ptr, r, g, b)
+set_fg_rgb8_clipped(n::Ncplane, r::Integer, g::Integer, b::Integer) = LibNotcurses.ncplane_set_fg_rgb8_clipped(n.plane_ptr, r, g, b)
+
+set_bg_rgb8(n::Ncplane, r::Integer, g::Integer, b::Integer) = LibNotcurses.ncplane_set_bg_rgb8(n.plane_ptr, r, g, b)
+set_fg_rgb8(n::Ncplane, r::Integer, g::Integer, b::Integer) = LibNotcurses.ncplane_set_fg_rgb8(n.plane_ptr, r, g, b)
+
 
 LibNotcurses.notcurses_options() = 
     LibNotcurses.notcurses_options(C_NULL, LibNotcurses.NCLOGLEVEL_PANIC, 0, 0, 0, 0, 0)
-
-
 
 mutable struct NotCurses
     opts::LibNotcurses.notcurses_options
