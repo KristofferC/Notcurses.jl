@@ -1,5 +1,8 @@
 module LibNotcurses
 
+# using Notcurses_jll
+# export Notcurses_jll
+
 using CEnum
 
 using Libdl
@@ -408,6 +411,7 @@ end
     NCLOGLEVEL_DEBUG = 6
     NCLOGLEVEL_TRACE = 7
 end
+
 
 struct notcurses_options
     termtype::Ptr{Cchar}
@@ -3183,7 +3187,7 @@ const NCDIRECT_OPTION_VERBOSE = Culonglong(0x0010)
 const NCDIRECT_OPTION_VERY_VERBOSE = Culonglong(0x0020)
 
 # exports
-const PREFIXES = ["nc"]
+const PREFIXES = ["nc", "notcurses"]
 for name in names(@__MODULE__; all=true), prefix in PREFIXES
     if startswith(string(name), prefix)
         @eval export $name

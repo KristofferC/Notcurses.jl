@@ -2,5 +2,5 @@ using Notcurses
 using Test
 
 @testset "Notcurses.jl" begin
-    # Write your tests here.
+    @test Notcurses.version() == "3.0.1"
 end

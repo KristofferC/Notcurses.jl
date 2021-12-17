@@ -66,6 +66,12 @@ uuid = "29816b5a-b9ab-546f-933c-edad1886dfa8"
 [[deps.Libdl]]
 uuid = "8f399da3-3557-5675-b5ff-fb832c97cbdb"
 
+[[deps.Libiconv_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "42b62845d70a619f063a7da093d995ec8e15e778"
+uuid = "94ce4f54-9a6c-5748-9c1c-f9c7231a4531"
+version = "1.16.1+1"
+
 [[deps.Logging]]
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
@@ -80,8 +86,20 @@ uuid = "c8ffd9c3-330d-5841-b78e-0817d7145fa1"
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
 
+[[deps.Ncurses_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "e3fb71f3c971fdc8523f9ef3906691124f3048a2"
+uuid = "68e3532b-a499-55ff-9963-d1c0c0748b3a"
+version = "6.2.0+0"
+
 [[deps.NetworkOptions]]
 uuid = "ca575930-c2e3-43a9-ace4-1e988b2c1908"
+
+[[deps.Notcurses_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Ncurses_jll", "Pkg", "libdeflate_jll", "libunistring_jll"]
+git-tree-sha1 = "d3c64acb2b1915f747b393a48676857df0d19cc9"
+uuid = "56927b6a-812d-5b37-a4c6-b46ab6359194"
+version = "3.0.0+0"
 
 [[deps.Pkg]]
 deps = ["Artifacts", "Dates", "Downloads", "LibGit2", "Libdl", "Logging", "Markdown", "Printf", "REPL", "Random", "SHA", "Serialization", "TOML", "Tar", "UUIDs", "p7zip_jll"]
@@ -136,6 +154,18 @@ uuid = "83775a58-1f1d-513f-b197-d71354ab007a"
 [[deps.libLLVM_jll]]
 deps = ["Artifacts", "Libdl"]
 uuid = "8f36deef-c2a5-5394-99ed-8e07531fb29a"
+
+[[deps.libdeflate_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Pkg"]
+git-tree-sha1 = "4169f72885db5d0cb53561430ae2f8b3e7896a8e"
+uuid = "46979653-d7f6-5232-b59e-dd310c4598de"
+version = "1.8.0+0"
+
+[[deps.libunistring_jll]]
+deps = ["Artifacts", "JLLWrappers", "Libdl", "Libiconv_jll", "Pkg"]
+git-tree-sha1 = "cbeab130932dc9fe49bed291f4cd23a1ae5f4328"
+uuid = "6db05002-db9d-53dd-a359-17d4854bdf22"
+version = "0.9.10+0"
 
 [[deps.nghttp2_jll]]
 deps = ["Artifacts", "Libdl"]

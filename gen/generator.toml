@@ -2,7 +2,8 @@
 library_name = "libnotcurses"
 output_file_path = "../lib/LibNotcurses.jl"
 module_name = "LibNotcurses"
-export_symbol_prefixes = ["nc"]
+jll_pkg_name = "Notcurses_jll"
+export_symbol_prefixes = ["nc", "notcurses"]
 prologue_file_path = "./prologue.jl"
 output_ignorelist = [
     "RESTRICT"
