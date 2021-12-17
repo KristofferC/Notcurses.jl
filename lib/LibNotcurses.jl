@@ -3,6 +3,7 @@ module LibNotcurses
 using Notcurses_jll
 # export Notcurses_jll
 
+
 const uintmax_t = Culong
 
 """
@@ -140,7 +141,7 @@ we never blit full blocks, but instead spaces (more efficient) with the
 background set to the desired foreground. these need be kept in the same
 order as the blitters[] definition in lib/blit.c.
 """
-@cenum ncblitter_e::UInt32 begin
+@enum ncblitter_e::UInt32 begin
     NCBLIT_DEFAULT = 0
     NCBLIT_1x1 = 1
     NCBLIT_2x1 = 2
@@ -157,7 +158,7 @@ end
 
 Alignment within a plane or terminal. Left/right-justified, or centered.
 """
-@cenum ncalign_e::UInt32 begin
+@enum ncalign_e::UInt32 begin
     NCALIGN_UNALIGNED = 0
     NCALIGN_LEFT = 1
     NCALIGN_CENTER = 2
@@ -174,7 +175,7 @@ to fill the entirety of the plane. NCSCALE_NONE_HIRES and
 NCSCALE_SCALE_HIRES behave like their counterparts, but admit blitters
 which don't preserve aspect ratio.
 """
-@cenum ncscale_e::UInt32 begin
+@enum ncscale_e::UInt32 begin
     NCSCALE_NONE = 0
     NCSCALE_SCALE = 1
     NCSCALE_STRETCH = 2
@@ -1233,7 +1234,7 @@ and closing banners, which can be disabled via the notcurses_option struct's
 which we're rendering, any kind of logging will disrupt the output (which is
 undesirable). The "default" zero value is NCLOGLEVEL_PANIC.
 """
-@cenum ncloglevel_e::Int32 begin
+@enum ncloglevel_e::Int32 begin
     NCLOGLEVEL_SILENT = -1
     NCLOGLEVEL_PANIC = 0
     NCLOGLEVEL_FATAL = 1
@@ -2376,7 +2377,7 @@ end
 pixel blitting implementations. informative only; don't special-case
 based off any of this information!
 """
-@cenum ncpixelimpl_e::UInt32 begin
+@enum ncpixelimpl_e::UInt32 begin
     NCPIXEL_NONE = 0
     NCPIXEL_SIXEL = 1
     NCPIXEL_LINUXFB = 2
