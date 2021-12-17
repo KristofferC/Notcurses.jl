@@ -1,11 +1,11 @@
 #! /bin/bash julia --project generator.jl
 using Clang.Generators
-using Clang.Generators.JLLEnvs
-# using Clang.LibClang.Clang_jll  # replace this with your jll package
+using Notcurses_jll
 
 cd(@__DIR__)
 
 # headers
+# include_dir = joinpath(Notcurses_jll.artifact_dir, "include") |> normpath
 include_dir = joinpath(@__DIR__, "include") |> normpath
 
 # load common option
