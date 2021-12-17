@@ -40,17 +40,52 @@ set_fg_rgb8_clipped(n::Ncplane, r::Integer, g::Integer, b::Integer) = LibNotcurs
 
 set_bg_rgb8(n::Ncplane, r::Integer, g::Integer, b::Integer) = LibNotcurses.ncplane_set_bg_rgb8(n.plane_ptr, r, g, b)
 set_fg_rgb8(n::Ncplane, r::Integer, g::Integer, b::Integer) = LibNotcurses.ncplane_set_fg_rgb8(n.plane_ptr, r, g, b)
+set_scrolling(n::Ncplane, v::Bool) = LibNotcurses.ncplane_set_scrolling(n, v)
+putstr_aligned(n::Ncplane, y::Integer, align, str::AbstractString) = LibNotcurses.ncplane_putstr_aligned(n, y, align, str)
 
 
-LibNotcurses.notcurses_options() = 
-    LibNotcurses.notcurses_options(C_NULL, LibNotcurses.NCLOGLEVEL_PANIC, 0, 0, 0, 0, 0)
+
+@enum LogLevel begin
+    SILENT = -1
+    PANIC = 0
+    FATAL = 1
+    ERROR = 2
+    WARNING = 3
+    INFO = 4
+    VERBOSE = 5
+    DEBUG = 6
+    TRACE = 7
+end
+
+mutable struct Options
+    termtype::String
+    loglevel::LogLevel
+    margin_t::Cuint
+    margin_r::Cuint
+    margin_b::Cuint
+    margin_l::Cuint
+    flags::UInt64
+end
+
+Options() = Options("", PANIC, 0, 0, 0, 0, 0)
+function Base.cconvert(::Type{Ptr{LibNotcurses.notcurses_options}}, opt::Options)
+    Ref(LibNotcurses.notcurses_options(
+        isempty(opt.termtype) ? C_NULL : pointer(opt.termtype),
+        LibNotcurses.ncloglevel_e(Int(opt.loglevel)),
+        opt.margin_t,
+        opt.margin_r,
+        opt.margin_b,
+        opt.margin_l,
+        opt.flags,
+    ))
+end
 
 mutable struct NotCurses
-    opts::LibNotcurses.notcurses_options
+    opts::Options
     nc_ptr::Ptr{LibNotcurses.notcurses}
     # TODO Make a julia version of the option
-    function NotCurses(opts::LibNotcurses.notcurses_options = LibNotcurses.notcurses_options())
-        nc_ptr = Notcurses.LibNotcurses.notcurses_init(Ref(opts), C_NULL) # TODO, allow passing a FD
+    function NotCurses(opts::Options = Options())
+        nc_ptr = Notcurses.LibNotcurses.notcurses_init(opts, C_NULL) # TODO, allow passing a FD
         nc_ptr == C_NULL && throw_nc("failed to initialize notcurses")
         nc = new(opts, nc_ptr)
         finalizer(nc) do nc
