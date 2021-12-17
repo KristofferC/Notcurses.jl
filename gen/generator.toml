@@ -2,12 +2,15 @@
 library_name = "libnotcurses"
 output_file_path = "../lib/LibNotcurses.jl"
 module_name = "LibNotcurses"
-jll_pkg_name = "Notcurses_jll"
+# jll_pkg_name = "Notcurses_jll"
 export_symbol_prefixes = ["nc", "notcurses"]
 prologue_file_path = "./prologue.jl"
 output_ignorelist = [
     "RESTRICT"
 ]
+extract_c_comment_style = "raw"
+show_c_function_prototype = true
+
 
 [codegen]
 use_ccall_macro = true
