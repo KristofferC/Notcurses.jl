@@ -1,17 +1,11 @@
 module LibNotcurses
 
-# using Notcurses_jll
+using Notcurses_jll
 # export Notcurses_jll
 
 using CEnum
 
 using Libdl
-
-function __init__()
-    global libnotcurses_handle = dlopen("/home/kc/Applications/notcurses-3.0/notcurses-3.0/build/libnotcurses.so")
-end
-
-const libnotcurses = "/home/kc/Applications/notcurses-3.0/notcurses-3.0/build/libnotcurses.so"
 
 const uintmax_t = Culong
 
