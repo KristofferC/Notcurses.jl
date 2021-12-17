@@ -1,7 +1,7 @@
 module LibNotcurses
 
-using Notcurses_jll
-export Notcurses_jll
+# using Notcurses_jll
+# export Notcurses_jll
 
 using CEnum
 
@@ -411,6 +411,7 @@ end
     NCLOGLEVEL_DEBUG = 6
     NCLOGLEVEL_TRACE = 7
 end
+
 
 struct notcurses_options
     termtype::Ptr{Cchar}

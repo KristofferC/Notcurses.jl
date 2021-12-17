@@ -7,11 +7,12 @@ export NcDirect
 export cursor_enable, cursor_disable, set_fg
 
 using Libdl
+using Ncurses_jll
 
 include("../lib/LibNotcurses.jl")
 using .LibNotcurses
 
-version() = unsafe_string(LibNotcurses.notcurses_version())
+version() = unsafe_string(notcurses_version())
 
 #############
 # Exception #
@@ -86,7 +87,9 @@ mutable struct NotCurses
     nc_ptr::Ptr{notcurses}
     # TODO Make a julia version of the option
     function NotCurses(opts::Options = Options())
-        nc_ptr = Notcurses.notcurses_init(opts, C_NULL) # TODO, allow passing a FD
+        nc_ptr = withenv("TERMINFO" => joinpath(Ncurses_jll.artifact_dir, "share", "terminfo")) do
+            notcurses_init(opts, C_NULL) # TODO, allow passing a FD
+        end                
         nc_ptr == C_NULL && throw_nc("failed to initialize notcurses")
         nc = new(opts, nc_ptr)
         finalizer(nc) do nc
